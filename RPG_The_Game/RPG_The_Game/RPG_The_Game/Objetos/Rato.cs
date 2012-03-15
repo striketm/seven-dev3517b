@@ -21,6 +21,18 @@ namespace RPG_The_Game.Objetos
         int vida;
         int pontos;
 
+        public Vector2 Posicao
+        {
+            get
+            {
+                return posicao;
+            }
+
+            set
+            {
+                posicao = value;
+            }
+        }
 
         public Rato(Texture2D textura, Vector2 posicao, Vector2 velocidade, GameWindow window)
             :base(textura)
