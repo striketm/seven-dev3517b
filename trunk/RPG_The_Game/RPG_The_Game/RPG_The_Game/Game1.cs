@@ -24,6 +24,8 @@ namespace RPG_The_Game
         Objetos.Rato rato;
 
         KeyboardState teclado_atual, teclado_anterior;
+        MouseState mouse_atual, mouse_anterior;
+        GamePadState joystick_atual, joystick_anterior;
        
         public Game1()
         {
@@ -82,11 +84,35 @@ namespace RPG_The_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            if (teclado_atual.IsKeyDown(Keys.Escape))
+                this.Exit();
+
             teclado_atual = Keyboard.GetState();
+            mouse_atual = Mouse.GetState();
+            joystick_atual = GamePad.GetState(PlayerIndex.One);
 
             rato.Update(gameTime, teclado_atual);
 
+            if (mouse_atual.LeftButton == ButtonState.Pressed)
+            {
+                rato.Posicao = new Vector2(mouse_atual.X, mouse_atual.Y);
+            }
+
+            //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
+            //if(joystick_atual.DPad.Down, Right, Left, Up
+            if (joystick_atual.ThumbSticks.Left.X == 1)
+            {
+                rato.Posicao = Vector2.Zero;
+            }
+
+            if (teclado_atual.IsKeyDown(Keys.Z))
+            {
+                Objetos.Cachorro.listaCachorros.Add(new Objetos.Cachorro(Content.Load<Texture2D>("pentagono")));
+            }
+
             teclado_anterior = teclado_atual;
+            mouse_anterior = mouse_atual;
+            joystick_anterior = joystick_atual;
 
             base.Update(gameTime);
         }
@@ -102,6 +128,11 @@ namespace RPG_The_Game
             spriteBatch.Begin();
 
             rato.Draw(gameTime, spriteBatch);
+
+            for (int i = 0; i < Objetos.Cachorro.listaCachorros.Count; i++)
+            {
+                Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
+            }
 
             spriteBatch.End();
 
