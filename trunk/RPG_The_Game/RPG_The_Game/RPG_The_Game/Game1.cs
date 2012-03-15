@@ -19,6 +19,12 @@ namespace RPG_The_Game
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Song musica;
+
+        Objetos.Rato rato;
+
+        KeyboardState teclado_atual, teclado_anterior;
+       
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,6 +53,12 @@ namespace RPG_The_Game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            musica = Content.Load<Song>("Sounds/Musics/Kalimba");
+
+            MediaPlayer.Play(musica);
+
+            rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -70,7 +82,11 @@ namespace RPG_The_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            teclado_atual = Keyboard.GetState();
+
+            rato.Update(gameTime, teclado_atual);
+
+            teclado_anterior = teclado_atual;
 
             base.Update(gameTime);
         }
@@ -83,7 +99,11 @@ namespace RPG_The_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            rato.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
