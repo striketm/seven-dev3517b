@@ -19,29 +19,19 @@ namespace RPG_The_Game.Objetos
         protected Vector2 velocidade;
         protected bool visivel;
 
-
         public Sprite(Texture2D textura)
         {
-
             this.textura = textura;
-            this.posicao = new Vector2(0,0);
+            this.posicao = new Vector2(0, 0);
             this.velocidade = new Vector2(1, 1);
             this.visivel = true;
-                             
-        
         }
+
         public abstract void Update(GameTime gameTime);
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-       {
-
-           if (visivel) spriteBatch.Draw(textura, posicao, Color.White);
-       }  
-
-
+        {
+            if (visivel) spriteBatch.Draw(textura, posicao, Color.White);
+        }
     }
-
-
 }
-
-
-

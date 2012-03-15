@@ -1,8 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -11,27 +9,37 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace RPG_The_Game
+namespace RPG_The_Game.Objetos
 {
     class Rato:Objetos.Sprite
     {
-        protected GameWindow window;
-        protected Texture2D imagem;
-        protected Vector2 posicao;
-        protected Vector2 velocidade;
-        protected bool visivel;
+        //protected GameWindow window;
+        //protected Texture2D imagem;
+        //protected Vector2 posicao;
+        //protected Vector2 velocidade;
+        //protected bool visivel;
         int vida;
         int pontos;
 
 
-        public Rato(Texture2D imagem, Vector2 posicao, Vector2 velocidade, GameWindow window)
-            :base(imagem)
+        public Rato(Texture2D textura, Vector2 posicao, Vector2 velocidade, GameWindow window)
+            :base(textura)
         {
-            this.imagem = imagem;
+            this.textura = textura;
+            this.posicao = posicao;
             this.velocidade = velocidade;
             this.window = window;
-            //this.posicao = GameManager.randomPosicao();
+            
         }
+
+        public Rato(Texture2D textura, GameWindow window)
+            : base(textura)
+        {
+            this.textura = textura;
+            this.window = window;
+
+        }
+
         public override void Update(GameTime gameTime) { }
              
         public void Update(GameTime gameTime, KeyboardState teclado)
@@ -56,14 +64,14 @@ namespace RPG_The_Game
                 posicao.Y += velocidade.Y;
             }
 
-            if (posicao.X >= window.ClientBounds.Width - imagem.Width)
+            if (posicao.X >= window.ClientBounds.Width - textura.Width)
             {
-                posicao.X = window.ClientBounds.Width - imagem.Width;
+                posicao.X = window.ClientBounds.Width - textura.Width;
             }
 
-            if (posicao.Y >= window.ClientBounds.Height - imagem.Height)
+            if (posicao.Y >= window.ClientBounds.Height - textura.Height)
             {
-                posicao.Y = window.ClientBounds.Height - imagem.Height;
+                posicao.Y = window.ClientBounds.Height - textura.Height;
             }
 
             if (posicao.X <= 0)
@@ -76,9 +84,9 @@ namespace RPG_The_Game
                 posicao.Y = 0;
             }
         }
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-             spriteBatch.Draw(imagem, posicao, Color.Yellow);
-        }
+        //public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        //{
+        //     spriteBatch.Draw(imagem, posicao, Color.Yellow);
+        //}
     }
 }
