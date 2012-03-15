@@ -13,25 +13,27 @@ using Microsoft.Xna.Framework.Media;
 
 namespace RPG_The_Game
 {
-    class Rato
+    class Rato:Objetos.Sprite
     {
-        GameWindow window;
-        Texture2D imagem;
-        Vector2 posicao;
-        Vector2 velocidade;
-        public bool visivel;
+        protected GameWindow window;
+        protected Texture2D imagem;
+        protected Vector2 posicao;
+        protected Vector2 velocidade;
+        protected bool visivel;
         int vida;
         int pontos;
 
 
         public Rato(Texture2D imagem, Vector2 posicao, Vector2 velocidade, GameWindow window)
+            :base(imagem)
         {
             this.imagem = imagem;
             this.velocidade = velocidade;
             this.window = window;
             //this.posicao = GameManager.randomPosicao();
         }
-
+        public override void Update(GameTime gameTime) { }
+             
         public void Update(GameTime gameTime, KeyboardState teclado)
         {
             if (teclado.IsKeyDown(Keys.Right))

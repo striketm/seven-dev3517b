@@ -107,6 +107,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objetos\Cachorro.cs" />
+    <Compile Include="Objetos\Gato.cs" />
+    <Compile Include="Objetos\Item.cs" />
+    <Compile Include="Objetos\Peixe.cs" />
+    <Compile Include="Objetos\Queijo.cs" />
+    <Compile Include="Objetos\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
