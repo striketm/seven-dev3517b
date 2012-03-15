@@ -18,6 +18,9 @@ namespace RPG_The_Game.Objetos
         //protected Vector2 posicao;
         //protected Vector2 velocidade;
         //protected bool visivel;
+
+        SoundEffect efeitoSonoro;
+
         int vida;
         int pontos;
 
@@ -41,20 +44,20 @@ namespace RPG_The_Game.Objetos
             this.posicao = posicao;
             this.velocidade = velocidade;
             this.window = window;
-            
         }
 
-        public Rato(Texture2D textura, GameWindow window)
+        public Rato(Texture2D textura, GameWindow window, SoundEffect efeitoSonoro)
             : base(textura)
         {
             this.textura = textura;
             this.window = window;
+            this.efeitoSonoro = efeitoSonoro;
 
         }
 
         public override void Update(GameTime gameTime) { }
              
-        public void Update(GameTime gameTime, KeyboardState teclado)
+        public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
             if (teclado.IsKeyDown(Keys.Right))
             {
@@ -74,6 +77,11 @@ namespace RPG_The_Game.Objetos
             if (teclado.IsKeyDown(Keys.Down))
             {
                 posicao.Y += velocidade.Y;
+            }
+
+            if (teclado.IsKeyDown(Keys.Space) && !teclado_anterior.IsKeyDown(Keys.Space))
+            {                
+                efeitoSonoro.Play();
             }
 
             if (posicao.X >= window.ClientBounds.Width - textura.Width)

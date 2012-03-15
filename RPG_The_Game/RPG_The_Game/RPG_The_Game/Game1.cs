@@ -30,7 +30,7 @@ namespace RPG_The_Game
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            Content.RootDirectory = "Content";           
         }
 
         /// <summary>
@@ -57,10 +57,17 @@ namespace RPG_The_Game
 
             musica = Content.Load<Song>("Sounds/Musics/Kalimba");
 
-            MediaPlayer.Play(musica);
+            //MediaPlayer.Play(musica);
 
-            rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window);
+            rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
 
+            IsMouseVisible = true;
+            Window.Title = "R-P-G The Game (Ratón, Perro, Gatón)";
+            //graphics.IsFullScreen = true;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+            //graphics.ToggleFullScreen();
+            graphics.ApplyChanges();
             // TODO: use this.Content to load your game content here
         }
 
@@ -91,7 +98,7 @@ namespace RPG_The_Game
             mouse_atual = Mouse.GetState();
             joystick_atual = GamePad.GetState(PlayerIndex.One);
 
-            rato.Update(gameTime, teclado_atual);
+            rato.Update(gameTime, teclado_atual, teclado_anterior);
 
             if (mouse_atual.LeftButton == ButtonState.Pressed)
             {
@@ -100,7 +107,7 @@ namespace RPG_The_Game
 
             //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
             //if(joystick_atual.DPad.Down, Right, Left, Up
-            if (joystick_atual.ThumbSticks.Left.X == 1)
+            if (joystick_atual.ThumbSticks.Right.X == 1)
             {
                 rato.Posicao = Vector2.Zero;
             }
@@ -113,6 +120,8 @@ namespace RPG_The_Game
             teclado_anterior = teclado_atual;
             mouse_anterior = mouse_atual;
             joystick_anterior = joystick_atual;
+
+            //Window.Title = mouse_atual.X.ToString();
 
             base.Update(gameTime);
         }
