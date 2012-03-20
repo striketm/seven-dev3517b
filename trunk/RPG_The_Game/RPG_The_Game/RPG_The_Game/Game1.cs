@@ -57,7 +57,7 @@ namespace RPG_The_Game
 
             musica = Content.Load<Song>("Sounds/Musics/Kalimba");
 
-            //MediaPlayer.Play(musica);
+            MediaPlayer.Play(musica);
 
             rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
 
@@ -97,6 +97,11 @@ namespace RPG_The_Game
             teclado_atual = Keyboard.GetState();
             mouse_atual = Mouse.GetState();
             joystick_atual = GamePad.GetState(PlayerIndex.One);
+
+            //para casa: fazer a música diminuir e aumentar o volume - botão menos e mais...
+            //dar mute (volta volume de onde estava) - mesmo botão M
+            //dar pause (recomeçar de onde parou)  - mesmo botão P
+            //e stop (recomeçar do início) - mesmo botão S
 
             rato.Update(gameTime, teclado_atual, teclado_anterior);
 
