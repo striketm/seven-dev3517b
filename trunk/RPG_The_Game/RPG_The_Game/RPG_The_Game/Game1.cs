@@ -58,16 +58,16 @@ namespace RPG_The_Game
 
             musica = Content.Load<Song>("Sounds/Musics/Kalimba");
 
-            MediaPlayer.Play(musica);
+            //MediaPlayer.Play(musica);
 
             rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
 
-            rato.camada = 0.9f;
+            rato.camada = 0.1f;
 
             trigo = new Objetos.Cachorro(Content.Load<Texture2D>("circuloTrigonometrico"));
             Objetos.Cachorro.listaCachorros.Add(trigo);
 
-            trigo.camada = 0.1f;
+            trigo.camada = 0.9f;
 
             IsMouseVisible = true;
             Window.Title = "R-P-G The Game (Ratón, Perro, Gatón)";
@@ -115,6 +115,7 @@ namespace RPG_The_Game
 
             if (mouse_atual.LeftButton == ButtonState.Pressed)
             {
+                rato.diferenca = new Vector2(rato.PosMouse.X - rato.Posicao.X, rato.PosMouse.Y - rato.Posicao.Y);
                 rato.Posicao = new Vector2(mouse_atual.X, mouse_atual.Y);
             }
 
