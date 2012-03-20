@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPG_The_Game.Objetos
 {
-    class Class1
+    class Interface
     {
     }
 }

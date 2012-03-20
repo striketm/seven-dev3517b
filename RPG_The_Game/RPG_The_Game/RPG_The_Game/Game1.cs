@@ -22,6 +22,7 @@ namespace RPG_The_Game
         Song musica;
 
         Objetos.Rato rato;
+        Objetos.Cachorro trigo;
 
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
@@ -60,6 +61,13 @@ namespace RPG_The_Game
             MediaPlayer.Play(musica);
 
             rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
+
+            rato.camada = 0.9f;
+
+            trigo = new Objetos.Cachorro(Content.Load<Texture2D>("circuloTrigonometrico"));
+            Objetos.Cachorro.listaCachorros.Add(trigo);
+
+            trigo.camada = 0.1f;
 
             IsMouseVisible = true;
             Window.Title = "R-P-G The Game (Ratón, Perro, Gatón)";
@@ -139,14 +147,13 @@ namespace RPG_The_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-
-            rato.Draw(gameTime, spriteBatch);
-
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            
             for (int i = 0; i < Objetos.Cachorro.listaCachorros.Count; i++)
             {
                 Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
             }
+            rato.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 
