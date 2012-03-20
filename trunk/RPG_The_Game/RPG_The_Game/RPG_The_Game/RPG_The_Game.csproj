@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objetos\Cachorro.cs" />
-    <Compile Include="Objetos\Class1.cs" />
+    <Compile Include="Objetos\Interface.cs" />
     <Compile Include="Objetos\Gato.cs" />
     <Compile Include="Objetos\Item.cs" />
     <Compile Include="Objetos\Peixe.cs" />
