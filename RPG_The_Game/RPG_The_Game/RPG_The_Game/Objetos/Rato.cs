@@ -20,10 +20,28 @@ namespace RPG_The_Game.Objetos
         //protected bool visivel;
 
         SoundEffect efeitoSonoro;
-
+        /// <summary>
+        /// Para aonde o rato vai se mover
+        /// </summary>
+        public Vector2 posMouse;
+        /// <summary>
+        /// Calcular a diferença entre a posição rato e a do mouse
+        /// </summary>
+        public Vector2 diferenca;
         int vida;
         int pontos;
+        public Vector2 PosMouse
+        {
+            get
+            {
+                return posMouse;
+            }
 
+            set
+            {
+                posMouse = value;
+            }
+        }
         public Vector2 Posicao
         {
             get
@@ -59,6 +77,17 @@ namespace RPG_The_Game.Objetos
              
         public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
+            if (diferenca.X < 0)
+            {
+
+            }
+            if (diferenca.Y < 0)
+            {
+
+            }
+            
+
+
             if (teclado.IsKeyDown(Keys.Right))
             {
                 posicao.X += velocidade.X;
