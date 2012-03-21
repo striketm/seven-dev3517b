@@ -19,32 +19,68 @@ namespace RPG_The_Game.Objetos
         protected Vector2 velocidade;
         protected Rectangle origem;
         protected Rectangle destino;
+        protected float rotacao;
+        protected Vector2 pivo;
+        protected bool direita;
         protected bool visivel;
-        public float camada;
+        protected float camada;
+        protected float alfa;
+        protected Color cor;
+
+        public struct animacao
+        {
+            public int quadro_X;//get set origem destino
+            public int quadro_Y;
+            public int qtd_quadros;
+            public int quadros_seg;
+            public int Y;
+        }
 
         public Sprite(Texture2D textura)
         {
             this.textura = textura;
             this.posicao = new Vector2(0, 0);
             this.velocidade = new Vector2(1, 1);
+            this.origem = new Rectangle(0, 0, textura.Width, textura.Height);
+            this.destino = new Rectangle(0, 0, origem.Width, origem.Height);
+            this.rotacao = 0;// MathHelper.ToRadians(0);
+            this.pivo = Vector2.Zero;// Vector2(destino.Width / 2, destino.Height / 2);//influencia tudo...
+            this.direita = true;
             this.visivel = true;
-            //this.camada = 1;
+            this.camada = 1.0f;
+            this.alfa = 1f;
+            this.cor = new Color(1.0f, 1.0f, 1.0f, alfa);//not totally ok yet, anda see alpha blend in blendstate...
         }
 
         public abstract void Update(GameTime gameTime);
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, animacao _animacao)
         {
-            //if (visivel) spriteBatch.Draw(textura, posicao, Color.White);
             if (visivel)
-                // 1 - spriteBatch.Draw(textura, retanguloDestino, cor);
-                // 2 - spriteBatch.Draw(textura, vetorPosicaoDestino, cor);
-                // 3 - spriteBatch.Draw(textura, retanguloDestino, retanguloFonte, cor);
-                // 4 - spriteBatch.Draw(textura, vetorPosicaoDestino, retanguloFonte, cor);
-                // 5 - spriteBatch.Draw(textura, retanguloDestino, retanguloFonte, cor, floatRotacao, vetorOrigem, SpriteEffects.None, floatCamada);
-                // 6 - spriteBatch.Draw(textura, vetorPosicaoDestino, retanguloFonte, cor, floatRotacao, vetorOrigem, SpriteEffects.FlipHorizontally, floatCamada);
-                // 7 - spriteBatch.Draw(textura, vetorPosicaoDestino, retanguloFonte, cor, floatRotacao, vetorOrigem, vetorEscala, SpriteEffects.FlipVertically, floatCamada);
-                spriteBatch.Draw(textura, new Rectangle((int)posicao.X, (int)posicao.Y, 50, 50), new Rectangle(0, 0, 50, 50), new Color(1.0f * .5f, 1.0f * .5f, 1.0f * .5f, .5f), 0.0f, Vector2.Zero, SpriteEffects.None, camada);
+            {
+                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* _animacao.qtd_quadros)%_animacao.quadros_seg;
+                spriteBatch.Draw(
+                        textura,
+                        new Rectangle(
+                            (int)posicao.X,
+                            (int)posicao.Y,
+                            _animacao.quadro_X,
+                            _animacao.quadro_Y),
+                        new Rectangle(
+                            frame*_animacao.quadro_X,
+                            _animacao.Y,
+                            _animacao.quadro_X,
+                            _animacao.quadro_Y),
+                        new Color(
+                            1.0f * alfa,
+                            1.0f * alfa,
+                            1.0f * alfa,
+                            alfa),
+                        rotacao,
+                        pivo,
+                        (direita) ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
+                        camada);
+            }
         }
     }
 }

@@ -62,17 +62,17 @@ namespace RPG_The_Game
 
             rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
 
-            rato.camada = 0.1f;
+            //rato.camada = 0.1f;
 
-            trigo = new Objetos.Cachorro(Content.Load<Texture2D>("circuloTrigonometrico"));
-            Objetos.Cachorro.listaCachorros.Add(trigo);
+            //trigo = new Objetos.Cachorro(Content.Load<Texture2D>("circuloTrigonometrico"));
+            //Objetos.Cachorro.listaCachorros.Add(trigo);
 
-            trigo.camada = 0.9f;
+            //trigo.camada = 0.9f;
 
             IsMouseVisible = true;
             Window.Title = "R-P-G The Game (Ratón, Perro, Gatón)";
             //graphics.IsFullScreen = true;
-            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferWidth = 1000;
             graphics.PreferredBackBufferHeight = 600;
             //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
@@ -98,9 +98,10 @@ namespace RPG_The_Game
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
             if (teclado_atual.IsKeyDown(Keys.Escape))
                 this.Exit();
+
+            //Window.Title = gameTime.ElapsedGameTime..ToString();
 
             teclado_atual = Keyboard.GetState();
             mouse_atual = Mouse.GetState();
@@ -113,11 +114,11 @@ namespace RPG_The_Game
 
             rato.Update(gameTime, teclado_atual, teclado_anterior);
 
-            if (mouse_atual.LeftButton == ButtonState.Pressed)
-            {
-                rato.diferenca = new Vector2(rato.PosMouse.X - rato.Posicao.X, rato.PosMouse.Y - rato.Posicao.Y);
-                rato.Posicao = new Vector2(mouse_atual.X, mouse_atual.Y);
-            }
+            //if (mouse_atual.LeftButton == ButtonState.Pressed)
+            //{
+            //    rato.diferenca = new Vector2(rato.PosMouse.X - rato.Posicao.X, rato.PosMouse.Y - rato.Posicao.Y);
+            //    rato.Posicao = new Vector2(mouse_atual.X, mouse_atual.Y);
+            //}
 
             //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
             //if(joystick_atual.DPad.Down, Right, Left, Up
@@ -152,9 +153,9 @@ namespace RPG_The_Game
             
             for (int i = 0; i < Objetos.Cachorro.listaCachorros.Count; i++)
             {
-                Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
+                //Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
             }
-            rato.Draw(gameTime, spriteBatch);
+            rato.Draw(gameTime, spriteBatch, rato.andando);
 
             spriteBatch.End();
 
