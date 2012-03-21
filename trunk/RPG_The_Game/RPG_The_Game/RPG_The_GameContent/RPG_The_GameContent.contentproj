@@ -51,7 +51,6 @@
       <Name>circulo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ColorKeyColor>255, 0, 0, 255</ProcessorParameters_ColorKeyColor>
     </Compile>
     <Compile Include="pentagono.png">
       <Name>pentagono</Name>

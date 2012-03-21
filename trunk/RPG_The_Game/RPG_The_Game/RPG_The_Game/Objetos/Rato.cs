@@ -55,6 +55,11 @@ namespace RPG_The_Game.Objetos
             }
         }
 
+        public animacao andando;
+        animacao parado;
+        animacao atacando;
+        animacao pulando;
+
         public Rato(Texture2D textura, Vector2 posicao, Vector2 velocidade, GameWindow window)
             :base(textura)
         {
@@ -71,26 +76,25 @@ namespace RPG_The_Game.Objetos
             this.window = window;
             this.efeitoSonoro = efeitoSonoro;
 
+            andando = new animacao();
+            andando.qtd_quadros = 4;
+            andando.quadros_seg = 4;
+            andando.Y = 0;
+            andando.quadro_X = textura.Width / andando.qtd_quadros;
+            andando.quadro_Y = textura.Height;
+
+            destino = new Rectangle(0, 0, andando.quadro_X, andando.quadro_Y);
+
         }
 
         public override void Update(GameTime gameTime) { }
              
         public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
-            if (diferenca.X < 0)
-            {
-
-            }
-            if (diferenca.Y < 0)
-            {
-
-            }
             
-
-
             if (teclado.IsKeyDown(Keys.Right))
             {
-                posicao.X += velocidade.X;
+                posicao.X += velocidade.X * (float)gameTime.ElapsedGameTime.Milliseconds;
             }
 
             if (teclado.IsKeyDown(Keys.Left))
@@ -113,14 +117,14 @@ namespace RPG_The_Game.Objetos
                 efeitoSonoro.Play();
             }
 
-            if (posicao.X >= window.ClientBounds.Width - textura.Width)
+            if (posicao.X >= window.ClientBounds.Width - destino.Width)
             {
-                posicao.X = window.ClientBounds.Width - textura.Width;
+                posicao.X = window.ClientBounds.Width - destino.Width;
             }
 
-            if (posicao.Y >= window.ClientBounds.Height - textura.Height)
+            if (posicao.Y >= window.ClientBounds.Height - destino.Height)
             {
-                posicao.Y = window.ClientBounds.Height - textura.Height;
+                posicao.Y = window.ClientBounds.Height - destino.Height;
             }
 
             if (posicao.X <= 0)
