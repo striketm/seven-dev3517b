@@ -34,6 +34,7 @@ namespace RPG_The_Game.Objetos
             public int qtd_quadros;
             public int quadros_seg;
             public int Y;
+            
         }
 
         public Sprite(Texture2D textura)
@@ -58,7 +59,8 @@ namespace RPG_The_Game.Objetos
         {
             if (visivel)
             {
-                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* _animacao.qtd_quadros)%_animacao.quadros_seg;
+                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* _animacao.quadros_seg)%_animacao.qtd_quadros;
+
                 spriteBatch.Draw(
                         textura,
                         new Rectangle(
