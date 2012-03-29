@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cenas\Cena_Intro.cs" />
     <Compile Include="Objetos\Cachorro.cs" />
     <Compile Include="Objetos\Interface.cs" />
     <Compile Include="Objetos\Gato.cs" />
