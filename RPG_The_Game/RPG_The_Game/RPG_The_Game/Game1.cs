@@ -27,6 +27,21 @@ namespace RPG_The_Game
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
         GamePadState joystick_atual, joystick_anterior;
+
+        public enum Cenas
+        {
+            INTRO,
+            JOGO,
+            MENU,
+            CREDITOS,
+            PAUSA,
+            THE_END,
+            GAME_OVER
+        };
+
+        public Cenas cenaAtual = Cenas.JOGO;
+
+        public RPG_The_Game.Cenas.Cena_Intro cena_intro;
        
         public Game1()
         {
@@ -68,6 +83,7 @@ namespace RPG_The_Game
             //Objetos.Cachorro.listaCachorros.Add(trigo);
 
             //trigo.camada = 0.9f;
+            cena_intro = new RPG_The_Game.Cenas.Cena_Intro(Content, Window);
 
             IsMouseVisible = true;
             Window.Title = "R-P-G The Game (Ratón, Perro, Gatón)";
@@ -106,6 +122,16 @@ namespace RPG_The_Game
             teclado_atual = Keyboard.GetState();
             mouse_atual = Mouse.GetState();
             joystick_atual = GamePad.GetState(PlayerIndex.One);
+
+            switch (cenaAtual)
+            {
+                case Cenas.INTRO:
+                    cena_intro.Update(gameTime);
+                    break;
+                case Cenas.JOGO:
+
+                    break;
+            }
 
             //para casa: fazer a música diminuir e aumentar o volume - botão menos e mais...
             //dar mute (volta volume de onde estava) - mesmo botão M
@@ -150,6 +176,16 @@ namespace RPG_The_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+
+            switch (cenaAtual)
+            {
+                case Cenas.INTRO:
+                    cena_intro.Draw(gameTime, spriteBatch);
+                    break;
+                case Cenas.JOGO:
+
+                    break;
+            }
             
             for (int i = 0; i < Objetos.Cachorro.listaCachorros.Count; i++)
             {
