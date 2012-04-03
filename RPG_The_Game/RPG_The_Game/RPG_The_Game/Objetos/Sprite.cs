@@ -22,10 +22,23 @@ namespace RPG_The_Game.Objetos
         protected float rotacao;
         protected Vector2 pivo;
         protected bool direita;
-        protected bool visivel;
+        public bool visivel;
         protected float camada;
         protected float alfa;
         protected Color cor;
+        protected Rectangle colisao;
+        public Rectangle Colisao
+        {
+            get
+            {
+                return colisao;
+            }
+            set
+            {
+                colisao = value;
+            }
+
+        }
 
         public struct animacao
         {
@@ -51,6 +64,8 @@ namespace RPG_The_Game.Objetos
             this.camada = 1.0f;
             this.alfa = 1f;
             this.cor = new Color(1.0f, 1.0f, 1.0f, alfa);//not totally ok yet, anda see alpha blend in blendstate...
+            this.colisao = new Rectangle((int)posicao.X, (int)posicao.Y, origem.Width, origem.Height);
+
         }
 
         public abstract void Update(GameTime gameTime);
