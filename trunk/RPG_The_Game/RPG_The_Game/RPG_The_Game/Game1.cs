@@ -22,7 +22,7 @@ namespace RPG_The_Game
         Song musica;
 
         Objetos.Rato rato;
-        Objetos.Cachorro trigo;
+        Objetos.Rato rato2;        
 
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
@@ -76,6 +76,12 @@ namespace RPG_The_Game
             //MediaPlayer.Play(musica);
 
             rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
+
+            rato.jogador = 1;
+
+            rato2 = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
+
+            rato2.Posicao = new Vector2(100, 400);
 
             //rato.camada = 0.1f;
 
@@ -139,6 +145,13 @@ namespace RPG_The_Game
             //e stop (recomeçar do início) - mesmo botão S
 
             rato.Update(gameTime, teclado_atual, teclado_anterior);
+            rato2.Update(gameTime, teclado_atual, teclado_anterior);
+
+            if (rato.Bateu(rato2))
+            {
+
+                rato2.visivel = false;
+            }
 
             //if (mouse_atual.LeftButton == ButtonState.Pressed)
             //{
@@ -192,6 +205,7 @@ namespace RPG_The_Game
                 //Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
             }
             rato.Draw(gameTime, spriteBatch, rato.andando);
+            rato2.Draw(gameTime, spriteBatch, rato.andando);
 
             spriteBatch.End();
 

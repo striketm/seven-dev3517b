@@ -13,12 +13,6 @@ namespace RPG_The_Game.Objetos
 {
     class Rato:Objetos.Sprite
     {
-        //protected GameWindow window;
-        //protected Texture2D imagem;
-        //protected Vector2 posicao;
-        //protected Vector2 velocidade;
-        //protected bool visivel;
-
         SoundEffect efeitoSonoro;
         /// <summary>
         /// Para aonde o rato vai se mover
@@ -30,6 +24,9 @@ namespace RPG_The_Game.Objetos
         public Vector2 diferenca;
         int vida;
         int pontos;
+
+        public int jogador;
+
         public Vector2 PosMouse
         {
             get
@@ -91,55 +88,72 @@ namespace RPG_The_Game.Objetos
              
         public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
-            
-            if (teclado.IsKeyDown(Keys.Right))
-            {
-                posicao.X += velocidade.X * (float)gameTime.ElapsedGameTime.Milliseconds;
-            }
 
-            if (teclado.IsKeyDown(Keys.Left))
-            {
-                posicao.X -= velocidade.X;
-            }
+            colisao.X = (int)posicao.X;
+            colisao.Y = (int)posicao.Y;
 
-            if (teclado.IsKeyDown(Keys.Up))
+            if (jogador == 1)
             {
-                posicao.Y -= velocidade.Y;
-            }
 
-            if (teclado.IsKeyDown(Keys.Down))
-            {
-                posicao.Y += velocidade.Y;
-            }
+                if (teclado.IsKeyDown(Keys.Right))
+                {
+                    posicao.X += velocidade.X * (float)gameTime.ElapsedGameTime.Milliseconds;
+                }
 
-            if (teclado.IsKeyDown(Keys.Space) && !teclado_anterior.IsKeyDown(Keys.Space))
-            {                
-                efeitoSonoro.Play();
-            }
+                if (teclado.IsKeyDown(Keys.Left))
+                {
+                    posicao.X -= velocidade.X;
+                }
 
-            if (posicao.X >= window.ClientBounds.Width - destino.Width)
-            {
-                posicao.X = window.ClientBounds.Width - destino.Width;
-            }
+                if (teclado.IsKeyDown(Keys.Up))
+                {
+                    posicao.Y -= velocidade.Y;
+                }
 
-            if (posicao.Y >= window.ClientBounds.Height - destino.Height)
-            {
-                posicao.Y = window.ClientBounds.Height - destino.Height;
-            }
+                if (teclado.IsKeyDown(Keys.Down))
+                {
+                    posicao.Y += velocidade.Y;
+                }
 
-            if (posicao.X <= 0)
-            {
-                posicao.X = 0;
-            }
+                if (teclado.IsKeyDown(Keys.Space) && !teclado_anterior.IsKeyDown(Keys.Space))
+                {
+                    efeitoSonoro.Play();
+                }
+                
+                if (posicao.X >= window.ClientBounds.Width - destino.Width)
+                {
+                    posicao.X = window.ClientBounds.Width - destino.Width;
+                }
 
-            if (posicao.Y <= 0)
-            {
-                posicao.Y = 0;
+                if (posicao.Y >= window.ClientBounds.Height - destino.Height)
+                {
+                    posicao.Y = window.ClientBounds.Height - destino.Height;
+                }
+
+                if (posicao.X <= 0)
+                {
+                    posicao.X = 0;
+                }
+
+                if (posicao.Y <= 0)
+                {
+                    posicao.Y = 0;
+                }
             }
         }
         //public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         //{
         //     spriteBatch.Draw(imagem, posicao, Color.Yellow);
         //}
+
+        public bool Bateu(Rato rato)
+        {
+            if(this.colisao.Intersects(rato.Colisao))
+            {
+                return true;
+            }
+            else return false;
+  
+        }
     }
 }
