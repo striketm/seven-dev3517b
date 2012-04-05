@@ -166,9 +166,10 @@ namespace RPG_The_Game
                 rato.Posicao = Vector2.Zero;
             }
 
-            if (teclado_atual.IsKeyDown(Keys.Z))
+            if (teclado_atual.IsKeyDown(Keys.Z) && !teclado_anterior.IsKeyDown(Keys.Z))
             {
-                Objetos.Cachorro.listaCachorros.Add(new Objetos.Cachorro(Content.Load<Texture2D>("pentagono")));
+                Objetos.Cachorro.listaCachorros.Add
+                    (new Objetos.Cachorro(Content.Load<Texture2D>("pentagono")));
             }
 
             teclado_anterior = teclado_atual;
@@ -202,8 +203,10 @@ namespace RPG_The_Game
             
             for (int i = 0; i < Objetos.Cachorro.listaCachorros.Count; i++)
             {
-                //Objetos.Cachorro.listaCachorros[i].Draw(gameTime, spriteBatch);
+                Objetos.Cachorro.listaCachorros[i].Draw
+                    (gameTime, spriteBatch, Objetos.Cachorro.nenhuma);
             }
+
             rato.Draw(gameTime, spriteBatch, rato.andando);
             rato2.Draw(gameTime, spriteBatch, rato.andando);
 

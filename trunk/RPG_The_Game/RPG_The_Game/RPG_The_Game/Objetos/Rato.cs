@@ -91,6 +91,8 @@ namespace RPG_The_Game.Objetos
 
             colisao.X = (int)posicao.X;
             colisao.Y = (int)posicao.Y;
+            colisao.Width = (int)origem.Width;
+            colisao.Height = (int)origem.Height;
 
             if (jogador == 1)
             {
