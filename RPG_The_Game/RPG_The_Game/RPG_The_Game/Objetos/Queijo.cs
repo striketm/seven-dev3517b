@@ -13,5 +13,8 @@ namespace RPG_The_Game.Objetos
 {
     class Queijo
     {
+        private float tempo_atual;
+        private float tempo_para_aparecer;
+
     }
 }
