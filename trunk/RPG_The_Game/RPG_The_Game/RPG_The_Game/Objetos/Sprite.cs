@@ -47,6 +47,7 @@ namespace RPG_The_Game.Objetos
             public int qtd_quadros;
             public int quadros_seg;
             public int Y;
+            public string nome;
             
         }
 
