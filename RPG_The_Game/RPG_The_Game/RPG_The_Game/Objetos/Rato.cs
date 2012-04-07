@@ -75,7 +75,7 @@ namespace RPG_The_Game.Objetos
 
             andando = new animacao();
             andando.qtd_quadros = 4;
-            andando.quadros_seg = 8;
+            andando.quadros_seg = 2;
             andando.Y = 0;
             andando.quadro_X = textura.Width / andando.qtd_quadros;
             andando.quadro_Y = textura.Height;
