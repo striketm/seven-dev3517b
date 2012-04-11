@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import xna.android.Explosion;
 
 public class Game1 extends SurfaceView implements
 		SurfaceHolder.Callback {
@@ -26,7 +27,13 @@ public class Game1 extends SurfaceView implements
 	private SoundManager mSoundManager;
 	
 	private SpriteFont spriteFont; // a fonte	
-
+	
+	private Explosion explosion;
+	
+	private static final int EXPLOSION_SIZE = 200;
+	
+	int explosionX, explosionY;
+	
 	public Game1(Context Content) {
 		super(Content);
 
@@ -144,6 +151,11 @@ public class Game1 extends SurfaceView implements
 		
 		spriteFont.drawString(spriteBatch, "Escrevendo: X " + ((int)getWidth()-250) + " Y " + ((int)getHeight()-100), ((int)getWidth()-250), ((int)getHeight()-100));
 		
+		if (explosion != null)
+		{
+			explosion.draw(spriteBatch);
+		}
+		
 	}
 
 	public void Update() {
@@ -152,11 +164,23 @@ public class Game1 extends SurfaceView implements
 		sprite2.update(getWidth(), getHeight());
 
 		if (sprite.intersects(sprite2.getX(), sprite2.getY(), sprite2
-				.getBitmap().getWidth(), sprite2.getBitmap().getHeight())) {
+				.getBitmap().getWidth(), sprite2.getBitmap().getHeight()))
+		{
 			sprite.setVisible(false);
+			
+			if (explosion == null || explosion.getState() == Explosion.STATE_DEAD)
+			{
+				explosion = new Explosion(EXPLOSION_SIZE, sprite.getX(), sprite.getY() );
+			}
 		}
 
 		sprite3.update(System.currentTimeMillis());
+		
+		if (explosion != null && explosion.isAlive())
+		{
+			explosion.update(getHolder().getSurfaceFrame());
+		}
+		
 	}
 	
 	public void Draw(Canvas canvas)
