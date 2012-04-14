@@ -6,8 +6,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-
-
 public class SoundManager {
 	
 	private  SoundPool mSoundPool; 
@@ -22,7 +20,6 @@ public class SoundManager {
 	     mSoundPoolMap = new HashMap<String, Integer>(); 
 	     mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE); 	
 	}
-		
 	
 	public void addSound(String name, int SoundID)
 	{

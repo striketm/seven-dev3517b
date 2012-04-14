@@ -17,7 +17,6 @@ public class Sprite {
 	
 	private SoundManager mSoundManager;
 	
-	
 	public Sprite(Bitmap bitmap, int x, int y, SoundManager sm)
 	{
 		this.bitmap = bitmap;
@@ -114,19 +113,22 @@ public class Sprite {
 		
 		public boolean intersects(int x, int y, int width, int height)
 		{
-			if(((this.x >= x && this.x <= x+width)
-			|| (this.x+this.bitmap.getWidth()>=x
-			&& this.x+this.bitmap.getWidth()<=x+width))
-			&& 
-					((this.y>=y && this.y <= y+height) || 
-					(this.y+this.bitmap.getHeight()>=y && this.y+this.bitmap.getHeight()<=y+height)))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			if(
+					(this.x+this.bitmap.getWidth()<x)//fora pela esquerda
+					||
+					(this.x>x+width)//fora pela direita
+					||
+					(this.y+this.bitmap.getHeight()<y)//fora por cima
+					||
+					(this.y>y+height)//fora por baixo
+					)
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
 		}
 		
 		public void update(int windowWidth, int windowHeight)

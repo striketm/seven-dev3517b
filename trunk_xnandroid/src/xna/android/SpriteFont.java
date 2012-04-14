@@ -34,7 +34,7 @@ public class SpriteFont
 			'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
 			'U', 'V', 'W', 'X', 'Y', 'Z' };
 	
-	//conjunto de letras
+	//conjunto de numeros
 	private char[] numbers = new char[] { '1', '2', '3', '4', '5', '6', '7',
 			'8', '9', '0' };
 	
@@ -90,7 +90,7 @@ public class SpriteFont
 		for (int i = 0; i < text.length(); i++) {
 			Character ch = text.charAt(i);
 			if (glypho.get(ch) != null) {
-				canvas.drawBitmap(glypho.get(ch), this.x + (i * width), this.y, null);
+				canvas.drawBitmap(glypho.get(ch), x + (i * width), y, null);
 			}
 		}
 	}
