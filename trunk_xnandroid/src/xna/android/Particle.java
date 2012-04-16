@@ -183,18 +183,22 @@ public class Particle {
 			this.x += this.xv;
 			this.y += this.yv;
 			
-			int a = this.color >>> 24;
-			a -= 2;								
+			int a = this.color >>> 24;//atribui um valor ao a
+			
+			a -= 2;
+			
 			if (a <= 0)
 			{						
 				this.state = State.DEAD;
 			} 
 			else 
 			{
-				this.color = (this.color & 0x00ffffff) + (a << 24);		
-				this.paint.setAlpha(a);
+				this.color = (this.color & 0x00ffffff) + (a << 24);
+				
+				//this.paint.setAlpha(a);
 				this.age++;						
 			}
+			
 			if (this.age >= this.lifetime)
 			{	
 				this.state = State.DEAD;

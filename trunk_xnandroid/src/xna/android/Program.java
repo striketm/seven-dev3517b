@@ -9,7 +9,7 @@ import android.view.WindowManager;
 
 public class Program extends Activity
 {
-	private static final String TAG = Program.class.getSimpleName();//
+	private static final String TAG = Program.class.getSimpleName();
 
 	private GLSurfaceView glSurfaceView;
 	

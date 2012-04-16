@@ -15,7 +15,7 @@ public class MainThread extends Thread {
 	private static final String TAG = MainThread.class.getSimpleName();
 		 
 	// fps desejado
-	private final static int 	MAX_FPS = 50;
+	private final static int 	MAX_FPS = 50;//
 
 	// maximo numero de frames a serem pulados
 	private final static int	MAX_FRAME_SKIPS = 5;
