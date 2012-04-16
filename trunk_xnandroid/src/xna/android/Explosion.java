@@ -1,35 +1,28 @@
-
 package xna.android;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
 
 public class Explosion {
+	
+	public enum State { ALIVE, DEAD };
 
-	private static final String TAG = Explosion.class.getSimpleName();
+	private State state;
 	
-	public static final int STATE_ALIVE 	= 0;	
-	public static final int STATE_DEAD 		= 1;	
+	private Particle[] particles;
 	
-	private Particle[] particles;			
 	private int x, y;						
-	private float gravity;					
-	private float wind;						
-	private int size;						
-	private int state;						
 	
 	public Explosion(int particleNr, int x, int y) 
 	{
 		
-		this.state = STATE_ALIVE;
+		this.state = State.ALIVE;
 		this.particles = new Particle[particleNr];
 	 	for (int i = 0; i < this.particles.length; i++)
 	 	{
 			Particle p = new Particle(x, y);
 			this.particles[i] = p;
 		}
-	 	this.size = particleNr;
 	}
 	
 	public Particle[] getParticles()
@@ -62,58 +55,28 @@ public class Explosion {
 		this.y = y;
 	}
 	
-	public float getGravity() 
-	{
-		return gravity;
-	}
-	
-	public void setGravity(float gravity) 
-	{
-		this.gravity = gravity;
-	}
-	
-	public float getWind()
-	{
-		return wind;
-	}
-	
-	public void setWind(float wind)
-	{
-		this.wind = wind;
-	}
-	
-	public int getSize()
-	{
-		return size;
-	}
-	
-	public void setSize(int size)
-	{
-		this.size = size;
-	}
-	
-	public int getState()
+	public State getState()
 	{
 		return state;
 	}
 
-	public void setState(int state) 
+	public void setState(State state) 
 	{
 		this.state = state;
 	}
 
 	public boolean isAlive() 
 	{
-		return this.state == STATE_ALIVE;
+		return this.state == State.ALIVE;
 	}
 	public boolean isDead()
 	{
-		return this.state == STATE_DEAD;
+		return this.state == State.DEAD;
 	}
 
 	public void update()
 	{
-		if (this.state != STATE_DEAD)
+		if (this.state != State.DEAD)
 		{
 			boolean isDead = true;
 			for (int i = 0; i < this.particles.length; i++)
@@ -125,13 +88,13 @@ public class Explosion {
 				}
 			}
 			if (isDead)
-				this.state = STATE_DEAD; 
+				this.state = State.DEAD; 
 		}
 	}
 	
 	public void update(Rect container)
 	{
-		if (this.state != STATE_DEAD)
+		if (this.state != State.DEAD)
 		{
 			boolean isDead = true;
 			for (int i = 0; i < this.particles.length; i++)
@@ -143,7 +106,7 @@ public class Explosion {
 				}
 			}
 			if (isDead)
-				this.state = STATE_DEAD; 
+				this.state = State.DEAD; 
 		}
 	}
 

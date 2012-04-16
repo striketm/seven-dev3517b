@@ -4,17 +4,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Particle {
 	
-	public static final int STATE_ALIVE = 0;	
-	public static final int STATE_DEAD = 1;		
+	public enum State { ALIVE, DEAD };
+
+	private State state;
 	
 	public static final int DEFAULT_LIFETIME 	= 200;	
 	public static final int MAX_DIMENSION		= 5;	
 	public static final int MAX_SPEED			= 10;	
-	
-	private int state;			
+			
 	private float widht;		
 	private float height;		 
 	private float x, y;			
@@ -25,12 +26,12 @@ public class Particle {
 	private Paint paint;		
 	
 	
-	public int getState()
+	public State getState()
 	{
 		return state;
 	}
 
-	public void setState(int state)
+	public void setState(State state)
 	{
 		this.state = state;
 	}
@@ -127,19 +128,19 @@ public class Particle {
 	
 	public boolean isAlive()
 	{
-		return this.state == STATE_ALIVE;
+		return this.state == State.ALIVE;
 	}
 	
 	public boolean isDead()
 	{
-		return this.state == STATE_DEAD;
+		return this.state == State.DEAD;
 	}
 
 	public Particle(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
-		this.state = Particle.STATE_ALIVE;
+		this.state = Particle.State.ALIVE;
 		this.widht = rndInt(1, MAX_DIMENSION);
 		this.height = this.widht;
 		this.lifetime = DEFAULT_LIFETIME;
@@ -153,16 +154,17 @@ public class Particle {
 		}
 		this.color = Color.argb(255, rndInt(0, 255), rndInt(0, 255), rndInt(0, 255));
 		this.paint = new Paint(this.color);
+		
+		Log.d("oi", "oi");
 	}
 	
 	public void reset(float x, float y)
 	{
-		this.state = Particle.STATE_ALIVE;
+		this.state = Particle.State.ALIVE;
 		this.x = x;
 		this.y = y;
 		this.age = 0;
 	}
-
 	
 	static int rndInt(int min, int max)
 	{
@@ -176,7 +178,7 @@ public class Particle {
 	
 	public void update()
 	{
-		if (this.state != STATE_DEAD)
+		if (this.state != State.DEAD)
 		{
 			this.x += this.xv;
 			this.y += this.yv;
@@ -185,7 +187,7 @@ public class Particle {
 			a -= 2;								
 			if (a <= 0)
 			{						
-				this.state = STATE_DEAD;
+				this.state = State.DEAD;
 			} 
 			else 
 			{
@@ -195,7 +197,7 @@ public class Particle {
 			}
 			if (this.age >= this.lifetime)
 			{	
-				this.state = STATE_DEAD;
+				this.state = State.DEAD;
 			}			
 		}
 	}

@@ -29,10 +29,8 @@ public class Game1 extends SurfaceView implements
 	private SpriteFont spriteFont; // a fonte	
 	
 	private Explosion explosion;
-	
+		
 	private static final int EXPLOSION_SIZE = 200;
-	
-	int explosionX, explosionY;
 	
 	public Game1(Context Content) {
 		super(Content);
@@ -89,7 +87,6 @@ public class Game1 extends SurfaceView implements
 				// tenta de novo interromper
 			}
 		}
-		Log.d(TAG, "Thread");
 	}
 
 	@Override
@@ -164,11 +161,11 @@ public class Game1 extends SurfaceView implements
 		sprite2.update(getWidth(), getHeight());
 
 		if (sprite.intersects(sprite2.getX(), sprite2.getY(), sprite2
-				.getBitmap().getWidth(), sprite2.getBitmap().getHeight()))
+				.getBitmap().getWidth(), sprite2.getBitmap().getHeight())&&sprite.isVisible())
 		{
 			sprite.setVisible(false);
 			
-			if (explosion == null || explosion.getState() == Explosion.STATE_DEAD)
+			if (explosion == null || explosion.getState() == Explosion.State.DEAD)
 			{
 				explosion = new Explosion(EXPLOSION_SIZE, sprite.getX(), sprite.getY() );
 			}
