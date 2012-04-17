@@ -74,7 +74,7 @@ namespace RPG_The_Game.Objetos
             this.efeitoSonoro = efeitoSonoro;
 
             andando = new animacao();
-            andando.qtd_quadros = 4;
+            andando.qtd_quadros = 6;
             andando.quadros_seg = 2;
             andando.Y = 0;
             andando.quadro_X = textura.Width / andando.qtd_quadros;
@@ -84,7 +84,7 @@ namespace RPG_The_Game.Objetos
 
         }
 
-        public override void Update(GameTime gameTime) { }
+        public override void Update(GameTime gameTime) { /*conflfo*/}
              
         public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
@@ -143,10 +143,11 @@ namespace RPG_The_Game.Objetos
                 }
             }
         }
-        //public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        //{
-        //     spriteBatch.Draw(imagem, posicao, Color.Yellow);
-        //}
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.Draw(imagem, posicao, Color.Yellow);
+            base.Draw();
+        }
 
         public bool Bateu(Rato rato)
         {
