@@ -78,7 +78,7 @@ namespace RPG_The_Game.Objetos
             andando.quadros_seg = 2;
             andando.Y = 0;
             andando.quadro_X = textura.Width / andando.qtd_quadros;
-            andando.quadro_Y = textura.Height;
+            andando.quadro_Y = textura.Height / 2;
 
             destino = new Rectangle(0, 0, andando.quadro_X, andando.quadro_Y);
 

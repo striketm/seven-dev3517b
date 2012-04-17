@@ -14,7 +14,7 @@ namespace RPG_The_Game.Cenas
         public Cena_Intro(ContentManager Content, GameWindow Window)
         {
             this.Window = Window;
-            fundo = Content.Load<Texture2D>("circuloTrigonometrico");
+            fundo = Content.Load<Texture2D>("Personagens/circuloTrigonometrico");
         }
 
         public void Update(GameTime gameTime)
