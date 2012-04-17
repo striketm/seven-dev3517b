@@ -77,8 +77,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cenarios\" />
-    <Folder Include="Sons\Efeitos\" />
-    <Folder Include="Sons\Musicas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sons\Musicas\Kalimba.mp3">
+      <Name>Kalimba</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sons\Efeitos\ding.wav">
+      <Name>ding</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
