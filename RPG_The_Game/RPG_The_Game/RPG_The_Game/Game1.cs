@@ -71,15 +71,15 @@ namespace RPG_The_Game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            musica = Content.Load<Song>("Sounds/Musics/Kalimba");
+            musica = Content.Load<Song>("Sons/Musicas/Kalimba");
 
             //MediaPlayer.Play(musica);
 
-            rato = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
+            rato = new Objetos.Rato(Content.Load<Texture2D>("Personagens/circulo"), Window, Content.Load<SoundEffect>("Sons/Efeitos/ding"));
 
             rato.jogador = 1;
 
-            rato2 = new Objetos.Rato(Content.Load<Texture2D>("circulo"), Window, Content.Load<SoundEffect>("Sounds/Effects/ding"));
+            rato2 = new Objetos.Rato(Content.Load<Texture2D>("Personagens/circulo"), Window, Content.Load<SoundEffect>("Sons/Efeitos/ding"));
 
             rato2.Posicao = new Vector2(100, 400);
 

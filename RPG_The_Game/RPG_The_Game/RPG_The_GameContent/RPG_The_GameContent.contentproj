@@ -42,50 +42,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="peixe.png">
+    <Compile Include="Personagens\peixe.png">
       <Name>peixe</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="circulo.png">
+    <Compile Include="Personagens\circulo.png">
       <Name>circulo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="pentagono.png">
+    <Compile Include="Personagens\pentagono.png">
       <Name>pentagono</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="quadrado.png">
+    <Compile Include="Personagens\quadrado.png">
       <Name>quadrado</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="triangulo.png">
+    <Compile Include="Personagens\triangulo.png">
       <Name>triangulo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\Effects\ding.wav">
+    <Compile Include="Sons\Efeitos\ding.wav">
       <Name>ding</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Sounds\Musics\Kalimba.mp3">
+    <Compile Include="Sons\Musicas\Kalimba.mp3">
       <Name>Kalimba</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="circuloTrigonometrico.png">
+    <Compile Include="Personagens\circuloTrigonometrico.png">
       <Name>circuloTrigonometrico</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cenarios\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
