@@ -71,7 +71,7 @@ namespace RPG_The_Game.Objetos
 
         public abstract void Update(GameTime gameTime);
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, animacao _animacao)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (visivel)
             {
