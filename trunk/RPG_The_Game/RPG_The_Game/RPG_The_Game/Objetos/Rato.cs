@@ -52,10 +52,10 @@ namespace RPG_The_Game.Objetos
             }
         }
 
-        animacao andando;
+        public animacao andando_direita_esquerda;
+        animacao andando_cima_baixo;
         animacao parado;
-        animacao atacando;
-        animacao pulando;
+        animacao animacao_atual;
 
         public Rato(Texture2D textura, Vector2 posicao, Vector2 velocidade, GameWindow window)
             :base(textura)
@@ -73,14 +73,23 @@ namespace RPG_The_Game.Objetos
             this.window = window;
             this.efeitoSonoro = efeitoSonoro;
 
-            andando = new animacao();
-            andando.qtd_quadros = 6;
-            andando.quadros_seg = 2;
-            andando.Y = 0;
-            andando.quadro_X = textura.Width / andando.qtd_quadros;
-            andando.quadro_Y = textura.Height / 2;
+            andando_direita_esquerda = new animacao();
+            andando_direita_esquerda.qtd_quadros = 8;
+            andando_direita_esquerda.quadros_seg = 2;
+            andando_direita_esquerda.Y = 0;
+            andando_direita_esquerda.quadro_X = textura.Width / andando_direita_esquerda.qtd_quadros;
+            andando_direita_esquerda.quadro_Y = textura.Height / 3;
 
-            destino = new Rectangle(0, 0, andando.quadro_X, andando.quadro_Y);
+            andando_cima_baixo = new animacao();
+            andando_cima_baixo.qtd_quadros = 4;
+            andando_cima_baixo.quadros_seg = 2;
+            andando_cima_baixo.Y = 0;
+            andando_cima_baixo.quadro_X = textura.Width / andando_direita_esquerda.qtd_quadros;
+            andando_cima_baixo.quadro_Y = textura.Height / 3;
+
+            animacao_atual = andando_cima_baixo;
+
+            destino = new Rectangle(0, 0, andando_direita_esquerda.quadro_X, andando_direita_esquerda.quadro_Y);
 
         }
 
