@@ -52,7 +52,7 @@ namespace RPG_The_Game.Objetos
             }
         }
 
-        public animacao andando;
+        animacao andando;
         animacao parado;
         animacao atacando;
         animacao pulando;
