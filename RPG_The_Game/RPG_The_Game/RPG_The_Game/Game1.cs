@@ -207,8 +207,8 @@ namespace RPG_The_Game
                     (gameTime, spriteBatch, Objetos.Cachorro.nenhuma);
             }
 
-            rato.Draw(gameTime, spriteBatch, rato.andando);
-            rato2.Draw(gameTime, spriteBatch, rato.andando);
+            rato.Draw(gameTime, spriteBatch);
+            rato2.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 
