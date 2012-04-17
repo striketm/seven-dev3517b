@@ -73,9 +73,9 @@ namespace RPG_The_Game.Objetos
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (visivel)
+            if (!visivel)
             {
-                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* _animacao.quadros_seg)%_animacao.qtd_quadros;
+                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* animacao.quadros_seg)%_animacao.qtd_quadros;
 
                 spriteBatch.Draw(
                         textura,
