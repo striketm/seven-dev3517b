@@ -74,20 +74,30 @@ namespace RPG_The_Game.Objetos
             this.efeitoSonoro = efeitoSonoro;
 
             andando_direita_esquerda = new animacao();
-            andando_direita_esquerda.qtd_quadros = 8;
+            andando_direita_esquerda.qtd_quadros = 4;
             andando_direita_esquerda.quadros_seg = 2;
             andando_direita_esquerda.Y = 0;
             andando_direita_esquerda.quadro_X = textura.Width / andando_direita_esquerda.qtd_quadros;
             andando_direita_esquerda.quadro_Y = textura.Height / 3;
+            andando_direita_esquerda.nome = "horizontal";
 
             andando_cima_baixo = new animacao();
             andando_cima_baixo.qtd_quadros = 4;
             andando_cima_baixo.quadros_seg = 2;
-            andando_cima_baixo.Y = 0;
+            andando_cima_baixo.Y = textura.Height/3;
             andando_cima_baixo.quadro_X = textura.Width / andando_direita_esquerda.qtd_quadros;
             andando_cima_baixo.quadro_Y = textura.Height / 3;
+            andando_cima_baixo.nome = "vertical";
 
-            animacao_atual = andando_cima_baixo;
+            parado = new animacao();
+            parado.qtd_quadros = 1;
+            parado.quadros_seg = 2;
+            parado.Y = textura.Height/3*2;
+            parado.quadro_X = textura.Width / andando_direita_esquerda.qtd_quadros;
+            parado.quadro_Y = textura.Height / 3;
+            parado.nome = "parado";
+
+            animacao_atual = andando_direita_esquerda;
 
             destino = new Rectangle(0, 0, andando_direita_esquerda.quadro_X, andando_direita_esquerda.quadro_Y);
 
@@ -97,7 +107,6 @@ namespace RPG_The_Game.Objetos
              
         public void Update(GameTime gameTime, KeyboardState teclado, KeyboardState teclado_anterior)
         {
-
             colisao.X = (int)posicao.X;
             colisao.Y = (int)posicao.Y;
             colisao.Width = (int)origem.Width;
@@ -109,22 +118,35 @@ namespace RPG_The_Game.Objetos
                 if (teclado.IsKeyDown(Keys.Right))
                 {
                     posicao.X += velocidade.X * (float)gameTime.ElapsedGameTime.Milliseconds;
+                    animacao_atual = andando_direita_esquerda;
+                    
                 }
 
-                if (teclado.IsKeyDown(Keys.Left))
+                else if (teclado.IsKeyDown(Keys.Left))
                 {
                     posicao.X -= velocidade.X;
+                    animacao_atual = andando_direita_esquerda;
+                    
                 }
 
-                if (teclado.IsKeyDown(Keys.Up))
+                else if (teclado.IsKeyDown(Keys.Up))
                 {
                     posicao.Y -= velocidade.Y;
+                    animacao_atual = andando_cima_baixo;
+                    
                 }
 
-                if (teclado.IsKeyDown(Keys.Down))
+                else if (teclado.IsKeyDown(Keys.Down))
                 {
                     posicao.Y += velocidade.Y;
+                    animacao_atual = andando_cima_baixo;
+
                 }
+                else
+                {
+                    animacao_atual = parado;
+                }
+                //TO DO e se eu apertar os dois botoes, para andar na diagonal como antes sem os elses...
 
                 if (teclado.IsKeyDown(Keys.Space) && !teclado_anterior.IsKeyDown(Keys.Space))
                 {
@@ -152,10 +174,10 @@ namespace RPG_The_Game.Objetos
                 }
             }
         }
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(imagem, posicao, Color.Yellow);
-            base.Draw();
+            base.Draw(gameTime, spriteBatch, animacao_atual);
         }
 
         public bool Bateu(Rato rato)

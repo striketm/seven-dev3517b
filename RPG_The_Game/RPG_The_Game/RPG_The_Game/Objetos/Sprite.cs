@@ -48,7 +48,8 @@ namespace RPG_The_Game.Objetos
             public int quadros_seg;
             public int Y;
             public string nome;
-            public bool ativa;            
+            public bool ativa;
+            public int quadro_atual;
         }
 
         public Sprite(Texture2D textura)
@@ -71,11 +72,11 @@ namespace RPG_The_Game.Objetos
 
         public abstract void Update(GameTime gameTime);
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, animacao _animacao)
         {
-            if (!visivel)
+            if (visivel)
             {
-                int frame = (int)(gameTime.TotalGameTime.TotalSeconds* animacao.quadros_seg)%_animacao.qtd_quadros;
+                int frame = (int)(gameTime.TotalGameTime.TotalSeconds * _animacao.quadros_seg) % _animacao.qtd_quadros;
 
                 spriteBatch.Draw(
                         textura,
