@@ -48,7 +48,7 @@ namespace RPG_The_Game.Objetos
             public int quadros_seg;
             public int Y;
             public string nome;
-            
+            public bool ativa;            
         }
 
         public Sprite(Texture2D textura)
