@@ -12,6 +12,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import br.com.R;
 
+//TODO Window, desenhador de primitivas
+
 
 public class Game1 extends SurfaceView implements
 		SurfaceHolder.Callback {
