@@ -33,11 +33,16 @@ namespace MotoGame
         //Vector2 posicao_moto;//renamed
 
         Moto moto1;
+        Sprite teste;
 
         //AULA 7/5
         KeyboardState teclado_atual, teclado_anterior;//renamed
         MouseState mouse_atual, mouse_anterior;
-        GamePadState joystick_atual, joystick_anterior;        
+        GamePadState joystick_atual, joystick_anterior;
+
+        Song musica;
+
+        //SoundEffect efeitoSonoro;//no objeto
 
         #endregion
 
@@ -83,9 +88,34 @@ namespace MotoGame
             //posicao_moto = new Vector2(200, 300);
 
             moto1 = new Moto(Content, Window);
+            
+            musica = Content.Load<Song>("Sounds/Musics/music");
 
+            MediaPlayer.Play(musica);
+            //MediaPlayer.State == MediaState.
 
-            // TODO: use this.Content to load your game content here
+            //bool TelaCheia = false;
+
+            //if(TelaCheia = false)
+            //    if (/*apertei o botao certo*/true)
+            //    {
+            //        TelaCheia = !TelaCheia;
+            //    }
+
+            
+            
+            /*
+             * Exercício: crie comandos de teclado para 
+             * aumentar e reduzir o volume da música (+,-),  
+             * dar pause e play (mesmo botão p, recomeça de onde parou)
+             * e stop (recomeça do início)
+             * e faça o mute no botão m
+             */
+
+            //Microsoft Visual Studio Express 2010 Download
+            //Microsoft XNA 4.0 Download
+            //Tortoise SVN Download
+             
         }
 
         /// <summary>
@@ -103,82 +133,30 @@ namespace MotoGame
         /// <param name="gameTime">O tempo do jogo</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            teclado_atual = Keyboard.GetState();
+            mouse_atual = Mouse.GetState();
+            joystick_atual = GamePad.GetState(PlayerIndex.One);
+            
+            if (teclado_atual.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // TODO: Add your update logic here
+            if (teclado_atual.IsKeyDown(Keys.F11))
+                graphics.ToggleFullScreen();
 
-            teclado_atual = Keyboard.GetState();
-            mouse_atual = Mouse.GetState();//AULA 7/5
-            joystick_atual = GamePad.GetState(PlayerIndex.One);
+            if (teclado_atual.IsKeyDown(Keys.M) && !teclado_anterior.IsKeyDown(Keys.M))
+                MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+
+            if (teclado_atual.IsKeyDown(Keys.Subtract) && !teclado_anterior.IsKeyDown(Keys.Subtract))
+                MediaPlayer.Volume -= 0.2f;
+
+            if (teclado_atual.IsKeyDown(Keys.Add) && !teclado_anterior.IsKeyDown(Keys.Add))
+                MediaPlayer.Volume += 0.2f;
 
             moto1.Update(gameTime, teclado_atual, mouse_atual, joystick_atual);
-
-            
-            //if (mouse_atual.LeftButton == ButtonState.Pressed)
-            //{
-            //    posicao_moto.X = mouse_atual.X;
-            //    posicao_moto.Y = mouse_atual.Y;
-            //}
-
-            ////if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
-            ////if(joystick_atual.DPad.Down, Right, Left, Up
-            //if (joystick_atual.ThumbSticks.Right.X == 1)
-            //{
-            //    posicao_moto = Vector2.Zero;
-            //}
-
-            //if(teclado_atual.IsKeyDown(Keys.Right))
-            //{
-            //    posicao_moto.X += 5;
-            //}
-            //if (teclado_atual.IsKeyDown(Keys.Left))
-            //{
-            //    posicao_moto.X -= 5;
-            //}
-            //if (teclado_atual.IsKeyDown(Keys.Up))
-            //{
-            //    posicao_moto.Y -= 5;
-            //}
-            //if (teclado_atual.IsKeyDown(Keys.Down))
-            //{
-            //    posicao_moto.Y += 5;
-            //}
-
-            //if (posicao_moto.X < 0)
-            //{
-            //    posicao_moto.X = 0;
-            //}
-
-            //if (posicao_moto.X > Window.ClientBounds.Width - textura_moto.Width)
-            //{
-            //    posicao_moto.X = Window.ClientBounds.Width - textura_moto.Width;
-            //}
-
-            //if (posicao_moto.Y < 0)
-            //{
-            //    posicao_moto.Y = 0;
-            //}
-
-            //if (posicao_moto.Y > Window.ClientBounds.Height - textura_moto.Height)
-            //{
-            //    posicao_moto.Y = Window.ClientBounds.Height - textura_moto.Height;
-            //}
-
-
-            /*
-             * Exercício para agora:
-             * 
-             * Faça sua moto/imagem andar para os 4 lados
-             * 
-             * Faça com que ela não ultrapasse os cantos da tela
-             * (hard ;-)
-             * 
-             * Texture2D Width Height
-             * Window ClientBounds Width Height
-             * 
-             */
+                
+            teclado_anterior = teclado_atual;
+            mouse_anterior = mouse_atual;
+            joystick_anterior = joystick_atual;
 
             base.Update(gameTime);
         }

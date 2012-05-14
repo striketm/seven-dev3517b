@@ -11,24 +11,34 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MotoGame
 {
-    class Moto
+    class Moto:Sprite
     {
-        Texture2D textura;//_moto;
+        SoundEffect ronco;
 
-        Vector2 posicao;//_moto;
-
-        GameWindow Window;
-
-        bool visivel;//one button...
+        animacao andando;
 
         public Moto(ContentManager Content, GameWindow Window)
+            :base(Content.Load<Texture2D>("moto"))
         {
             this.Window = Window;
 
             textura = Content.Load<Texture2D>("moto");
 
             posicao = new Vector2(200, 300);
+
+            ronco = Content.Load<SoundEffect>("Sounds/SoundEffects/sound_effect");
+
+            andando = new animacao();
+            andando.quadro_X = 67;
+            andando.quadro_Y = 47;
+            andando.qtd_quadros = 3;
+            andando.quadros_seg = 3;
+            andando.Y = 0;
+
         }
+
+        public override void Update(GameTime gameTime)
+        {}
 
         public void Update(GameTime gameTime, KeyboardState teclado_atual, MouseState mouse_atual, GamePadState joystick_atual)
         {
@@ -36,6 +46,7 @@ namespace MotoGame
             {
                 posicao.X = mouse_atual.X;
                 posicao.Y = mouse_atual.Y;
+                ronco.Play();
             }
 
             //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
@@ -67,6 +78,7 @@ namespace MotoGame
                 posicao.X = 0;
             }
 
+            #region manter na tela
             if (posicao.X > Window.ClientBounds.Width - textura.Width)
             {
                 posicao.X = Window.ClientBounds.Width - textura.Width;
@@ -81,11 +93,20 @@ namespace MotoGame
             {
                 posicao.Y = Window.ClientBounds.Height - textura.Height;
             }
+            #endregion
         }
-        
-        internal void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+
+        /*
+          Namespaces, interfaces e membros de enumeração têm acesso implicitamente “public” e não pode ser modificado;
+Tipos (incluindo classes) podem ser “public” ou “internal”, o padrão é “internal”, quase igual a public, visivel dentro do emsmo assembly;
+Membros de classes podem ser de todos os tipos, o padrão é “private”;
+Membros de estruturas podem ser “public”, “internal” ou “private”, o padrão é “private”;
+         */
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textura, new Rectangle((int)posicao.X, (int)posicao.Y, 67, 47), new Rectangle(0, 0, 67, 47), Color.White);
+            base.Draw(gameTime, spriteBatch, andando);
+
+            //spriteBatch.Draw(textura, new Rectangle((int)posicao.X, (int)posicao.Y, 67, 47), new Rectangle(0, 0, 67, 47), Color.White);
         }
     }
 }

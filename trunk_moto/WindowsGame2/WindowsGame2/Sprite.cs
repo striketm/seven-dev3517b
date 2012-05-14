@@ -13,7 +13,7 @@ namespace MotoGame
 {
     abstract class Sprite
     {
-        protected GameWindow window;
+        protected GameWindow Window;
         protected Texture2D textura;
         protected Vector2 posicao;
         protected Vector2 velocidade;
@@ -77,7 +77,7 @@ namespace MotoGame
             if (visivel)
             {
                 int frame = (int)(gameTime.TotalGameTime.TotalSeconds * _animacao.quadros_seg) % _animacao.qtd_quadros;
-
+                
                 spriteBatch.Draw(
                         textura,
                         new Rectangle(
