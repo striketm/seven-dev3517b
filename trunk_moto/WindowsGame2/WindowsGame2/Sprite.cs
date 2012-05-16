@@ -77,7 +77,7 @@ namespace MotoGame
             if (visivel)
             {
                 int frame = (int)(gameTime.TotalGameTime.TotalSeconds * _animacao.quadros_seg) % _animacao.qtd_quadros;
-                
+
                 spriteBatch.Draw(
                         textura,
                         new Rectangle(

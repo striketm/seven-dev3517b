@@ -16,6 +16,8 @@ namespace MotoGame
         SoundEffect ronco;
 
         animacao andando;
+        animacao correndo;
+        animacao animacao_atual;
 
         public Moto(ContentManager Content, GameWindow Window)
             :base(Content.Load<Texture2D>("moto"))
@@ -34,6 +36,15 @@ namespace MotoGame
             andando.qtd_quadros = 3;
             andando.quadros_seg = 3;
             andando.Y = 0;
+
+            correndo = new animacao();
+            correndo.quadro_X = 67;
+            correndo.quadro_Y = 47;
+            correndo.qtd_quadros = 3;
+            correndo.quadros_seg = 9;
+            correndo.Y = 47;
+
+            animacao_atual = correndo;
 
         }
 
@@ -79,9 +90,9 @@ namespace MotoGame
             }
 
             #region manter na tela
-            if (posicao.X > Window.ClientBounds.Width - textura.Width)
+            if (posicao.X > Window.ClientBounds.Width - textura.Width/3)
             {
-                posicao.X = Window.ClientBounds.Width - textura.Width;
+                posicao.X = Window.ClientBounds.Width - textura.Width/3;
             }
 
             if (posicao.Y < 0)
@@ -89,9 +100,9 @@ namespace MotoGame
                 posicao.Y = 0;
             }
 
-            if (posicao.Y > Window.ClientBounds.Height - textura.Height)
+            if (posicao.Y > Window.ClientBounds.Height - textura.Height/2)
             {
-                posicao.Y = Window.ClientBounds.Height - textura.Height;
+                posicao.Y = Window.ClientBounds.Height - textura.Height/2;
             }
             #endregion
         }
@@ -104,7 +115,7 @@ Membros de estruturas podem ser “public”, “internal” ou “private”, o
          */
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch, andando);
+            base.Draw(gameTime, spriteBatch, animacao_atual);
 
             //spriteBatch.Draw(textura, new Rectangle((int)posicao.X, (int)posicao.Y, 67, 47), new Rectangle(0, 0, 67, 47), Color.White);
         }

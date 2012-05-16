@@ -42,6 +42,8 @@ namespace MotoGame
 
         Song musica;
 
+        SpriteFont arial;
+
         //SoundEffect efeitoSonoro;//no objeto
 
         #endregion
@@ -92,6 +94,9 @@ namespace MotoGame
             musica = Content.Load<Song>("Sounds/Musics/music");
 
             MediaPlayer.Play(musica);
+
+            arial = Content.Load<SpriteFont>("arial");
+
             //MediaPlayer.State == MediaState.
 
             //bool TelaCheia = false;
@@ -174,6 +179,10 @@ namespace MotoGame
             spriteBatch.Begin();
             moto1.Draw(gameTime, spriteBatch);
             //spriteBatch.Draw(textura_moto, posicao_moto, Color.White);
+            
+            int pontos = 0;
+            spriteBatch.DrawString(arial, "Pontos: " + pontos, new Vector2(10, 10), Color.Red);
+ 
             spriteBatch.End();
 
            base.Draw(gameTime);
