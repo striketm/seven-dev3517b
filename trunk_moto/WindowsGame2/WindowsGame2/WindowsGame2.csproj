@@ -13,7 +13,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaProfile>HiDef</XnaProfile>
+    <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>c71cebcf-c4d2-434f-b3ce-3ce8a1af59b8</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
@@ -107,9 +107,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estados\EstadoBase.cs" />
+    <Compile Include="Estados\GerenciadorEstados.cs" />
+    <Compile Include="Estados\Intro\Intro.cs" />
     <Compile Include="Estados\Jogo\HUD\HUD.cs" />
     <Compile Include="Estados\Jogo\HUD\HUDElement.cs" />
+    <Compile Include="Estados\Jogo\Jogo.cs" />
     <Compile Include="Estados\Jogo\Moto.cs" />
+    <Compile Include="Estados\Menu\Botao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -155,8 +160,6 @@
   <ItemGroup>
     <Folder Include="Estados\Credito\" />
     <Folder Include="Estados\GameOver\" />
-    <Folder Include="Estados\Intro\" />
-    <Folder Include="Estados\Menu\" />
     <Folder Include="Estados\TheEnd\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

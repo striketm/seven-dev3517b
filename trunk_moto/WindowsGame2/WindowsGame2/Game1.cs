@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using MotoGame.Estados.Intro;
+using MotoGame.Estados.Jogo;
 
 namespace MotoGame
 {
@@ -45,6 +47,13 @@ namespace MotoGame
         SpriteFont arial;
 
         //SoundEffect efeitoSonoro;//no objeto
+
+      public  enum Estado { INTRO, JOGO, CREDITOS, };
+
+       public static Estado estado_atual = Estado.INTRO;
+
+        Intro intro;
+        Jogo jogo;
 
         #endregion
 
@@ -97,6 +106,10 @@ namespace MotoGame
 
             arial = Content.Load<SpriteFont>("arial");
 
+            intro = new Intro(Content);
+
+            jogo = new Jogo(Content);
+
             //MediaPlayer.State == MediaState.
 
             //bool TelaCheia = false;
@@ -142,7 +155,20 @@ namespace MotoGame
             mouse_atual = Mouse.GetState();
             joystick_atual = GamePad.GetState(PlayerIndex.One);
             
-            if (teclado_atual.IsKeyDown(Keys.Escape))
+            
+            switch (estado_atual)
+            {
+                case Estado.INTRO:
+                    //
+                    intro.Update(gameTime);
+                    //
+                    break;
+
+                case Estado.JOGO:
+              
+                    jogo.Update(gameTime);
+
+                    if (teclado_atual.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             if (teclado_atual.IsKeyDown(Keys.F11))
@@ -158,6 +184,11 @@ namespace MotoGame
                 MediaPlayer.Volume += 0.2f;
 
             moto1.Update(gameTime, teclado_atual, mouse_atual, joystick_atual);
+           
+
+                    break;
+            }
+
                 
             teclado_anterior = teclado_atual;
             mouse_anterior = mouse_atual;
@@ -177,12 +208,26 @@ namespace MotoGame
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-            moto1.Draw(gameTime, spriteBatch);
+         
+            switch (estado_atual)
+            {
+                case Estado.INTRO:
+                    intro.Draw(gameTime, spriteBatch);
+                    break;
+
+                case Estado.JOGO:
+                    jogo.Draw(gameTime, spriteBatch);
+
+                       moto1.Draw(gameTime, spriteBatch);
             //spriteBatch.Draw(textura_moto, posicao_moto, Color.White);
             
             int pontos = 0;
             spriteBatch.DrawString(arial, "Pontos: " + pontos, new Vector2(10, 10), Color.Red);
- 
+
+
+                    break;
+            }
+
             spriteBatch.End();
 
            base.Draw(gameTime);
