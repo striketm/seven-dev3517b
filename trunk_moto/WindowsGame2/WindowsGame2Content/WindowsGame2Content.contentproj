@@ -42,11 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LunarLander3D.wmv">
-      <Name>LunarLander3D</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-    </Compile>
     <Compile Include="seta.png">
       <Name>seta</Name>
       <Importer>TextureImporter</Importer>

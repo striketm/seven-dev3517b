@@ -20,11 +20,11 @@ namespace MotoGame.Estados.Intro
         public Intro(ContentManager Content)
             :base(Content)
         {
-            video = Content.Load<Video>("LunarLander3D");
+            //video = Content.Load<Video>("LunarLander3D");
             //http://bit.ly/seven000018
 
             videoPlayer = new VideoPlayer();
-            videoPlayer.Play(video);
+            //videoPlayer.Play(video);
         }
 
         public override void Update(GameTime gameTime)
@@ -40,7 +40,7 @@ namespace MotoGame.Estados.Intro
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(videoPlayer.GetTexture(), new Rectangle(0,0,800,480), Color.White);
+            //spriteBatch.Draw(videoPlayer.GetTexture(), new Rectangle(0,0,800,480), Color.White);
         }
 
     }
