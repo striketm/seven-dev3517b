@@ -45,10 +45,6 @@ namespace MotoGame.Estados.Intro
                 {
                     Game1.estado_atual = Game1.Estado.FASE1;
                 }
-                if (sair.Colisao.Contains(Game1.mouse_atual.X, Game1.mouse_atual.Y))
-                {
-                    Game1.estado_atual = Game1.Estado.SAIR;
-                }
             }
 
         }

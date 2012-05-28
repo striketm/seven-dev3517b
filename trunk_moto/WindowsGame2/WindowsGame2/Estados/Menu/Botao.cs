@@ -16,7 +16,8 @@ namespace MotoGame.Estados.Menu
         animacao mouse_over;
         animacao mouse_up;
         animacao mouse_click;
-        
+        //animacao animacao_atual;
+
         public Botao(Texture2D textura)
             :base(textura)
         {
