@@ -86,6 +86,68 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Creditos\Fonts\" />
+    <Folder Include="Creditos\Sounds\Effects\" />
+    <Folder Include="Creditos\Sounds\Musics\" />
+    <Folder Include="Creditos\Textures\" />
+    <Folder Include="Creditos\Videos\" />
+    <Folder Include="Fases\Fase1\Fonts\" />
+    <Folder Include="Fases\Fase1\Sounds\Effects\" />
+    <Folder Include="Fases\Fase1\Sounds\Musics\" />
+    <Folder Include="Fases\Fase1\Textures\" />
+    <Folder Include="Fases\Fase1\Videos\" />
+    <Folder Include="Fases\Fase2\Fonts\" />
+    <Folder Include="Fases\Fase2\Sounds\Effects\" />
+    <Folder Include="Fases\Fase2\Sounds\Musics\" />
+    <Folder Include="Fases\Fase2\Textures\" />
+    <Folder Include="Fases\Fase2\Videos\" />
+    <Folder Include="Fases\HUD\Fonts\" />
+    <Folder Include="Fases\HUD\Sounds\Effects\" />
+    <Folder Include="Fases\HUD\Sounds\Musics\" />
+    <Folder Include="Fases\HUD\Textures\" />
+    <Folder Include="Fases\HUD\Videos\" />
+    <Folder Include="GameOver\" />
+    <Folder Include="Intro\Fonts\" />
+    <Folder Include="Intro\Sounds\Effects\" />
+    <Folder Include="Intro\Sounds\Musics\" />
+    <Folder Include="Intro\Videos\" />
+    <Folder Include="Menu\Fonts\" />
+    <Folder Include="Menu\Sounds\Effects\" />
+    <Folder Include="Menu\Sounds\Musics\" />
+    <Folder Include="Menu\Videos\" />
+    <Folder Include="TheEnd\Fonts\" />
+    <Folder Include="TheEnd\Sounds\Effects\" />
+    <Folder Include="TheEnd\Sounds\Musics\" />
+    <Folder Include="TheEnd\Textures\" />
+    <Folder Include="TheEnd\Videos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Intro\Textures\intro.png">
+      <Name>intro</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\Textures\menu.png">
+      <Name>menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\Textures\jogar.png">
+      <Name>jogar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Menu\Textures\sair.png">
+      <Name>sair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

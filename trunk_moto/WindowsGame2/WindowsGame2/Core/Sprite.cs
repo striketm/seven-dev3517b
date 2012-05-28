@@ -16,6 +16,18 @@ namespace MotoGame
         protected GameWindow Window;
         protected Texture2D textura;
         protected Vector2 posicao;
+        public Vector2 Posicao
+        {
+            get
+            {
+                return posicao;
+            }
+            set
+            {
+                posicao = value;
+            }
+
+        }
         protected Vector2 velocidade;
         protected Rectangle origem;
         protected Rectangle destino;
@@ -26,12 +38,15 @@ namespace MotoGame
         protected float camada;
         protected float alfa;
         protected Color cor;
+
+        protected animacao animacao_atual;
+
         protected Rectangle colisao;
         public Rectangle Colisao
         {
             get
             {
-                return colisao;
+                return new Rectangle((int)Posicao.X, (int)Posicao.Y, animacao_atual.quadro_X, animacao_atual.quadro_Y);
             }
             set
             {
@@ -46,7 +61,8 @@ namespace MotoGame
             public int quadro_Y;
             public int qtd_quadros;
             public int quadros_seg;
-            public int Y;
+            public int Y_inicial;
+            public int X_inicial;
             public string nome;
             public bool ativa;
             public int quadro_atual;
@@ -87,7 +103,7 @@ namespace MotoGame
                             _animacao.quadro_Y),
                         new Rectangle(
                             frame * _animacao.quadro_X,
-                            _animacao.Y,
+                            _animacao.Y_inicial,
                             _animacao.quadro_X,
                             _animacao.quadro_Y),
                         new Color(

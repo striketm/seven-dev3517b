@@ -13,7 +13,12 @@ namespace MotoGame.Estados
 {
     abstract class EstadoBase
     {
-        public EstadoBase(ContentManager Content){}
+        public GameWindow Window;
+        public Texture2D fundo;
+        public string caminho;
+        public Song musica_fundo;
+
+        public EstadoBase(ContentManager Content, GameWindow Window){}
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }

@@ -29,31 +29,70 @@ namespace MotoGame
         /// "Desenhador"
         /// </summary>
         SpriteBatch spriteBatch;
+        
+        /// <summary>
+        /// A leitura do teclado é feita de forma estática (única) no Game1 e distribuída pelo resto do código
+        /// Não esquecer de testar o frame atual com o frame anterior
+        /// </summary>
+        public static KeyboardState teclado_atual, teclado_anterior;
 
-        //Texture2D textura_moto;
+        /// <summary>
+        /// A leitura do mouse é feita de forma estática (única) no Game1 e distribuída pelo resto do código
+        /// Não esquecer de testar o frame atual com o frame anterior
+        /// </summary>
+        public static MouseState mouse_atual, mouse_anterior;
+        
+        /// <summary>
+        /// A leitura do gamepad é feita de forma estática (única) no Game1 e distribuída pelo resto do código
+        /// Não esquecer de testar o frame atual com o frame anterior
+        /// </summary>
+        public static GamePadState gamepad_atual, gamepad_anterior;
+                
+        /// <summary>
+        /// Os estados do jogo refletem uma divisao de como o código está organizado, 
+        /// bem como a lógica do jogo em si
+        /// </summary>
+        public  enum Estado { INTRO, MENU, CREDITO, FASE1, FASE2, PAUSE, GAME_OVER, THE_END, SAIR};
 
-        //Vector2 posicao_moto;//renamed
+        /// <summary>
+        /// Atributo (variável) única que controla em que estado o jogo está
+        /// </summary>
+        public static Estado estado_atual = Estado.INTRO;
 
-        Moto moto1;
-        Sprite teste;
-
-        //AULA 7/5
-        KeyboardState teclado_atual, teclado_anterior;//renamed
-        MouseState mouse_atual, mouse_anterior;
-        GamePadState joystick_atual, joystick_anterior;
-
-        Song musica;
-
-        SpriteFont arial;
-
-        //SoundEffect efeitoSonoro;//no objeto
-
-      public  enum Estado { INTRO, JOGO, CREDITOS, };
-
-       public static Estado estado_atual = Estado.INTRO;
-
+        /// <summary>
+        /// Representa a introdução do jogo, pode ser um vídeo, etc, que explica e contextualiza o jogador
+        /// </summary>
         Intro intro;
-        Jogo jogo;
+
+        /// <summary>
+        /// Representa a tela com as opções do menu principal do jogo
+        /// </summary>
+        Menu menu;
+
+        /// <summary>
+        /// Representa a tela de créditos com o nome dos desenvoledores. Não esquecer do professor
+        /// </summary>
+        Credito credito;
+
+        /// <summary>
+        /// Toda a fase 1
+        /// </summary>
+        Fase1 fase1;
+
+        /// <summary>
+        /// Toda a fase 2
+        /// </summary>
+        Fase2 fase2;
+
+        /// <summary>
+        /// Tela que aparece quando o jogador perde
+        /// </summary>
+        GameOver gameOver;
+
+        /// <summary>
+        /// Tela que aparece quando o jogador termina o jogo vencendo
+        /// </summary>
+        TheEnd theEnd;
 
         #endregion
 
@@ -64,9 +103,9 @@ namespace MotoGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            //aula 2407
             IsMouseVisible = true;
             Window.Title = "dev2417";
+
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;//padrao
 
@@ -93,47 +132,20 @@ namespace MotoGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //textura_moto = Content.Load<Texture2D>("moto");
-
-            //posicao_moto = new Vector2(200, 300);
-
-            moto1 = new Moto(Content, Window);
             
-            musica = Content.Load<Song>("Sounds/Musics/music");
+            intro = new Intro(Content, Window);
 
-            MediaPlayer.Play(musica);
+            menu = new Menu(Content, Window);
 
-            arial = Content.Load<SpriteFont>("arial");
+            credito = new Credito(Content, Window);
 
-            intro = new Intro(Content);
+            fase1 = new Fase1(Content, Window);
 
-            jogo = new Jogo(Content);
+            fase2 = new Fase2(Content, Window);
 
-            //MediaPlayer.State == MediaState.
+            gameOver = new GameOver(Content, Window);
 
-            //bool TelaCheia = false;
-
-            //if(TelaCheia = false)
-            //    if (/*apertei o botao certo*/true)
-            //    {
-            //        TelaCheia = !TelaCheia;
-            //    }
-
-            
-            
-            /*
-             * Exercício: crie comandos de teclado para 
-             * aumentar e reduzir o volume da música (+,-),  
-             * dar pause e play (mesmo botão p, recomeça de onde parou)
-             * e stop (recomeça do início)
-             * e faça o mute no botão m
-             */
-
-            //Microsoft Visual Studio Express 2010 Download
-            //Microsoft XNA 4.0 Download
-            //Tortoise SVN Download
-             
+            theEnd = new TheEnd(Content, Window);            
         }
 
         /// <summary>
@@ -153,22 +165,9 @@ namespace MotoGame
         {
             teclado_atual = Keyboard.GetState();
             mouse_atual = Mouse.GetState();
-            joystick_atual = GamePad.GetState(PlayerIndex.One);
-            
-            
-            switch (estado_atual)
-            {
-                case Estado.INTRO:
-                    //
-                    intro.Update(gameTime);
-                    //
-                    break;
+            gamepad_atual = GamePad.GetState(PlayerIndex.One);
 
-                case Estado.JOGO:
-              
-                    jogo.Update(gameTime);
-
-                    if (teclado_atual.IsKeyDown(Keys.Escape))
+            if (teclado_atual.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             if (teclado_atual.IsKeyDown(Keys.F11))
@@ -182,17 +181,38 @@ namespace MotoGame
 
             if (teclado_atual.IsKeyDown(Keys.Add) && !teclado_anterior.IsKeyDown(Keys.Add))
                 MediaPlayer.Volume += 0.2f;
-
-            moto1.Update(gameTime, teclado_atual, mouse_atual, joystick_atual);
-           
-
+                    
+            switch (estado_atual)
+            {
+                case Estado.INTRO:
+                    intro.Update(gameTime);
+                    break;
+                case Estado.MENU:
+                    menu.Update(gameTime);
+                    break;
+                case Estado.CREDITO:
+                    credito.Update(gameTime);
+                    break;
+                case Estado.FASE1:
+                    fase1.Update(gameTime);
+                    break;
+                case Estado.FASE2:
+                    fase2.Update(gameTime);
+                    break;
+                case Estado.THE_END:
+                    theEnd.Update(gameTime);
+                    break;
+                case Estado.GAME_OVER:
+                    gameOver.Update(gameTime);
+                    break;
+                case Estado.SAIR:
+                    this.Exit();
                     break;
             }
-
-                
+                            
             teclado_anterior = teclado_atual;
             mouse_anterior = mouse_atual;
-            joystick_anterior = joystick_atual;
+            gamepad_anterior = gamepad_atual;
 
             base.Update(gameTime);
         }
@@ -204,27 +224,34 @@ namespace MotoGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Blue);
-
-            // TODO: Add your drawing code here
-
+            
             spriteBatch.Begin();
-         
+
             switch (estado_atual)
             {
                 case Estado.INTRO:
                     intro.Draw(gameTime, spriteBatch);
                     break;
-
-                case Estado.JOGO:
-                    jogo.Draw(gameTime, spriteBatch);
-
-                       moto1.Draw(gameTime, spriteBatch);
-            //spriteBatch.Draw(textura_moto, posicao_moto, Color.White);
-            
-            int pontos = 0;
-            spriteBatch.DrawString(arial, "Pontos: " + pontos, new Vector2(10, 10), Color.Red);
-
-
+                case Estado.MENU:
+                    menu.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.CREDITO:
+                    credito.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.FASE1:
+                    fase1.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.FASE2:
+                    fase2.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.THE_END:
+                    theEnd.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.GAME_OVER:
+                    gameOver.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.SAIR:
+                    
                     break;
             }
 

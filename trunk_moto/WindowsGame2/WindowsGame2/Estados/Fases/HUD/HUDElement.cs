@@ -9,11 +9,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace MotoGame.Estados
+namespace MotoGame
 {
-    class GerenciadorEstados
+    class HUDElement:Sprite
     {
-        //moto?
-        //TODO uma classe para adicionar estados, já na lista, e um upate ou draw segundo estado atual
+        public HUDElement(ContentManager Content)
+            :base(Content.Load<Texture2D>("seta"))
+        {
+
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+           
+        }
     }
 }

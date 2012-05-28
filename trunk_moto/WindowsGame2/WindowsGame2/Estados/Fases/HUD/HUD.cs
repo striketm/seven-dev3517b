@@ -9,11 +9,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace MotoGame.Estados
+namespace MotoGame
 {
-    class GerenciadorEstados
+    class HUD
     {
-        //moto?
-        //TODO uma classe para adicionar estados, já na lista, e um upate ou draw segundo estado atual
+        HUDElement hud_vida;
+        HUDElement hud_som;
+
+        public HUD(ContentManager Content)
+        {
+
+        }
+        public void Update(GameTime gameTime)
+        {
+
+        }
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
+        }
     }
 }
