@@ -57,7 +57,7 @@ namespace MotoGame
         /// <summary>
         /// Atributo (variável) única que controla em que estado o jogo está
         /// </summary>
-        public static Estado estado_atual = Estado.INTRO;
+        public static Estado estado_atual = Estado.FASE1;
 
         /// <summary>
         /// Representa a introdução do jogo, pode ser um vídeo, etc, que explica e contextualiza o jogador

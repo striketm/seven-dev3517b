@@ -14,12 +14,19 @@ namespace MotoGame.Estados.Jogo
     class Fase1:EstadoBase
     {
         Moto moto1;
-        Sprite teste;
+        
         Song musica;
+        
         SpriteFont arial;
+        
         GameWindow Window;
 
         bool firstTimeMusic = true;
+
+        Texture2D cenario;
+        Texture2D montanhas;
+        Texture2D nuvens;
+        Texture2D arbustos;
 
         public Fase1(ContentManager Content, GameWindow Window)
             :base(Content, Window)
@@ -30,8 +37,6 @@ namespace MotoGame.Estados.Jogo
 
             musica = Content.Load<Song>("Sounds/Musics/music");
 
-            //MediaPlayer.Play(musica);
-
             arial = Content.Load<SpriteFont>("arial");
         }
 
@@ -39,7 +44,7 @@ namespace MotoGame.Estados.Jogo
         {
             if (firstTimeMusic)
             {
-                MediaPlayer.Play(musica);
+                //MediaPlayer.Play(musica);
                 firstTimeMusic = false;
             }
 
@@ -49,8 +54,8 @@ namespace MotoGame.Estados.Jogo
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             moto1.Draw(gameTime, spriteBatch);
-            int pontos = 0;
-            spriteBatch.DrawString(arial, "Pontos: " + pontos, new Vector2(10, 10), Color.Red);
+            
+            spriteBatch.DrawString(arial, "Pontos: " + moto1.pontos, new Vector2(10, 10), Color.Red);
 
         }
 

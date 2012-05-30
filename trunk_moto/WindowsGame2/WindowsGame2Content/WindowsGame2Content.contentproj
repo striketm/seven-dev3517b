@@ -95,7 +95,6 @@
     <Folder Include="Fases\Fase1\Fonts\" />
     <Folder Include="Fases\Fase1\Sounds\Effects\" />
     <Folder Include="Fases\Fase1\Sounds\Musics\" />
-    <Folder Include="Fases\Fase1\Textures\" />
     <Folder Include="Fases\Fase1\Videos\" />
     <Folder Include="Fases\Fase2\Fonts\" />
     <Folder Include="Fases\Fase2\Sounds\Effects\" />
@@ -144,6 +143,32 @@
     </Compile>
     <Compile Include="Menu\Textures\sair.png">
       <Name>sair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fases\Fase1\Textures\cenario.png">
+      <Name>cenario</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Fases\Fase1\Textures\montanhas.png">
+      <Name>montanhas</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fases\Fase1\Textures\nuvens.png">
+      <Name>nuvens</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fases\Fase1\Textures\arbustos.png">
+      <Name>arbustos</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

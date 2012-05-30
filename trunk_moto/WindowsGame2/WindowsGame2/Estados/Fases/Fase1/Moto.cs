@@ -19,6 +19,8 @@ namespace MotoGame
         animacao correndo;
         animacao animacao_atual;
 
+        public int pontos = 0;
+
         public Moto(ContentManager Content, GameWindow Window)
             :base(Content.Load<Texture2D>("moto"))
         {
