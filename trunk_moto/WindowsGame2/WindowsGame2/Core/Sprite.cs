@@ -28,7 +28,7 @@ namespace MotoGame
             }
 
         }
-        protected Vector2 velocidade;
+        public Vector2 velocidade;
         protected Rectangle origem;
         protected Rectangle destino;
         protected float rotacao;

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using MotoGame.Estados.Fases.Fase1;
 
 namespace MotoGame.Estados.Jogo
 {
@@ -23,10 +24,10 @@ namespace MotoGame.Estados.Jogo
 
         bool firstTimeMusic = true;
 
-        Texture2D cenario;
-        Texture2D montanhas;
-        Texture2D nuvens;
-        Texture2D arbustos;
+        Fundo cenario;
+        Fundo montanhas;
+        Fundo nuvens;
+        Fundo arbustos;
 
         public Fase1(ContentManager Content, GameWindow Window)
             :base(Content, Window)
@@ -38,6 +39,15 @@ namespace MotoGame.Estados.Jogo
             musica = Content.Load<Song>("Sounds/Musics/music");
 
             arial = Content.Load<SpriteFont>("arial");
+
+            cenario = new Fundo(Content.Load<Texture2D>("Fases/Fase1/Textures/cenario") , Window);
+
+            montanhas = new Fundo(Content.Load<Texture2D>("Fases/Fase1/Textures/montanhas"), Window);
+
+            nuvens = new Fundo(Content.Load<Texture2D>("Fases/Fase1/Textures/nuvens"), Window);
+
+            arbustos = new Fundo(Content.Load<Texture2D>("Fases/Fase1/Textures/arbustos"), Window);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -49,12 +59,29 @@ namespace MotoGame.Estados.Jogo
             }
 
             moto1.Update(gameTime, Game1.teclado_atual, Game1.mouse_atual, Game1.gamepad_atual);
+
+            if(moto1.Posicao.X >= Window.ClientBounds.Width * 2/3)
+            {
+                Vector2 aux = new Vector2(Window.ClientBounds.Width * 2 / 3, moto1.Posicao.Y);
+                moto1.Posicao = aux;
+
+                aux = new Vector2(moto1.velocidade.X, moto1.velocidade.Y);
+
+                cenario.Update(gameTime, aux);
+                montanhas.Update(gameTime, aux);
+                nuvens.Update(gameTime, aux);
+                arbustos.Update(gameTime, aux);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            nuvens.Draw(gameTime, spriteBatch);
+            montanhas.Draw(gameTime, spriteBatch);
+            cenario.Draw(gameTime, spriteBatch);       
             moto1.Draw(gameTime, spriteBatch);
-            
+            arbustos.Draw(gameTime, spriteBatch);
+
             spriteBatch.DrawString(arial, "Pontos: " + moto1.pontos, new Vector2(10, 10), Color.Red);
 
         }

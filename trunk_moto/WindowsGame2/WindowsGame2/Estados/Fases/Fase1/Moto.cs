@@ -21,10 +21,14 @@ namespace MotoGame
 
         public int pontos = 0;
 
+        
+
         public Moto(ContentManager Content, GameWindow Window)
             :base(Content.Load<Texture2D>("moto"))
         {
             this.Window = Window;
+
+            velocidade = new Vector2(5, 0);
 
             textura = Content.Load<Texture2D>("moto");
 
@@ -62,8 +66,6 @@ namespace MotoGame
                 ronco.Play();
             }
 
-            //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
-            //if(joystick_atual.DPad.Down, Right, Left, Up
             if (joystick_atual.ThumbSticks.Right.X == 1)
             {
                 posicao = Vector2.Zero;
