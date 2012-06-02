@@ -67,7 +67,7 @@ namespace Pong
                 random.Next(-3,3), 
                 random.Next(-3,3));
 
-            this.colisao = new Rectangle((int)posicao.X, (int)posicao.Y, imagem.Width, imagem.Height);
+           
 
             this.Window = Window;
 
@@ -90,6 +90,7 @@ namespace Pong
             girando_esquerda.Y = 25;
 
             animacao_atual = girando_esquerda;
+            this.colisao = new Rectangle((int)posicao.X, (int)posicao.Y, animacao_atual.quadro_X, animacao_atual.quadro_Y);
 
         }
 
@@ -98,12 +99,12 @@ namespace Pong
             posicao += velocidade;
 
             #region manter na tela
-            if (posicao.Y > Window.ClientBounds.Height - imagem.Height)
+            if (posicao.Y > Window.ClientBounds.Height - animacao_atual.quadro_Y)
             {
                 velocidade.Y *= -1;
             }
 
-            if (posicao.X > Window.ClientBounds.Width - imagem.Width)
+            if (posicao.X > Window.ClientBounds.Width - animacao_atual.quadro_X)
             {
 
                 velocidade.X *= -1;
