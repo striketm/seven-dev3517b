@@ -1,0 +1,5 @@
+﻿Evitar que se sorteie zero para velocidade da bola no início
+Evitar que se comece duas bolas colidindo na região central
+Evitar que as bolas entrem por baixo e por cima das palestas
+Fazer com que a colisão das bolas aconteça pelo tamanho 
+do quadro, não pelo tamanho da imagem
