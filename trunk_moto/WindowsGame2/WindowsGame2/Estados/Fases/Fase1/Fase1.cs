@@ -58,20 +58,24 @@ namespace MotoGame.Estados.Jogo
                 firstTimeMusic = false;
             }
 
-            moto1.Update(gameTime, Game1.teclado_atual, Game1.mouse_atual, Game1.gamepad_atual);
+            moto1.Update();
 
-            if(moto1.Posicao.X >= Window.ClientBounds.Width * 2/3)
+            if(moto1.Posicao.X > Window.ClientBounds.Width * 2/3)
             {
                 Vector2 aux = new Vector2(Window.ClientBounds.Width * 2 / 3, moto1.Posicao.Y);
+
                 moto1.Posicao = aux;
 
-                aux = new Vector2(moto1.velocidade.X, moto1.velocidade.Y);
+                aux = new Vector2(moto1.velocidade.X,0);
 
                 cenario.Update(gameTime, aux);
                 montanhas.Update(gameTime, aux);
                 nuvens.Update(gameTime, aux);
                 arbustos.Update(gameTime, aux);
+
+                Console.WriteLine("moto1.Posicao.X > Window.ClientBounds.Width * 2/3");
             }
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

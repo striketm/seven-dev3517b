@@ -18,7 +18,7 @@ namespace MotoGame.Estados.Fases.Fase1
         Rectangle origem;
         Rectangle destino;
         GameWindow Window;
-
+        
         public Fundo(Texture2D texture, GameWindow Window)
         {
             this.texture = texture;
@@ -32,8 +32,8 @@ namespace MotoGame.Estados.Fases.Fase1
 
         public void Update(GameTime gameTime, Vector2 posicao)
         {
-            origem.X += (int)posicao.X;
-            origem.Y += (int)posicao.Y;
+            origem.X += (int)(posicao.X );
+            origem.Y += (int)(posicao.Y );
 
         }
 

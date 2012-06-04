@@ -94,6 +94,8 @@ namespace MotoGame
         /// </summary>
         TheEnd theEnd;
 
+        public static GameTime gameTime = new GameTime();
+
         #endregion
 
         #region Métodos
@@ -163,9 +165,10 @@ namespace MotoGame
         /// <param name="gameTime">O tempo do jogo</param>
         protected override void Update(GameTime gameTime)
         {
-            teclado_atual = Keyboard.GetState();
-            mouse_atual = Mouse.GetState();
-            gamepad_atual = GamePad.GetState(PlayerIndex.One);
+            Game1.teclado_atual = Keyboard.GetState();
+            Game1.mouse_atual = Mouse.GetState();
+            Game1.gamepad_atual = GamePad.GetState(PlayerIndex.One);
+            Game1.gameTime = gameTime;
 
             if (teclado_atual.IsKeyDown(Keys.Escape))
                 this.Exit();

@@ -28,7 +28,7 @@ namespace MotoGame
         {
             this.Window = Window;
 
-            velocidade = new Vector2(5, 0);
+            velocidade = new Vector2(5, 5);
 
             textura = Content.Load<Texture2D>("moto");
 
@@ -57,57 +57,63 @@ namespace MotoGame
         public override void Update(GameTime gameTime)
         {}
 
-        public void Update(GameTime gameTime, KeyboardState teclado_atual, MouseState mouse_atual, GamePadState joystick_atual)
+        public void Update()
         {
-            if (mouse_atual.LeftButton == ButtonState.Pressed)
+            if (Game1.mouse_atual.LeftButton == ButtonState.Pressed)
             {
-                posicao.X = mouse_atual.X;
-                posicao.Y = mouse_atual.Y;
+                posicao.X = Game1.mouse_atual.X;
+                posicao.Y = Game1.mouse_atual.Y;
                 ronco.Play();
             }
 
-            if (joystick_atual.ThumbSticks.Right.X == 1)
+            //if (Game1.gamepad_atual.ThumbSticks.Right.X == 1)
+            //{
+            //    posicao = Vector2.Zero;
+            //}
+
+            if (Game1.teclado_atual.IsKeyDown(Keys.Right))
             {
-                posicao = Vector2.Zero;
+                posicao.X += velocidade.X;
+            }
+            if (Game1.teclado_atual.IsKeyDown(Keys.Left))
+            {
+                posicao.X -= velocidade.X;
+            }
+            if (Game1.teclado_atual.IsKeyDown(Keys.Up))
+            {
+                posicao.Y -= velocidade.Y;
+            }
+            if (Game1.teclado_atual.IsKeyDown(Keys.Down))
+            {
+                posicao.Y += velocidade.Y;
+            }
+            
+            #region manter na tela
+            
+            //indo pra frente
+            if (posicao.X >= Window.ClientBounds.Width - textura.Width/3)
+            {
+                posicao.X = Window.ClientBounds.Width - textura.Width/3;
             }
 
-            if (teclado_atual.IsKeyDown(Keys.Right))
-            {
-                posicao.X += 5;
-            }
-            if (teclado_atual.IsKeyDown(Keys.Left))
-            {
-                posicao.X -= 5;
-            }
-            if (teclado_atual.IsKeyDown(Keys.Up))
-            {
-                posicao.Y -= 5;
-            }
-            if (teclado_atual.IsKeyDown(Keys.Down))
-            {
-                posicao.Y += 5;
-            }
-
+            //indo pra trás
             if (posicao.X < 0)
             {
                 posicao.X = 0;
             }
 
-            #region manter na tela
-            if (posicao.X > Window.ClientBounds.Width - textura.Width/3)
-            {
-                posicao.X = Window.ClientBounds.Width - textura.Width/3;
-            }
-
-            if (posicao.Y < 0)
+            //indo pra cima
+            if (posicao.Y <= 0)
             {
                 posicao.Y = 0;
             }
 
-            if (posicao.Y > Window.ClientBounds.Height - textura.Height/2)
+            //indo pra baixo
+            if (posicao.Y >= Window.ClientBounds.Height - textura.Height / 2)
             {
-                posicao.Y = Window.ClientBounds.Height - textura.Height/2;
+                posicao.Y = Window.ClientBounds.Height - textura.Height / 2;
             }
+                                    
             #endregion
         }
 
