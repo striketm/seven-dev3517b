@@ -50,7 +50,7 @@ namespace MotoGame
             correndo.quadros_seg = 9;
             correndo.Y_inicial = 47;
 
-            animacao_atual = correndo;
+            animacao_atual = andando;
 
         }
 
@@ -74,10 +74,12 @@ namespace MotoGame
             if (Game1.teclado_atual.IsKeyDown(Keys.Right))
             {
                 posicao.X += velocidade.X;
+                direita = true;
             }
             if (Game1.teclado_atual.IsKeyDown(Keys.Left))
             {
                 posicao.X -= velocidade.X;
+                direita = false;
             }
             if (Game1.teclado_atual.IsKeyDown(Keys.Up))
             {

@@ -52,7 +52,7 @@ namespace MotoGame
         /// Os estados do jogo refletem uma divisao de como o código está organizado, 
         /// bem como a lógica do jogo em si
         /// </summary>
-        public  enum Estado { INTRO, MENU, CREDITO, FASE1, FASE2, PAUSE, GAME_OVER, THE_END, SAIR};
+        public  enum Estado { INTRO, MENU, CREDITO, FASE1, FASE2, PAUSE, GAME_OVER, THE_END, SAIR, EASTER};
 
         /// <summary>
         /// Atributo (variável) única que controla em que estado o jogo está
@@ -93,6 +93,8 @@ namespace MotoGame
         /// Tela que aparece quando o jogador termina o jogo vencendo
         /// </summary>
         TheEnd theEnd;
+
+        Easter easter;
 
         public static GameTime gameTime = new GameTime();
 
@@ -147,7 +149,10 @@ namespace MotoGame
 
             gameOver = new GameOver(Content, Window);
 
-            theEnd = new TheEnd(Content, Window);            
+            theEnd = new TheEnd(Content, Window);
+
+            easter = new Easter(Content, Window);
+
         }
 
         /// <summary>
@@ -208,6 +213,9 @@ namespace MotoGame
                 case Estado.GAME_OVER:
                     gameOver.Update(gameTime);
                     break;
+                case Estado.EASTER:
+                    easter.Update(gameTime);
+                    break;
                 case Estado.SAIR:
                     this.Exit();
                     break;
@@ -252,6 +260,9 @@ namespace MotoGame
                     break;
                 case Estado.GAME_OVER:
                     gameOver.Draw(gameTime, spriteBatch);
+                    break;
+                case Estado.EASTER:
+                    easter.Draw(gameTime, spriteBatch);
                     break;
                 case Estado.SAIR:
                     

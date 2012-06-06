@@ -18,7 +18,10 @@ namespace MotoGame.Estados
         public string caminho;
         public Song musica_fundo;
 
-        public EstadoBase(ContentManager Content, GameWindow Window){}
+        public EstadoBase(ContentManager Content, GameWindow Window)
+        {
+            this.Window = Window;
+        }
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }
