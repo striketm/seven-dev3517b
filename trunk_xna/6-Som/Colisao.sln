@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colisao", "Colisao\Colisao\Colisao.csproj", "{4319388D-A68F-48F4-B226-85B0795166CE}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6-Som", "Colisao\Colisao\6-Som.csproj", "{7FC17D11-995C-4B62-86F5-ECF76F05BB17}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ColisaoContent", "Colisao\ColisaoContent\ColisaoContent.contentproj", "{DFFD11DD-E731-46FD-AE7B-587AB6A12B84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6-SomContent", "Colisao\ColisaoContent\6-SomContent.contentproj", "{B58B9C62-43D4-4CC6-AC4C-BEC4C4EF06D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4319388D-A68F-48F4-B226-85B0795166CE}.Debug|x86.ActiveCfg = Debug|x86
-		{4319388D-A68F-48F4-B226-85B0795166CE}.Debug|x86.Build.0 = Debug|x86
-		{4319388D-A68F-48F4-B226-85B0795166CE}.Release|x86.ActiveCfg = Release|x86
-		{4319388D-A68F-48F4-B226-85B0795166CE}.Release|x86.Build.0 = Release|x86
-		{DFFD11DD-E731-46FD-AE7B-587AB6A12B84}.Debug|x86.ActiveCfg = Debug|x86
-		{DFFD11DD-E731-46FD-AE7B-587AB6A12B84}.Release|x86.ActiveCfg = Release|x86
+		{7FC17D11-995C-4B62-86F5-ECF76F05BB17}.Debug|x86.ActiveCfg = Debug|x86
+		{7FC17D11-995C-4B62-86F5-ECF76F05BB17}.Debug|x86.Build.0 = Debug|x86
+		{7FC17D11-995C-4B62-86F5-ECF76F05BB17}.Release|x86.ActiveCfg = Release|x86
+		{7FC17D11-995C-4B62-86F5-ECF76F05BB17}.Release|x86.Build.0 = Release|x86
+		{B58B9C62-43D4-4CC6-AC4C-BEC4C4EF06D6}.Debug|x86.ActiveCfg = Debug|x86
+		{B58B9C62-43D4-4CC6-AC4C-BEC4C4EF06D6}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

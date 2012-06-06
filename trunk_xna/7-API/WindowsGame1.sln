@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGame1", "WindowsGame1\WindowsGame1\WindowsGame1.csproj", "{9B4A9790-313C-4853-9625-DEDC67441A88}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-API2", "WindowsGame1\WindowsGame1\7-API2.csproj", "{9B4A9790-313C-4853-9625-DEDC67441A88}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "WindowsGame1Content", "WindowsGame1\WindowsGame1Content\WindowsGame1Content.contentproj", "{8F26A53C-AA52-43F0-B6D2-774E73C5ADC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-API2Content", "WindowsGame1\WindowsGame1Content\7-API2Content.contentproj", "{8F26A53C-AA52-43F0-B6D2-774E73C5ADC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teclado", "Teclado\Teclado\Teclado.csproj", "{49ED41C0-C809-45F9-B94D-228AA1851484}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-Teclado", "Teclado\Teclado\1-Teclado.csproj", "{49ED41C0-C809-45F9-B94D-228AA1851484}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TecladoContent", "Teclado\TecladoContent\TecladoContent.contentproj", "{C88CAAB1-CBF5-412B-8D04-8A506383AE42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-TecladoContent", "Teclado\TecladoContent\1-TecladoContent.contentproj", "{C88CAAB1-CBF5-412B-8D04-8A506383AE42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

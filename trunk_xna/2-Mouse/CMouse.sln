@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMouse", "CMouse\CMouse\CMouse.csproj", "{D5FA37D8-58BF-45F6-BFE8-F9600A23ACBC}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-Mouse", "CMouse\CMouse\2-Mouse.csproj", "{D5FA37D8-58BF-45F6-BFE8-F9600A23ACBC}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CMouseContent", "CMouse\CMouseContent\CMouseContent.contentproj", "{B778B5F7-2925-4251-A5A7-7E6540D63B8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-MouseContent", "CMouse\CMouseContent\2-MouseContent.contentproj", "{B778B5F7-2925-4251-A5A7-7E6540D63B8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

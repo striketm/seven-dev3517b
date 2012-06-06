@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texto", "Texto\Texto\Texto.csproj", "{2E543495-C669-49DC-AF64-4A3489271672}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-Texto", "Texto\Texto\5-Texto.csproj", "{2E543495-C669-49DC-AF64-4A3489271672}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TextoContent", "Texto\TextoContent\TextoContent.contentproj", "{ABFED1F7-750D-45A0-AC8D-8B325507D434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-TextoContent", "Texto\TextoContent\5-TextoContent.contentproj", "{ABFED1F7-750D-45A0-AC8D-8B325507D434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

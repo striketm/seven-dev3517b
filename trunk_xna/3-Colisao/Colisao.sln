@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colisao", "Colisao\Colisao\Colisao.csproj", "{4319388D-A68F-48F4-B226-85B0795166CE}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-Colisao", "Colisao\Colisao\3-Colisao.csproj", "{4319388D-A68F-48F4-B226-85B0795166CE}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ColisaoContent", "Colisao\ColisaoContent\ColisaoContent.contentproj", "{DFFD11DD-E731-46FD-AE7B-587AB6A12B84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-ColisaoContent", "Colisao\ColisaoContent\3-ColisaoContent.contentproj", "{DFFD11DD-E731-46FD-AE7B-587AB6A12B84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
