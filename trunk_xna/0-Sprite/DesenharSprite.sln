@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesenharSprite", "DesenharSprite\DesenharSprite\DesenharSprite.csproj", "{1E78CC60-3D51-4783-B3C0-7144C6B0269C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0-Sprite", "DesenharSprite\DesenharSprite\0-Sprite.csproj", "{1E78CC60-3D51-4783-B3C0-7144C6B0269C}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DesenharSpriteContent", "DesenharSprite\DesenharSpriteContent\DesenharSpriteContent.contentproj", "{8D7825F6-7C7E-4FA8-BC95-800343BF7167}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0-SpriteContent", "DesenharSprite\DesenharSpriteContent\0-SpriteContent.contentproj", "{8D7825F6-7C7E-4FA8-BC95-800343BF7167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
