@@ -112,6 +112,7 @@ namespace MotoGame
 
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;//padrao
+            graphics.ApplyChanges();
 
         }
 

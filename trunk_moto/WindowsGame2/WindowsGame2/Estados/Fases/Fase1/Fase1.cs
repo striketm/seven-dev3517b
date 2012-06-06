@@ -28,6 +28,7 @@ namespace MotoGame.Estados.Jogo
         Fundo montanhas;
         Fundo nuvens;
         Fundo arbustos;
+        Plataforma plataformaP1;
 
         public Fase1(ContentManager Content, GameWindow Window)
             :base(Content, Window)
@@ -52,6 +53,8 @@ namespace MotoGame.Estados.Jogo
             arbustos = new Fundo(Content.Load<Texture2D>("Fases/Fase1/Textures/arbustos"), Window);
             cenario.VelocidadeRelativaX = 1;
 
+            plataformaP1 = new Plataforma(Content, Window, new Vector2 (200,365));
+
         }
 
         public override void Update(GameTime gameTime)
@@ -68,7 +71,7 @@ namespace MotoGame.Estados.Jogo
             }
 
             moto1.Update();
-
+            //Moto saindo pela direita.
             if(moto1.Posicao.X > Window.ClientBounds.Width * 2/3)
             {
                 Vector2 aux = new Vector2(Window.ClientBounds.Width * 2 / 3, moto1.Posicao.Y);
@@ -82,9 +85,16 @@ namespace MotoGame.Estados.Jogo
                 nuvens.Update(gameTime, aux);
                 arbustos.Update(gameTime, aux);
 
+                if (cenario.origem.X < cenario.texture.Width - Window.ClientBounds.Width)
+                {
+                    plataformaP1.Update(gameTime, aux);
+                }
+
+
                 Console.WriteLine("moto1.Posicao.X > Window.ClientBounds.Width * 2/3");
             }
 
+            //Moto saindo pela esquerda.
             if (moto1.Posicao.X < Window.ClientBounds.Width * 1 / 3)
             {
                 Vector2 aux = new Vector2(Window.ClientBounds.Width * 1 / 3, moto1.Posicao.Y);
@@ -97,10 +107,17 @@ namespace MotoGame.Estados.Jogo
                 montanhas.Update(gameTime, aux);
                 nuvens.Update(gameTime, aux);
                 arbustos.Update(gameTime, aux);
+                if (cenario.origem.X > 0)
+                {
+                    plataformaP1.Update(gameTime, aux);
+                }
+                              
+
 
                 Console.WriteLine("moto1.Posicao.X < Window.ClientBounds.Width * 1 / 3");
             }
 
+            //Moto saindo por baixo.
             if (moto1.Posicao.Y > Window.ClientBounds.Height * 2 / 3)
             {
                 Vector2 aux = new Vector2(moto1.Posicao.X, Window.ClientBounds.Height * 2 / 3);
@@ -113,8 +130,14 @@ namespace MotoGame.Estados.Jogo
                 montanhas.Update(gameTime, aux);
                 nuvens.Update(gameTime, aux);
                 arbustos.Update(gameTime, aux);
+
+                if (cenario.origem.Y < cenario.texture.Bounds.Height - Window.ClientBounds.Height)
+                {
+                    plataformaP1.Update(gameTime, aux);
+                }
             }
 
+            //Moto saindo por cima.
             if (moto1.Posicao.Y < Window.ClientBounds.Height * 1 / 3)
             {
                 Vector2 aux = new Vector2(moto1.Posicao.X, Window.ClientBounds.Height * 1 / 3);
@@ -127,6 +150,10 @@ namespace MotoGame.Estados.Jogo
                 montanhas.Update(gameTime, aux);
                 nuvens.Update(gameTime, aux);
                 arbustos.Update(gameTime, aux);
+                if (cenario.origem.Y > 0)
+                {
+                    plataformaP1.Update(gameTime, aux);
+                }
             }
 
         }
@@ -138,6 +165,7 @@ namespace MotoGame.Estados.Jogo
             cenario.Draw(gameTime, spriteBatch);       
             moto1.Draw(gameTime, spriteBatch);
             arbustos.Draw(gameTime, spriteBatch);
+            plataformaP1.Draw(gameTime, spriteBatch);
 
             spriteBatch.DrawString(arial, "Pontos: " + moto1.pontos, new Vector2(10, 10), Color.Red);
 

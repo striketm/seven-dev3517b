@@ -18,6 +18,7 @@ namespace MotoGame
         animacao andando;
         animacao correndo;
         animacao animacao_atual;
+        Vector2 gravidade = new Vector2(0,10);
 
         public int pontos = 0;
 
@@ -59,6 +60,8 @@ namespace MotoGame
 
         public void Update()
         {
+            posicao += gravidade;
+
             if (Game1.mouse_atual.LeftButton == ButtonState.Pressed)
             {
                 posicao.X = Game1.mouse_atual.X;

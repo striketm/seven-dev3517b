@@ -111,6 +111,7 @@
     <Compile Include="Estados\Easter\Easter.cs" />
     <Compile Include="Estados\EstadoBase.cs" />
     <Compile Include="Estados\Fases\Fase1\Fundo.cs" />
+    <Compile Include="Estados\Fases\Fase1\Plataforma.cs" />
     <Compile Include="Estados\Fases\Fase2\Fase2.cs" />
     <Compile Include="Estados\GameOver\GameOver.cs" />
     <Compile Include="Estados\GerenciadorEstados.cs" />
