@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010 Express for Windows Phone
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGame", "WindowsGame\WindowsGame\WindowsGame.csproj", "{EC19EA4B-D01E-442E-ABC8-EF0D02F920BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGameContent", "WindowsGame\WindowsGameContent\WindowsGameContent.contentproj", "{D413ED7D-3C64-402F-96CC-09D60DD36744}"
@@ -46,6 +46,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-API3Content", "..\7-API\WindowsGame2\WindowsGame2Content\7-API3Content.contentproj", "{982B70A3-7AE5-454C-A136-7E6BE18B2CB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows Phone Copy of 0-Sprite", "..\0-Sprite\DesenharSprite\DesenharSprite\Windows Phone Copy of 0-Sprite.csproj", "{53146406-9561-4501-83B1-333C2441BDCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGame3D", "WindowsGame3D\WindowsGame3D\WindowsGame3D.csproj", "{B2D84EFF-E52F-4156-82DD-D21A55271978}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "WindowsGame3DContent", "WindowsGame3D\WindowsGame3DContent\WindowsGame3DContent.contentproj", "{1ED493BF-F335-4C1D-BFDC-68D76235429D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -269,6 +273,22 @@ Global
 		{53146406-9561-4501-83B1-333C2441BDCC}.Release|Windows Phone.Build.0 = Release|Windows Phone
 		{53146406-9561-4501-83B1-333C2441BDCC}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
 		{53146406-9561-4501-83B1-333C2441BDCC}.Release|x86.ActiveCfg = Release|Windows Phone
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Debug|Windows Phone.ActiveCfg = Debug|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Debug|x86.ActiveCfg = Debug|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Debug|x86.Build.0 = Debug|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Release|Windows Phone.ActiveCfg = Release|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Release|x86.ActiveCfg = Release|x86
+		{B2D84EFF-E52F-4156-82DD-D21A55271978}.Release|x86.Build.0 = Release|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Debug|Windows Phone.ActiveCfg = Debug|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Debug|x86.ActiveCfg = Debug|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Release|Windows Phone.ActiveCfg = Release|x86
+		{1ED493BF-F335-4C1D-BFDC-68D76235429D}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
