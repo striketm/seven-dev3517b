@@ -19,6 +19,8 @@ namespace Pong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont Arial;
+        
         Random random = new Random();
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace Pong
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Arial = Content.Load<SpriteFont>("Arial");
 
             fundo = Content.Load<Texture2D>("fundo");
             paleta = Content.Load<Texture2D>("paleta");
@@ -168,7 +171,7 @@ namespace Pong
             spriteBatch.Draw(paleta,posicaoPaletaEsquerda, Color.Red);
             spriteBatch.Draw(paleta, posicaoPaletaDireita, Color.Green);
             instanciaBola1.Draw(gameTime, spriteBatch, instanciaBola1.animacao_atual);
-
+            spriteBatch.DrawString(Arial, "Pontos: ", Vector2.Zero, Color.Aqua);
             //instanciaBola2.Draw(spriteBatch);
 
             spriteBatch.End();

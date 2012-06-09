@@ -3,7 +3,9 @@ Evitar que se comece duas bolas colidindo na região central
 Evitar que as bolas entrem por baixo e por cima das palestas
 
 
-Escrever pontuação na tela
 Fazer sons e músicas
 Usar gamepad
-Fazer transição de telas 
+Fazer transição de telas
+Fazer com que a pontuação aconteça e seja mostrada
+ de forma correta e que o jogo termine quando um dos jogadores
+ fizer 5 pontos 
