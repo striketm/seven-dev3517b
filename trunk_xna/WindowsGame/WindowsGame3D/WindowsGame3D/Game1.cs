@@ -21,7 +21,7 @@ namespace WindowsGame3D
 
         Camera camera;
 
-        VertexBuffer vertexBuffer;
+        //VertexBuffer vertexBuffer;
 
         BasicEffect effect;
 
@@ -103,12 +103,12 @@ namespace WindowsGame3D
 
             Grid(8, 8, 0);
 
-            vertexBuffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor),
-                lineList.Length, BufferUsage.None);
+            //vertexBuffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor),
+            //    lineList.Length, BufferUsage.None);
 
-            vertexBuffer.SetData(lineList);
+            //vertexBuffer.SetData(lineList);
 
-            GraphicsDevice.SetVertexBuffer(vertexBuffer);
+            //GraphicsDevice.SetVertexBuffer(vertexBuffer);
 
             effect.World = worldScale * worldRotation * worldTranslation;
             effect.View = camera.View;
