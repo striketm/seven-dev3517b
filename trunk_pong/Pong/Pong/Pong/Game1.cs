@@ -36,6 +36,8 @@ namespace Pong
 
         Song musica;
 
+        KeyboardState teclado_atual, teclado_anterior;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -99,19 +101,23 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            
+            teclado_atual = Keyboard.GetState();
+
+            if(teclado_atual.IsKeyDown(Keys.M)&&!teclado_anterior.IsKeyDown(Keys.M))
+            {
+                MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+            }
+
             instanciaBola1.Update(paletadireita, paletaesquerda);
-            //, instanciaBola2.colisao);
+            //instanciaBola2.colisao);
             //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
             paletadireita.Update(1);
             paletaesquerda.Update(2);
 
+            teclado_anterior = teclado_atual;
+
             base.Update(gameTime);
            
-            
         }
 
         /// <summary>
