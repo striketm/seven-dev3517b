@@ -27,20 +27,14 @@ namespace Pong
         /// Esta imagem que vai no fundo da tela.
         /// </summary>
         Texture2D fundo;
-        /// <summary>
-        /// Imagem que sera utilizada nas duas Barras
-        /// </summary>
-        Texture2D paleta;
-        
-        Vector2 posicaoPaletaEsquerda;
-        Vector2 posicaoPaletaDireita;
-        Rectangle colisaoPaletaEsquerda;
-        Rectangle colisaoPaletaDireita;
+    
+             
 
         Bola instanciaBola1;
         //Bola instanciaBola2;
 
-        KeyboardState teclado;
+        Paleta paletadireita;
+        Paleta paletaesquerda;
 
         public Game1()
         {
@@ -72,11 +66,8 @@ namespace Pong
             Arial = Content.Load<SpriteFont>("Arial");
 
             fundo = Content.Load<Texture2D>("fundo");
-            paleta = Content.Load<Texture2D>("paleta");
-            posicaoPaletaEsquerda = new Vector2(0, Window.ClientBounds.Height / 2 - paleta.Height / 2);
-            posicaoPaletaDireita = new Vector2(Window.ClientBounds.Width - paleta.Width, Window.ClientBounds.Height / 2 - paleta.Height / 2);
-            colisaoPaletaEsquerda = new Rectangle((int)posicaoPaletaEsquerda.X, (int)posicaoPaletaEsquerda.Y, paleta.Width, paleta.Height);
-            colisaoPaletaDireita = new Rectangle((int)posicaoPaletaDireita.X, (int)posicaoPaletaDireita.Y, paleta.Width, paleta.Height);
+            
+            
 
             IsMouseVisible = true;
             Window.Title = "devs173c";
@@ -85,7 +76,9 @@ namespace Pong
             instanciaBola1 = new Bola(Content, Window, random, 40);
             //instanciaBola2 = new Bola(Content, Window, random, -40);
 
-            // TODO: use this.Content to load your game content here
+            paletadireita = new Paleta(Content,Window,true);
+            paletaesquerda = new Paleta(Content,Window,false);
+            
         }
 
         /// <summary>
@@ -107,53 +100,17 @@ namespace Pong
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-            teclado = Keyboard.GetState();
-
-            if (teclado.IsKeyDown(Keys.W))
-            {
-                posicaoPaletaEsquerda.Y-=5;
-            }
-            if (teclado.IsKeyDown(Keys.S))
-            {
-                posicaoPaletaEsquerda.Y+=5;
-            }
-
-            if (teclado.IsKeyDown(Keys.Up))
-            {
-                posicaoPaletaDireita.Y-=5;
-            }
-            if (teclado.IsKeyDown(Keys.Down))
-            {
-                posicaoPaletaDireita.Y+=5;
-            }
-
-            if (posicaoPaletaEsquerda.Y < 0)
-            {
-                posicaoPaletaEsquerda.Y = 0;
-            }
-            if (posicaoPaletaEsquerda.Y > Window.ClientBounds.Height - paleta.Height)
-            {
-                posicaoPaletaEsquerda.Y = Window.ClientBounds.Height - paleta.Height;
-            }
             
-            if (posicaoPaletaDireita.Y < 0)
-            {
-                posicaoPaletaDireita.Y = 0;
-            }
-            if (posicaoPaletaDireita.Y > Window.ClientBounds.Height - paleta.Height)
-            {
-                posicaoPaletaDireita.Y = Window.ClientBounds.Height - paleta.Height;
-            }
 
-            colisaoPaletaDireita.X = (int)posicaoPaletaDireita.X;
-            colisaoPaletaDireita.Y = (int)posicaoPaletaDireita.Y;
-            colisaoPaletaEsquerda.X = (int)posicaoPaletaEsquerda.X;
-            colisaoPaletaEsquerda.Y = (int)posicaoPaletaEsquerda.Y;
+           
 
-            instanciaBola1.Update(colisaoPaletaDireita, colisaoPaletaEsquerda);//, instanciaBola2.colisao);
+            instanciaBola1.Update(paletadireita.getColisao(), paletaesquerda.getColisao());
+            //, instanciaBola2.colisao);
             //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
-
+            paletadireita.Update(true);
+            paletaesquerda.Update(false);
             base.Update(gameTime);
+           
             
         }
 
@@ -168,8 +125,8 @@ namespace Pong
             spriteBatch.Begin();
 
             spriteBatch.Draw(fundo, new Vector2(0, 0), Color.White);
-            spriteBatch.Draw(paleta,posicaoPaletaEsquerda, Color.Red);
-            spriteBatch.Draw(paleta, posicaoPaletaDireita, Color.Green);
+            paletadireita.Draw(gameTime, spriteBatch, Color.Green);
+            paletaesquerda.Draw(gameTime, spriteBatch, Color.Red);
             instanciaBola1.Draw(gameTime, spriteBatch, instanciaBola1.animacao_atual);
             spriteBatch.DrawString(Arial, "Pontos: ", Vector2.Zero, Color.Aqua);
             //instanciaBola2.Draw(spriteBatch);
