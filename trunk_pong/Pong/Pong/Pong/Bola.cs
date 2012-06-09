@@ -40,6 +40,8 @@ namespace Pong
         public Rectangle colisao;
         Color cor;
 
+        SoundEffect efeitoSonoro;
+
         GameWindow Window;
 
         Random random;
@@ -57,6 +59,7 @@ namespace Pong
         /// </summary>
         public Bola(ContentManager Content, GameWindow Window, Random random, float deslocamentoInicialX)
         {
+            this.efeitoSonoro = Content.Load<SoundEffect>("soundEffect");
             this.random = random;
             this.imagem = Content.Load<Texture2D>("bola");
             this.posicao = new Vector2((Window.ClientBounds.Width / 2 - this.imagem.Width / 2)
@@ -94,46 +97,60 @@ namespace Pong
 
         }
 
-        public void Update(Rectangle paletaD, Rectangle paletaE)//, Rectangle outraBola)
+        public void Update(Paleta paletaD, Paleta paletaE)//, Rectangle outraBola)
         {
             posicao += velocidade;
 
             #region manter na tela
+            
+            //batendo em baixo
             if (posicao.Y > Window.ClientBounds.Height - animacao_atual.quadro_Y)
             {
                 velocidade.Y *= -1;
             }
 
+            //batendo na direita
             if (posicao.X > Window.ClientBounds.Width - animacao_atual.quadro_X)
             {
-
+                paletaD.Pontos++;
                 velocidade.X *= -1;
             }
 
+            //batendo por cima
             if (posicao.Y < 0)
             {
-
                 velocidade.Y *= -1;
             }
+
+            //batendo pela esquerda
             if (posicao.X < 0)
             {
-
+                paletaE.Pontos++;
                 velocidade.X *= -1;
             }
+
             #endregion
 
             //atualizar posição do retângulo de colisão segundo posição
             colisao.Location = new Point((int)posicao.X, (int)posicao.Y);
 
-            if (Colidiu(paletaD) || Colidiu(paletaE))
+            if (Colidiu(paletaD.Colisao) || Colidiu(paletaE.Colisao))
             {
                 velocidade.X *= -1;
+                efeitoSonoro.Play();
             }
 
-            //if (Colidiu(outraBola))
-            //{
-            //    velocidade.X *= -1;
-            //}
+            /*
+             * EXERCíCIO:
+             * 
+             * Fazer a música ficar em mute ao apertar a letra M 
+             * Fazer a música voltar do mute ao apertar a letra M
+             * Fazer a música pausar ao apertar a letra P
+             * Fazer a música retomar ao apertar a letra P
+             * Fazer o volume diminuir ao se apertar a tecla PageDown
+             * Fazer o volume aumentar ao se apertar a tecla PageUp
+             * Fazer a música parar ao se apertar S (volta do começo se retomar P);
+             * */
 
         }
 

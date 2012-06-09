@@ -27,14 +27,14 @@ namespace Pong
         /// Esta imagem que vai no fundo da tela.
         /// </summary>
         Texture2D fundo;
-    
-             
 
         Bola instanciaBola1;
         //Bola instanciaBola2;
 
         Paleta paletadireita;
         Paleta paletaesquerda;
+
+        Song musica;
 
         public Game1()
         {
@@ -66,8 +66,10 @@ namespace Pong
             Arial = Content.Load<SpriteFont>("Arial");
 
             fundo = Content.Load<Texture2D>("fundo");
-            
-            
+
+            musica = Content.Load<Song>("Kalimba");
+            MediaPlayer.Play(musica);
+            MediaPlayer.Volume = (float)0.5;
 
             IsMouseVisible = true;
             Window.Title = "devs173c";
@@ -76,8 +78,8 @@ namespace Pong
             instanciaBola1 = new Bola(Content, Window, random, 40);
             //instanciaBola2 = new Bola(Content, Window, random, -40);
 
-            paletadireita = new Paleta(Content,Window,true);
-            paletaesquerda = new Paleta(Content,Window,false);
+            paletadireita = new Paleta(Content,Window,1);
+            paletaesquerda = new Paleta(Content,Window,2);
             
         }
 
@@ -101,14 +103,12 @@ namespace Pong
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             
-
-           
-
-            instanciaBola1.Update(paletadireita.getColisao(), paletaesquerda.getColisao());
+            instanciaBola1.Update(paletadireita, paletaesquerda);
             //, instanciaBola2.colisao);
             //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
-            paletadireita.Update(true);
-            paletaesquerda.Update(false);
+            paletadireita.Update(1);
+            paletaesquerda.Update(2);
+
             base.Update(gameTime);
            
             
@@ -128,9 +128,7 @@ namespace Pong
             paletadireita.Draw(gameTime, spriteBatch, Color.Green);
             paletaesquerda.Draw(gameTime, spriteBatch, Color.Red);
             instanciaBola1.Draw(gameTime, spriteBatch, instanciaBola1.animacao_atual);
-            spriteBatch.DrawString(Arial, "Pontos: ", Vector2.Zero, Color.Aqua);
-            //instanciaBola2.Draw(spriteBatch);
-
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

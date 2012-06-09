@@ -24,13 +24,24 @@ namespace Pong
 
         GameWindow Window;
 
-        public Paleta(ContentManager Content, GameWindow Window, bool direita)
+        int pontos;
+        public int Pontos{get{return pontos;}set{pontos = value;}}
+
+        int jogador;
+        //TODO fazer enum
+
+        SpriteFont fonte;
+
+        public Paleta(ContentManager Content, GameWindow Window, int jogador)
         {
             this.Window = Window;
-
+            this.pontos = 0;
+            this.jogador = jogador;
+            
             imagem = Content.Load<Texture2D>("paleta");
-           
-            if (!direita)
+            fonte = Content.Load<SpriteFont>("Arial");
+
+            if (jogador == 1)
             {
                  posicao = new Vector2(0, Window.ClientBounds.Height / 2 - imagem.Height / 2);
             }
@@ -42,11 +53,11 @@ namespace Pong
 
         }
 
-        public void Update(bool direita)
+        public void Update(int jogador)
         {
             teclado = Keyboard.GetState();
 
-            if (!direita)
+            if (jogador == 1)
             {
                 if (teclado.IsKeyDown(Keys.W))
                 {
@@ -96,11 +107,27 @@ namespace Pong
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Color cor)
         {
             spriteBatch.Draw(this.imagem, this.posicao, cor);
+
+            if (jogador == 1)
+            {
+                spriteBatch.DrawString(fonte, "Pontos: " + pontos, Vector2.Zero, cor);
+            }
+            else
+            {
+                spriteBatch.DrawString(fonte, "Pontos: " + pontos, new Vector2(Window.ClientBounds.Width - (fonte.MeasureString("Pontos: " + pontos).X), 0), cor);
+            }
         }
 
-        public Rectangle getColisao()
+        public Rectangle Colisao
         {
-            return new Rectangle((int)posicao.X, (int)posicao.Y, imagem.Width, imagem.Height);
+            get
+            {
+                return new Rectangle((int)posicao.X, (int)posicao.Y, imagem.Width, imagem.Height);
+            }
+            set
+            {
+                colisao = value;
+            }
         }
 
     }
