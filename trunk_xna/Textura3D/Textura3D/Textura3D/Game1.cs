@@ -109,7 +109,7 @@ namespace Textura3D
                 foreach (BasicEffect efeito in mesh.Effects)
                 {
                     efeito.TextureEnabled = true;
-                    efeito.Texture = Content.Load<Texture2D>("textura");
+                    efeito.Texture = Content.Load<Texture2D>("textura");//potencia de 2
                 }
             }
 
