@@ -140,8 +140,9 @@ namespace Shader
                 efeito.Apply();
                 GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip,
                     primitivas, 0, 1);
-
             }
+
+            
 
             // TODO: Add your drawing code here
 
