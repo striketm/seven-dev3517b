@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutorialQuedaLivre", "TutorialQuedaLivre\TutorialQuedaLivre\TutorialQuedaLivre.csproj", "{AD8D7D82-11AB-4AB9-8125-C902C4C00BC9}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TutorialQuedaLivreContent", "TutorialQuedaLivre\TutorialQuedaLivreContent\TutorialQuedaLivreContent.contentproj", "{0A865EFF-F4FC-4920-BBFC-2B14A337752E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD8D7D82-11AB-4AB9-8125-C902C4C00BC9}.Debug|x86.ActiveCfg = Debug|x86
+		{AD8D7D82-11AB-4AB9-8125-C902C4C00BC9}.Debug|x86.Build.0 = Debug|x86
+		{AD8D7D82-11AB-4AB9-8125-C902C4C00BC9}.Release|x86.ActiveCfg = Release|x86
+		{AD8D7D82-11AB-4AB9-8125-C902C4C00BC9}.Release|x86.Build.0 = Release|x86
+		{0A865EFF-F4FC-4920-BBFC-2B14A337752E}.Debug|x86.ActiveCfg = Debug|x86
+		{0A865EFF-F4FC-4920-BBFC-2B14A337752E}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
