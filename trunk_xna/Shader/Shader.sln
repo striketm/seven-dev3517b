@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shader", "Shader\Shader\Shader.csproj", "{4F0BD9D8-0399-478C-A61E-FD79747884DA}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ShaderContent", "Shader\ShaderContent\ShaderContent.contentproj", "{B56F211F-34E9-44CA-8225-70F08B0EA926}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F0BD9D8-0399-478C-A61E-FD79747884DA}.Debug|x86.ActiveCfg = Debug|x86
+		{4F0BD9D8-0399-478C-A61E-FD79747884DA}.Debug|x86.Build.0 = Debug|x86
+		{4F0BD9D8-0399-478C-A61E-FD79747884DA}.Release|x86.ActiveCfg = Release|x86
+		{4F0BD9D8-0399-478C-A61E-FD79747884DA}.Release|x86.Build.0 = Release|x86
+		{B56F211F-34E9-44CA-8225-70F08B0EA926}.Debug|x86.ActiveCfg = Debug|x86
+		{B56F211F-34E9-44CA-8225-70F08B0EA926}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

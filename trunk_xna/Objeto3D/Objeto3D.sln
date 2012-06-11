@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objeto3D", "Objeto3D\Objeto3D\Objeto3D.csproj", "{03F60493-0A7B-41F8-B58D-8DBCE455FFAE}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Objeto3DContent", "Objeto3D\Objeto3DContent\Objeto3DContent.contentproj", "{28238062-AF66-468F-B136-9688A18A56C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03F60493-0A7B-41F8-B58D-8DBCE455FFAE}.Debug|x86.ActiveCfg = Debug|x86
+		{03F60493-0A7B-41F8-B58D-8DBCE455FFAE}.Debug|x86.Build.0 = Debug|x86
+		{03F60493-0A7B-41F8-B58D-8DBCE455FFAE}.Release|x86.ActiveCfg = Release|x86
+		{03F60493-0A7B-41F8-B58D-8DBCE455FFAE}.Release|x86.Build.0 = Release|x86
+		{28238062-AF66-468F-B136-9688A18A56C5}.Debug|x86.ActiveCfg = Debug|x86
+		{28238062-AF66-468F-B136-9688A18A56C5}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
