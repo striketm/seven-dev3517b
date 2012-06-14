@@ -1,6 +1,6 @@
 using System;
 
-namespace Primitiva3D_2
+namespace Primitivas3D
 {
 #if WINDOWS || XBOX
     static class Program
