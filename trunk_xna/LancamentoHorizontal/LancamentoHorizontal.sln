@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LancamentoHorizontal", "LancamentoHorizontal\LancamentoHorizontal.csproj", "{D18014BE-FFCF-48B6-A21A-266BD8F56F3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LancamentoHorizontalContent", "LancamentoHorizontal\Content\LancamentoHorizontalContent.contentproj", "{D10A28B4-E963-4CA6-B00C-87BB799E64A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

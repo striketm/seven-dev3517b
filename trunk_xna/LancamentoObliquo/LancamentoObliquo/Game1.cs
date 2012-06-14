@@ -48,7 +48,7 @@ namespace LancamentoObliquo
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Carrega a textura da bola
-            texture = Content.Load<Texture2D>(@"ball");
+            texture = Content.Load<Texture2D>("ball");
         }
 
         protected override void UnloadContent()

@@ -27,7 +27,6 @@ namespace TutorialMRUV
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            Window.Title = "Tutorial de Movimento Retílinio Uniforme Variado (MRUV) - http://pontov.com.br";
         }
 
         protected override void Initialize()
@@ -46,7 +45,7 @@ namespace TutorialMRUV
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Carrega a textura do carro
-            imagem = Content.Load<Texture2D>(@"car");
+            imagem = Content.Load<Texture2D>("car");
 
         }
 

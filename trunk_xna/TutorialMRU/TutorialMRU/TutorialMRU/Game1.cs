@@ -26,7 +26,6 @@ namespace TutorialMRU
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            Window.Title = "Exemplo de Movimento Retilinio Uniforme (MRU) - http://pontov.com.br";
         }
 
         protected override void Initialize()
@@ -43,7 +42,7 @@ namespace TutorialMRU
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Carrega a textura do carro (car.png)
-            imagem = Content.Load<Texture2D>(@"car");
+            imagem = Content.Load<Texture2D>("car");
         }
 
         protected override void Update(GameTime gameTime)
