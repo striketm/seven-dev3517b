@@ -25,7 +25,13 @@ namespace Pong
 
         enum Estados { INTRO, MENU, CREDITOS, JOGO, GAMEOVER, THEEND, PAUSE };
 
-        Estados estado_atual = Estados.JOGO;
+        Estados estado_atual = Estados.MENU;
+
+        //para o vídeo: http://msdn.microsoft.com/en-us/library/dd254869.aspx
+
+        Video video;
+
+        VideoPlayer videoPlayer;
 
         /// <summary>
         /// Esta imagem que vai no fundo da tela.
@@ -41,6 +47,8 @@ namespace Pong
         Song musica;
 
         KeyboardState teclado_atual, teclado_anterior;
+
+        Menu menu;
 
         public Game1()
         {
@@ -74,8 +82,12 @@ namespace Pong
             fundo = Content.Load<Texture2D>("fundo");
 
             musica = Content.Load<Song>("Kalimba");
-            MediaPlayer.Play(musica);
+            //MediaPlayer.Play(musica);
             MediaPlayer.Volume = (float)0.5;
+
+            video = Content.Load<Video>("LunarLander3D");
+            videoPlayer = new VideoPlayer();
+
 
             IsMouseVisible = true;
             Window.Title = "devs173c";
@@ -86,6 +98,8 @@ namespace Pong
 
             paletadireita = new Paleta(Content, Window, 1);
             paletaesquerda = new Paleta(Content, Window, 2);
+
+            menu = new Menu(Content, Window);
 
         }
 
@@ -107,15 +121,24 @@ namespace Pong
         {
             teclado_atual = Keyboard.GetState();
 
-            if (teclado_atual.IsKeyDown(Keys.M) && !teclado_anterior.IsKeyDown(Keys.M))
-            {
-                MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
-            }
-
             switch (estado_atual)
             {
                 case Estados.INTRO:
+                    videoPlayer.Play(video);
+                    if (teclado_atual.IsKeyDown(Keys.Space) && !teclado_anterior.IsKeyDown(Keys.Space))
+                    {
+                        estado_atual = Estados.JOGO;
+                        videoPlayer.Stop();
+                    }
+                    break;
 
+                case Estados.MENU:
+                    menu.Update(gameTime);
+                    if (teclado_atual.IsKeyDown(Keys.J) && !teclado_anterior.IsKeyDown(Keys.J))
+                    {
+                        estado_atual = Estados.JOGO;
+                        
+                    }
                     break;
 
                 case Estados.JOGO:
@@ -124,6 +147,13 @@ namespace Pong
                     //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
                     paletadireita.Update(1);
                     paletaesquerda.Update(2);
+                    if (MediaPlayer.State != MediaState.Playing)
+                    {
+                        MediaPlayer.Play(musica);
+                    }
+
+                    
+
                     break;
 
                 case Estados.GAMEOVER:
@@ -134,6 +164,21 @@ namespace Pong
 
 
             teclado_anterior = teclado_atual;
+
+            if (teclado_atual.IsKeyDown(Keys.F2) && !teclado_anterior.IsKeyDown(Keys.F2))
+            {
+                graphics.ToggleFullScreen();
+            }
+
+            if (teclado_atual.IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
+
+            if (teclado_atual.IsKeyDown(Keys.M) && !teclado_anterior.IsKeyDown(Keys.M))
+            {
+                MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+            }
 
             base.Update(gameTime);
 
@@ -152,7 +197,11 @@ namespace Pong
             switch (estado_atual)
             {
                 case Estados.INTRO:
+                    spriteBatch.Draw(videoPlayer.GetTexture(),new Rectangle (0,0,Window.ClientBounds.Width, Window.ClientBounds.Height),Color.White);
+                    break;
 
+                case Estados.MENU:
+                    menu.Draw(gameTime, spriteBatch);
                     break;
 
                 case Estados.JOGO:

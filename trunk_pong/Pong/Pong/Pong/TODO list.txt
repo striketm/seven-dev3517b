@@ -1,11 +1,13 @@
 ﻿Evitar que se sorteie zero para velocidade da bola no início
 Evitar que se comece duas bolas colidindo na região central
-Evitar que as bolas entrem por baixo e por cima das palestas
+Evitar que as bolas entrem por baixo e por cima das paletas
 Fazer com que a pontuação aconteça e seja mostrada
 de forma correta e que o jogo termine quando um dos jogadores
 fizer 5 pontos 
+A bola volta ao meio quando faz ponto
+IAAHHH!!!!
 
 Fazer sons e músicas - OK
-Usar gamepad
-Fazer transição de telas
-Tocar vídeo
+Usar gamepad - OK
+Fazer transição de telas - OK
+Tocar vídeo - OK

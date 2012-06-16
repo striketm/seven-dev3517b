@@ -94,6 +94,7 @@ namespace Pong
                 posicao = Vector2.Zero;
             }
          */
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, animacao _animacao)
         {
             if (visivel)

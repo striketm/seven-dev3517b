@@ -20,7 +20,8 @@ namespace Pong
 
         Vector2 posicao;
         Rectangle colisao;
-        KeyboardState teclado;
+        KeyboardState teclado_atual, teclado_anterior;
+        GamePadState gamePad_atual, gamePad_anterior;
 
         GameWindow Window;
 
@@ -55,26 +56,40 @@ namespace Pong
 
         public void Update(int jogador)
         {
-            teclado = Keyboard.GetState();
+            teclado_atual = Keyboard.GetState();
+            gamePad_atual = GamePad.GetState(PlayerIndex.One);
 
             if (jogador == 1)
             {
-                if (teclado.IsKeyDown(Keys.W))
+                if (teclado_atual.IsKeyDown(Keys.W) 
+                    || gamePad_atual.ThumbSticks.Right.Y > 0.1f
+                    || gamePad_atual.ThumbSticks.Left.Y ==1
+                    || gamePad_atual.DPad.Up==ButtonState.Pressed
+                    || gamePad_atual.Buttons.Y==ButtonState.Pressed
+                    //|| gamePad_atual.Triggers.Left==1
+                    || gamePad_atual.Buttons.LeftShoulder==ButtonState.Pressed
+                    //|| gamePad_atual.Buttons.LeftStick==ButtonState.Pressed
+                    //|| gamePad_atual.Triggers.Right == 1
+                    || gamePad_atual.Buttons.RightShoulder == ButtonState.Pressed
+                    //|| gamePad_atual.Buttons.RightStick == ButtonState.Pressed
+                    )
                 {
-                    posicao.Y -= 5;
+                    if (gamePad_atual.ThumbSticks.Right.Y > 0.1f)
+                        posicao.Y -= 5 * gamePad_atual.ThumbSticks.Right.Y;
+                    else posicao.Y -= 5;
                 }
-                if (teclado.IsKeyDown(Keys.S))
+                if (teclado_atual.IsKeyDown(Keys.S))
                 {
                     posicao.Y += 5;
                 }
             }
             else
             {
-                if (teclado.IsKeyDown(Keys.Up))
+                if (teclado_atual.IsKeyDown(Keys.Up))
                 {
                     posicao.Y -= 5;
                 }
-                if (teclado.IsKeyDown(Keys.Down))
+                if (teclado_atual.IsKeyDown(Keys.Down))
                 {
                     posicao.Y += 5;
                 }
@@ -102,6 +117,9 @@ namespace Pong
             colisao.Y = (int)posicao.Y;
             colisao.X = (int)posicao.X;
             colisao.Y = (int)posicao.Y;
+
+            teclado_anterior = teclado_atual;
+            gamePad_anterior = gamePad_atual;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Color cor)
