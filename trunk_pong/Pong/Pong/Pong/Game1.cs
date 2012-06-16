@@ -20,8 +20,12 @@ namespace Pong
         SpriteBatch spriteBatch;
 
         SpriteFont Arial;
-        
+
         Random random = new Random();
+
+        enum Estados { INTRO, MENU, CREDITOS, JOGO, GAMEOVER, THEEND, PAUSE };
+
+        Estados estado_atual = Estados.JOGO;
 
         /// <summary>
         /// Esta imagem que vai no fundo da tela.
@@ -80,9 +84,9 @@ namespace Pong
             instanciaBola1 = new Bola(Content, Window, random, 40);
             //instanciaBola2 = new Bola(Content, Window, random, -40);
 
-            paletadireita = new Paleta(Content,Window,1);
-            paletaesquerda = new Paleta(Content,Window,2);
-            
+            paletadireita = new Paleta(Content, Window, 1);
+            paletaesquerda = new Paleta(Content, Window, 2);
+
         }
 
         /// <summary>
@@ -103,21 +107,36 @@ namespace Pong
         {
             teclado_atual = Keyboard.GetState();
 
-            if(teclado_atual.IsKeyDown(Keys.M)&&!teclado_anterior.IsKeyDown(Keys.M))
+            if (teclado_atual.IsKeyDown(Keys.M) && !teclado_anterior.IsKeyDown(Keys.M))
             {
                 MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
             }
 
-            instanciaBola1.Update(paletadireita, paletaesquerda);
-            //instanciaBola2.colisao);
-            //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
-            paletadireita.Update(1);
-            paletaesquerda.Update(2);
+            switch (estado_atual)
+            {
+                case Estados.INTRO:
+
+                    break;
+
+                case Estados.JOGO:
+                    instanciaBola1.Update(paletadireita, paletaesquerda);
+                    //instanciaBola2.colisao);
+                    //instanciaBola2.Update(colisaoPaletaDireita, colisaoPaletaEsquerda, instanciaBola1.colisao);
+                    paletadireita.Update(1);
+                    paletaesquerda.Update(2);
+                    break;
+
+                case Estados.GAMEOVER:
+
+                    break;
+            }
+
+
 
             teclado_anterior = teclado_atual;
 
             base.Update(gameTime);
-           
+
         }
 
         /// <summary>
@@ -130,11 +149,25 @@ namespace Pong
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(fundo, new Vector2(0, 0), Color.White);
-            paletadireita.Draw(gameTime, spriteBatch, Color.Green);
-            paletaesquerda.Draw(gameTime, spriteBatch, Color.Red);
-            instanciaBola1.Draw(gameTime, spriteBatch, instanciaBola1.animacao_atual);
-            
+            switch (estado_atual)
+            {
+                case Estados.INTRO:
+
+                    break;
+
+                case Estados.JOGO:
+                    spriteBatch.Draw(fundo, new Vector2(0, 0), Color.White);
+                    paletadireita.Draw(gameTime, spriteBatch, Color.Green);
+                    paletaesquerda.Draw(gameTime, spriteBatch, Color.Red);
+                    instanciaBola1.Draw(gameTime, spriteBatch, instanciaBola1.animacao_atual);
+                    break;
+
+                case Estados.GAMEOVER:
+
+                    break;
+            }
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);
