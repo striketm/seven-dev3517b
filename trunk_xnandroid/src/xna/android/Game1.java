@@ -51,6 +51,10 @@ public class Game1 extends SurfaceView implements
 				, 50, 50 //largura e altura
 				, 8, 8); //FPS e numero de quadros
 		
+		sprite3.setX(200);
+		sprite3.setY(200);
+		
+		
 		this.spriteFont = new SpriteFont(BitmapFactory.decodeResource(getResources(), R.drawable.fonte_verde));
 		//http://developer.android.com/index.html
 		//http://developer.android.com/guide/index.html
@@ -144,7 +148,7 @@ public class Game1 extends SurfaceView implements
 		spriteBatch.drawColor(Color.BLACK);
 		sprite.draw(spriteBatch);
 		sprite2.draw(spriteBatch);
-		sprite3.draw_rotate(spriteBatch, 25);
+		sprite3.draw_rotate(spriteBatch, 0);
 		
 		spriteFont.drawString(spriteBatch, "Escrevendo: X " + ((int)getWidth()-250) + " Y " + ((int)getHeight()-100), ((int)getWidth()-250), ((int)getHeight()-100));
 		

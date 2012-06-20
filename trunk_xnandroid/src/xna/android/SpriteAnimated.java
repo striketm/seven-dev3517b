@@ -125,9 +125,11 @@ public class SpriteAnimated {
 	public void draw_rotate(Canvas canvas, float rot) {
 				
 		Matrix matrix = new Matrix();
-		matrix.postRotate(rot, (spriteWidth / 2), (spriteHeight / 2));
-		matrix.postScale(0.5f, 0.5f);
+		matrix.postRotate(rot, (spriteWidth / 2), (spriteHeight / 2));//pivo
+		matrix.postScale(-2, 2, (spriteWidth / 2), (spriteHeight / 2));//pivo 
 		matrix.postTranslate(x, y); 
+		//matrix.setScale(0.5f, 0.5f);
+		//matrix.invert(matrix);
 		Bitmap tmp;
 		tmp = Bitmap.createBitmap(bitmap, currentFrame * spriteWidth,0,
 				spriteWidth,spriteHeight);
