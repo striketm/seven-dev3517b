@@ -78,7 +78,7 @@ namespace MotoGame.Estados.Fases.Fase1
             if(origem.X<0)
             {
                 //não faz nada
-                Console.WriteLine("origem.X<0");
+                //Console.WriteLine("origem.X<0");
                 origem.X = 0;
             }
 
@@ -86,7 +86,7 @@ namespace MotoGame.Estados.Fases.Fase1
             if (origem.X > texture.Bounds.Width - Window.ClientBounds.Width)
             {
                 //não faz nada
-                Console.WriteLine("origem.X > texture.Bounds.Width - Window.ClientBounds.Width");
+                //Console.WriteLine("origem.X > texture.Bounds.Width - Window.ClientBounds.Width");
                 origem.X = texture.Bounds.Width - Window.ClientBounds.Width;
             }
 
@@ -94,7 +94,7 @@ namespace MotoGame.Estados.Fases.Fase1
             if (origem.Y < 0)
             {
                 //não faz nada
-                Console.WriteLine("origem.Y < 0");
+                //Console.WriteLine("origem.Y < 0");
                 origem.Y = 0;
             }
 
@@ -102,7 +102,7 @@ namespace MotoGame.Estados.Fases.Fase1
             if (origem.Y > texture.Bounds.Height - Window.ClientBounds.Height)
             {
                 //não faz nada
-                Console.WriteLine("origem.Y > texture.Bounds.Height - Window.ClientBounds.Height");
+                //Console.WriteLine("origem.Y > texture.Bounds.Height - Window.ClientBounds.Height");
                 origem.Y = texture.Bounds.Height - Window.ClientBounds.Height;
             }
         }

@@ -91,7 +91,7 @@ namespace MotoGame.Estados.Jogo
                 }
 
 
-                Console.WriteLine("moto1.Posicao.X > Window.ClientBounds.Width * 2/3");
+                //Console.WriteLine("moto1.Posicao.X > Window.ClientBounds.Width * 2/3");
             }
 
             //Moto saindo pela esquerda.
@@ -114,7 +114,7 @@ namespace MotoGame.Estados.Jogo
                               
 
 
-                Console.WriteLine("moto1.Posicao.X < Window.ClientBounds.Width * 1 / 3");
+                //Console.WriteLine("moto1.Posicao.X < Window.ClientBounds.Width * 1 / 3");
             }
 
             //Moto saindo por baixo.

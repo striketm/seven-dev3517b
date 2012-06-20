@@ -42,12 +42,12 @@ namespace MotoGame.Estados.Menu
         {
             if (this.Colisao.Contains(Game1.mouse_atual.X, Game1.mouse_atual.Y))
             {
-                Console.WriteLine("in");
+                //Console.WriteLine("in");
                 animacao_atual = mouse_up;
             }
             else
             {
-                Console.WriteLine("out");
+                //Console.WriteLine("out");
                 animacao_atual = mouse_over;
             }
         }
