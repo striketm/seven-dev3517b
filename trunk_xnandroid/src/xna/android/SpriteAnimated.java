@@ -5,6 +5,7 @@ package xna.android;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 
 public class SpriteAnimated {
@@ -117,4 +118,22 @@ public class SpriteAnimated {
 		canvas.drawBitmap(bitmap, sourceRect, destRect, null);
 		
 	}
+
+	public void draw_rotate(Canvas canvas, float rot) {
+		
+		//Rect destRect = new Rect(getX(), getY(), getX() + spriteWidth, getY() + spriteHeight);
+		
+		//canvas.drawBitmap(bitmap, sourceRect, destRect, null);
+		
+		Matrix matrix = new Matrix();
+		matrix.postRotate(rot, (spriteWidth / 2), (spriteHeight / 2));
+		matrix.postTranslate(x, y); 
+		Bitmap tmp;
+		tmp = Bitmap.createBitmap(bitmap, currentFrame * spriteWidth,0,
+				spriteWidth,spriteHeight);
+		
+		canvas.drawBitmap(tmp, matrix, null); 
+		
+	}
+	
 }
