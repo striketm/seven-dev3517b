@@ -55,7 +55,7 @@ public class Game1 extends SurfaceView implements
 		sprite3.setY(200);
 		
 		
-		this.spriteFont = new SpriteFont(BitmapFactory.decodeResource(getResources(), R.drawable.fonte_verde));
+		this.spriteFont = new SpriteFont(BitmapFactory.decodeResource(getResources(), R.drawable.fonte_branca));
 		//http://developer.android.com/index.html
 		//http://developer.android.com/guide/index.html
 		//http://stackoverflow.com/questions/1077357/can-the-android-drawable-directory-contain-subdirectories
@@ -151,6 +151,7 @@ public class Game1 extends SurfaceView implements
 		sprite3.draw_rotate(spriteBatch, 0);
 		
 		spriteFont.drawString(spriteBatch, "Escrevendo: X " + ((int)getWidth()-250) + " Y " + ((int)getHeight()-100), ((int)getWidth()-250), ((int)getHeight()-100));
+		spriteFont.drawString(spriteBatch, "COR!", 100, 100, 1000);
 		
 		if (explosion != null)
 		{
