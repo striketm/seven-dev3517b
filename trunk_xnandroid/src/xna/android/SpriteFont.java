@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.MaskFilter;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.Log;
 
 public class SpriteFont
@@ -98,20 +100,28 @@ public class SpriteFont
 		}
 	}
 	
-	public void drawString(Canvas canvas, String text, int x, int y, int c) 
+	public void drawString(Canvas canvas, String text, int x, int y, int c, Paint p) 
 	{
-		Paint p = new Paint();
-		ColorFilter f = new LightingColorFilter(c,1);
-		//ColorFilter f = new LightingColorFilter(22, 22);
-		p.setColorFilter(f);
+		//Paint p = new Paint();
+		//ColorFilter f = new LightingColorFilter(c,1);
+		//p.setColorFilter(f);
+		//MaskFilter m = new MaskFilter();
 		
-		if (canvas == null) {
+		
+		//p.setMaskFilter(m);
+		
+		if (canvas == null)
+		{
 			Log.d(TAG, "canvas null");
 		}
-		for (int i = 0; i < text.length(); i++) {
+		for (int i = 0; i < text.length(); i++)
+		{
 			Character ch = text.charAt(i);
-			if (glypho.get(ch) != null) {
-				canvas.drawBitmap(glypho.get(ch), x + (i * width), y, p);
+			
+			if (glypho.get(ch) != null)
+			{
+				canvas.drawText("COR!!!", x, y, p);
+				//canvas.drawBitmap(glypho.get(ch), x + (i * width), y, p);
 			}
 		}
 	}
