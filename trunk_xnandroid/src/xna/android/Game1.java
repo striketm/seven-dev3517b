@@ -6,22 +6,27 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.opengl.GLSurfaceView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import xna.android.Explosion;
+import android.content.res.AssetManager;
 
-public class Game1 extends SurfaceView implements
+public class Game1 extends GLSurfaceView implements
 		SurfaceHolder.Callback {
-
+	
 	private static final String TAG = Game1.class.getSimpleName();;
-
+	
 	private MainThread thread;
-
+	
 	private Sprite sprite;
+	
 	private Sprite sprite2;
-
+	
 	private SpriteAnimated sprite3;
 	
 	private SoundManager mSoundManager;
@@ -29,7 +34,9 @@ public class Game1 extends SurfaceView implements
 	private SpriteFont spriteFont; // a fonte	
 	
 	private Explosion explosion;
-		
+	
+	private AssetManager am;
+	
 	private static final int EXPLOSION_SIZE = 200;
 	
 	public Game1(Context Content) {
@@ -38,7 +45,7 @@ public class Game1 extends SurfaceView implements
 		getHolder().addCallback(this);
 		
 		mSoundManager = new SoundManager(Content);
-
+		am = Content.getAssets();
 		// a imagem:
 		sprite = new Sprite(BitmapFactory.decodeResource(getResources(),
 				R.drawable.android), 50, 50, mSoundManager);
@@ -149,9 +156,16 @@ public class Game1 extends SurfaceView implements
 		sprite.draw(spriteBatch);
 		sprite2.draw(spriteBatch);
 		sprite3.draw_rotate(spriteBatch, 0);
+        //seta a cor e a fonte do texto		
+		Paint p = new Paint();
+		Typeface plain = Typeface.createFromAsset(am, "fonts/comic.ttf");
+		Typeface tp = Typeface.create(plain, Typeface.NORMAL);
+				
+		p.setColor(Color.RED);
+		p.setTypeface(tp);
 		
 		spriteFont.drawString(spriteBatch, "Escrevendo: X " + ((int)getWidth()-250) + " Y " + ((int)getHeight()-100), ((int)getWidth()-250), ((int)getHeight()-100));
-		spriteFont.drawString(spriteBatch, "COR!", 100, 100, 1000);
+		spriteFont.drawString(spriteBatch, "COR!!!", 200, 50, 1000, p);
 		
 		if (explosion != null)
 		{
