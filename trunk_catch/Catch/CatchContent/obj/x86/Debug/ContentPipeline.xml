@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>chao.x</Source>
+      <Name>chao</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\chao.xnb</Output>
+      <Time>2012-07-12T16:52:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\chao_0.xml</Key>
+        <Value>2012-07-17T18:06:55.3940053-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\chao_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>cilindro.x</Source>
+      <Name>cilindro</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\cilindro.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\cilindro_0.xml</Key>
+        <Value>2012-07-17T18:06:55.6320529-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_purpura_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>coisa.x</Source>
+      <Name>coisa</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\coisa.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\coisa_0.xml</Key>
+        <Value>2012-07-17T18:06:55.6790623-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\texturas_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>cubo.x</Source>
+      <Name>cubo</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\cubo.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\cubo_0.xml</Key>
+        <Value>2012-07-17T18:06:55.7450755-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_azul_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>esfera.x</Source>
+      <Name>esfera</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\esfera.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\esfera_0.xml</Key>
+        <Value>2012-07-17T18:06:55.7900845-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\branco_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>objeto.x</Source>
+      <Name>objeto</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\objeto.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\objeto_0.xml</Key>
+        <Value>2012-07-17T18:06:55.8340933-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\objeto_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>piramide.x</Source>
+      <Name>piramide</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\piramide.xnb</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\piramide_0.xml</Key>
+        <Value>2012-07-17T18:06:55.8911047-03:00</Value>
+      </Dependency>
+      <Request>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_vermelha_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>chao.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\chao_0.xml</Output>
+      <Time>2012-07-12T16:52:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>chao.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\chao_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>cilindro.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\cilindro_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>barreira_purpura.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_purpura_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>coisa.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\coisa_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\texturas_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>cubo.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\cubo_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>barreira_azul.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_azul_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>esfera.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\esfera_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>branco.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\branco_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>objeto.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\objeto_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>objeto.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\objeto_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <Item>
+      <Source>piramide.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\piramide_0.xml</Output>
+      <Time>2012-07-12T18:18:08-03:00</Time>
+    </Item>
+    <Item>
+      <Source>barreira_vermelha.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\barreira_vermelha_0.xnb</Output>
+      <Time>2012-07-12T16:40:26-03:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\cleber.tavares\Desktop\Catch3\Catch\CatchContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\cleber.tavares\Desktop\Catch3\Catch\CatchContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\cleber.tavares\Desktop\Catch3\Catch\Catch\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T11:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-10-20T14:50:06.9468927-02:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
