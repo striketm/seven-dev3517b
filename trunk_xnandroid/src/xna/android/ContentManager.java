@@ -7,11 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 
-/**
- * ContentManager
- * @author Bruno Miguel de Oliveira Tamer <bmotamer@gmail.com>
- * @version 2012.07.09
- */
 public class ContentManager
 {
 	

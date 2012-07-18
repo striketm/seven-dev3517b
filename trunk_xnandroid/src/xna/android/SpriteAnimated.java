@@ -10,7 +10,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class SpriteAnimated {
+public class SpriteAnimated extends MySprite 
+{
 	
 	private static final String TAG = SpriteAnimated.class.getSimpleName();
 
@@ -29,7 +30,28 @@ public class SpriteAnimated {
 	
 	private Color cor;
 	
-	public SpriteAnimated(Bitmap bitmap, int x, int y, int width, int height, int fps, int frameCount) {
+	public SpriteAnimated(Bitmap bitmap, int x, int y, int width, int height, int fps, int frameCount, SoundManager sm)
+	{
+		
+		super(bitmap, x, y, sm);
+		
+		this.bitmap = bitmap;
+		this.x = x;
+		this.y = y;
+		currentFrame = 0;
+		frameNr = frameCount;
+		spriteWidth = bitmap.getWidth() / frameCount;//somente exato
+		spriteHeight = bitmap.getHeight();//somente exato
+		sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);//Rect classe de Java
+		framePeriod = 1000 / fps;
+		frameTicker = 0l;
+	}
+	
+	public SpriteAnimated(Bitmap bitmap, int x, int y, int width, int height, int fps, int frameCount)
+	{
+		
+		super(bitmap, x, y);
+		
 		this.bitmap = bitmap;
 		this.x = x;
 		this.y = y;

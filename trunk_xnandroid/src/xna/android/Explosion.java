@@ -3,7 +3,8 @@ package xna.android;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public class Explosion {
+public class Explosion
+{
 	
 	public enum State { ALIVE, DEAD };
 
