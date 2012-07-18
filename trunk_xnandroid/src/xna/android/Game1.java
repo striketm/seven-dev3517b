@@ -10,9 +10,12 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.Window;
+import android.view.WindowManager;
 import xna.android.Explosion;
 import android.content.res.AssetManager;
 
@@ -76,6 +79,39 @@ public class Game1 extends GLSurfaceView implements
 		// passando o holder e o painel para a thread
 
 		setFocusable(true);
+	}
+	
+	//mover aviao
+	public boolean onKeyDown(int KeyCode, KeyEvent event){
+		
+		switch(KeyCode)
+		{
+		case KeyEvent.KEYCODE_DPAD_RIGHT:
+			aviao.setX(aviao.getX() + 2);
+			
+			if((aviao.getX()+ 45)  > getWidth())
+			{
+				aviao.setX(aviao.getX() - 2 );
+			}
+			break;
+		
+		case KeyEvent.KEYCODE_DPAD_LEFT:
+			aviao.setX((aviao.getX()) - 2);
+			if(aviao.getX() < 48)
+			{
+				aviao.setX(aviao.getX() + 2 );
+			}
+			break;
+			
+		case KeyEvent.KEYCODE_DPAD_UP:
+			aviao.setY(aviao.getY() - 2);
+			break;
+			
+		case KeyEvent.KEYCODE_DPAD_DOWN:
+			aviao.setY(aviao.getY() + 2);
+			break;
+		}
+		return true;
 	}
 
 	// @Override
@@ -142,6 +178,9 @@ public class Game1 extends GLSurfaceView implements
 		}
 		return true;
 	}
+	
+	
+	
 
 	// sobrecarregando o método onDraw
 	@Override
