@@ -32,30 +32,65 @@ namespace CapturarObjetos.Objetos
             Jogador.listaJogadores.Add(this);
         }
         
-        public void Desenhar2(Camera camera)
+        public void Update(GameTime gameTime, KeyboardState teclado_atual, KeyboardState teclado_anterior)
         {
-            Matrix[] transforms = new Matrix[Modelo.Bones.Count];
-            Modelo.CopyAbsoluteBoneTransformsTo(transforms);
+            //preciso testar *primeiro* se a posição futura é válida para não travar, por isso a guardo...
+            Vector3 posicaoFutura = Posicao;
 
-            Matrix worldMatrix = Matrix.Identity;
-            Matrix rotationYMatrix = Matrix.CreateRotationY(DirecaoFrontal);
-            Matrix translateMatrix = Matrix.CreateTranslation(Posicao);
+            //estas duas variáveis temporárias servem para o giro e o movimento
+            float quantoVirar = 0;
+            Vector3 movimento = Vector3.Zero;
 
-            worldMatrix = rotationYMatrix * translateMatrix;
-
-            foreach (ModelMesh mesh in Modelo.Meshes)
+            if (teclado_atual.IsKeyDown(Keys.A))
             {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.World = worldMatrix * transforms[mesh.ParentBone.Index]; ;
-                    effect.View = camera.MatrizVisualizacao;
-                    effect.Projection = camera.MatrizProjecao;
-
-                    effect.EnableDefaultLighting();
-                    effect.PreferPerPixelLighting = true;
-                }
-                mesh.Draw();
+                quantoVirar = 1;
             }
+            else if (teclado_atual.IsKeyDown(Keys.D))
+            {
+                quantoVirar = -1;
+            }
+            if (teclado_atual.IsKeyDown(Keys.W))
+            {
+                //positivo, correto?
+                movimento.Z = -1;
+            }
+            else if (teclado_atual.IsKeyDown(Keys.S))
+            {
+                movimento.Z = 1;
+            }
+            
+            //o pra onde ele vai virar é corrigido pela velocidade de giro
+            DirecaoFrontal += quantoVirar * VelocidadeDeCurva;
+            //isto está aqui apenas pq esta variável tem outro nome na hora de desenhar...
+            RotacaoY = DirecaoFrontal;
+            //preciso girar meu objeto naquela direção antes de andar
+            Matrix matrixOrientacao = Matrix.CreateRotationY(DirecaoFrontal);
+            //ando com ele aquela quantidade de movimento naquela direcao de orientacao
+            Vector3 velocidade = Vector3.Transform(movimento, matrixOrientacao);
+            //corrijo pela escala da velocidade
+            velocidade *= Velocidade;
+            //agora sim esta será a nova posicao do objeto
+            posicaoFutura = Posicao + velocidade;
+
+            if ((Math.Abs(posicaoFutura.X) > AlcanceMaximo))//ta dando a volta...
+            {
+                posicaoFutura.X = AlcanceMaximo;            
+            }
+            if ((Math.Abs(posicaoFutura.Z) > AlcanceMaximo))
+            {
+                posicaoFutura.Z = AlcanceMaximo;
+            }
+
+            Posicao = posicaoFutura;
+                        
+        }
+
+        private bool ManterNoTabuleiro(Vector3 posicaoFutura)
+        {
+            if ((Math.Abs(posicaoFutura.X) > AlcanceMaximo) ||
+                (Math.Abs(posicaoFutura.Z) > AlcanceMaximo))
+                return false;
+            return true;
         }
     }
 }

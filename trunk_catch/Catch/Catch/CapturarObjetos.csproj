@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Nucleo\Camera.cs" />
+    <Compile Include="Nucleo\Luz.cs" />
     <Compile Include="Nucleo\ObjetoJogo.cs" />
     <Compile Include="Objetos\Barreira.cs" />
     <Compile Include="Objetos\Energia.cs" />

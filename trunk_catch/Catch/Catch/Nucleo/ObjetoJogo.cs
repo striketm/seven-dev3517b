@@ -23,7 +23,7 @@ namespace CapturarObjetos.Nucleo
         /// <summary>
         /// Representa a posição do objeto no espaço
         /// </summary>
-        public Vector3 Posicao { get { return posicao; } set { posicao = value; } }
+        public Vector3 Posicao { get { return posicao; } set { posicao = value; PosicaoX = posicao.X; PosicaoY = posicao.Y; PosicaoZ = posicao.Z; } }
         bool ativo;
         /// <summary>
         /// Representa se o objeto está ativo ou não
@@ -104,7 +104,7 @@ namespace CapturarObjetos.Nucleo
         float escala;
         /// <summary>
         /// Representa a escala do objeto no mundo
-        /// </summary>
+        /// </summary>//fazer o reverso e criar um vetor escala e fazer isso pra todos
         public float Escala { get { return escala; } set { escala = EscalaX = EscalaY = EscalaZ  = value; } }
 
         public static List<ObjetoJogo> listaObjetos = new List<ObjetoJogo>();
@@ -135,7 +135,7 @@ namespace CapturarObjetos.Nucleo
             {
                 Matrix[] transforms = new Matrix[Modelo.Bones.Count];
                 Modelo.CopyAbsoluteBoneTransformsTo(transforms);
-
+                
                 foreach (ModelMesh mesh in this.Modelo.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)
@@ -158,6 +158,11 @@ namespace CapturarObjetos.Nucleo
                     mesh.Draw();
                 }
             }
+        }
+
+        public void AtualizarEsferaColisao()
+        {
+            //EsferaColisao = new BoundingSphere(
         }
                
         /// <summary>

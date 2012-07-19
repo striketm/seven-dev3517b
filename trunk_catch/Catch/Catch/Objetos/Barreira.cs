@@ -18,6 +18,8 @@ namespace CapturarObjetos.Objetos
 
         public static List<Barreira> listaBarreiras = new List<Barreira>();
 
+        public static int QTDTotal = 5;
+
         public Barreira(ContentManager Content, string _modelo)
             : base()
         {

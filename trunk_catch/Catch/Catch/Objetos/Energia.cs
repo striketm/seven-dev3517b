@@ -18,7 +18,7 @@ namespace CapturarObjetos.Objetos
 
         public static List<Energia> listaEnergias = new List<Energia>();
 
-        public static int QTDTotal = 10;
+        public static int QTDTotal = 5;
 
         public Energia(ContentManager Content, string _modelo)
             : base()

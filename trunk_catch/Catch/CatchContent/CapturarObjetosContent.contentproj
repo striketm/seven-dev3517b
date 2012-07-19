@@ -54,8 +54,8 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="coisa.x">
-      <Name>coisa</Name>
+    <Compile Include="jogador.x">
+      <Name>jogador</Name>
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
@@ -64,13 +64,8 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="esfera.x">
-      <Name>esfera</Name>
-      <Importer>XImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="objeto.x">
-      <Name>objeto</Name>
+    <Compile Include="energia.x">
+      <Name>energia</Name>
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>

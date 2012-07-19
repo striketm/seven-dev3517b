@@ -29,13 +29,14 @@ namespace CapturarObjetos
 
         Jogador jogador;
 
-        //Energia energia;//manager
+        KeyboardState teclado_atual, teclado_anterior;
+        MouseState mouse_atual, mouse_anterior;
+        GamePadState gamepad_atual, gamepad_anterior;
 
-        Barreira cilindro, cubo, piramide;//manager
-
+        
         //TODO
         /*
-         * Criar a câmera, o chão, um Jogador (coisa), uma lista de Energia (objeto), uma lista de Barreira (cilindro, cubo e piramide)
+         * Criar a câmera, o chão, um Jogador, uma lista de Energia, uma lista de Barreira (cilindro, cubo e piramide)
          * 1- em posições fixas pelo cenario 
          * 2- em posicoes aleatorias pelo cenario (cuidado com a quantidade e colisão entre eles)
          * 3- mover o jogador e a camera junto atras dele
@@ -46,12 +47,6 @@ namespace CapturarObjetos
          * 0- criar um repositório para sua versão e colocar o link no grupo 
          */
                  
-        //ObjetoJogo cilindro;
-        //ObjetoJogo coisa;
-        //ObjetoJogo cubo;
-        //ObjetoJogo esfera;
-        //ObjetoJogo objeto;
-        //ObjetoJogo piramide;        
 
         public Game1()
         {
@@ -86,62 +81,42 @@ namespace CapturarObjetos
             chao = new ObjetoJogo();
             chao.Modelo = Content.Load<Model>("chao");
 
-            jogador = new Jogador(Content, "coisa");
+            jogador = new Jogador(Content, "jogador");
             jogador.Escala = 0.1f;
-
-            //energia = new Energia(Content, "objeto");
-            //energia.Escala = 0.05f;
-            //energia.PosicaoX += 3;
-
+            
             for (int i = 0; i < Energia.QTDTotal; i++)
             {
-                Energia e = new Energia(Content, "objeto");
+                Energia e = new Energia(Content, "energia");
                 e.Escala = 0.05f;
-                e.PosicaoX += random.Next(-3, 3);
+                e.PosicaoX += random.Next(-90, 90);
+                e.PosicaoZ += random.Next(-90, 90);
             }
 
-            cilindro = new Barreira(Content, "cilindro");
-            cilindro.Escala = 0.1f;
-            cilindro.PosicaoX += 5;
+            for (int i = 0; i < Barreira.QTDTotal; i++)
+            {
+                Barreira b = new Barreira(Content, "cilindro");
+                b.Escala = 0.1f;
+                b.PosicaoX += random.Next(-90, 90);
+                b.PosicaoZ += random.Next(-90, 90);
+            }
 
-            cubo = new Barreira(Content, "cubo");
-            cubo.Escala = 0.1f;
-            cubo.PosicaoX -= 3;
+            for (int i = 0; i < Barreira.QTDTotal; i++)
+            {
+                Barreira b = new Barreira(Content, "cubo");
+                b.Escala = 0.1f;
+                b.PosicaoX += random.Next(-90, 90);
+                b.PosicaoZ += random.Next(-90, 90);
+            }
 
-            piramide = new Barreira(Content, "piramide");
-            piramide.Escala = 0.1f;
-            piramide.PosicaoX -= 5;
+            for (int i = 0; i < Barreira.QTDTotal; i++)
+            {
+                Barreira b = new Barreira(Content, "piramide");
+                b.Escala = 0.1f;
+                b.PosicaoX += random.Next(-90, 90);
+                b.PosicaoZ += random.Next(-90, 90);
+            }
+
             
-            //cilindro = new ObjetoJogo();
-            //cilindro.Modelo = Content.Load<Model>("cilindro");
-            //cilindro.Escala = 0.1f;
-            //cilindro.PosicaoX -= 6;
-
-            //coisa = new ObjetoJogo();
-            //coisa.Modelo = Content.Load<Model>("coisa");
-            //coisa.Escala = 0.1f;
-            //coisa.PosicaoX -= 3;
-
-            //cubo = new ObjetoJogo();
-            //cubo.Modelo = Content.Load<Model>("cubo");
-            //cubo.Escala = 0.1f;
-            //cubo.PosicaoX -= 0;
-
-            //esfera = new ObjetoJogo();
-            //esfera.Modelo = Content.Load<Model>("esfera");//?cade
-            //esfera.Escala = 0.9f;
-            //esfera.PosicaoX -= 0;
-
-            //objeto = new ObjetoJogo();
-            //objeto.Modelo = Content.Load<Model>("objeto");
-            //objeto.Escala = 0.05f;
-            //objeto.PosicaoX += 2;
-
-            //piramide = new ObjetoJogo();
-            //piramide.Modelo = Content.Load<Model>("piramide");
-            //piramide.Escala = 0.1f;
-            //piramide.PosicaoX += 4;
-
             // TODO: use this.Content to load your game content here
         }
 
@@ -161,17 +136,22 @@ namespace CapturarObjetos
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            ///TODO
+            ///fazer o botão de sair
+            
+            #region atualização de inputs
+            //feito assim com os do frame anterior na frente da atualização dos do frame atual...
+            teclado_anterior = teclado_atual;
+            mouse_anterior = mouse_atual;
+            gamepad_anterior = gamepad_atual;
+            teclado_atual = Keyboard.GetState();
+            mouse_atual = Mouse.GetState();
+            gamepad_atual = GamePad.GetState(PlayerIndex.One);
+            #endregion
 
-            // TODO: Add your update logic here
-
-            //"abrindo seus olhos":
-
-            float rotacao = 0.0f;
-            Vector3 posicao = new Vector3(0,0,0);
-            camera.Update(rotacao, posicao);
+            jogador.Update(gameTime, teclado_atual, teclado_anterior);
+            
+            camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
 
             base.Update(gameTime);
         }
@@ -183,13 +163,13 @@ namespace CapturarObjetos
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-            // TODO: Add your drawing code here
-
+            
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
             {
                 objetoJogo.Desenhar(camera);
             }
+
+            //jogador.Desenhar2(camera);
 
             base.Draw(gameTime);
         }
