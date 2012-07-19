@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Program extends Activity
+public class Program extends Activity //final?
 {
 	private static final String TAG = Program.class.getSimpleName();
 
 	private GLSurfaceView glSurfaceView;
+	
+	public static Activity activity;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,16 +24,23 @@ public class Program extends Activity
         // tela cheia
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
+
+        
         glSurfaceView = new GLSurfaceView(this);
         
         glSurfaceView.setRenderer(new GLRenderer());
         //setContentView(glSurfaceView);
         
+
+//        GLSurfaceView glSurfaceView = new GLSurfaceView(this);
+//        glSurfaceView.setRenderer(new Video());
+//        setContentView(glSurfaceView);
+        
         // main panel na view
         setContentView(new Game1(this));//TO DO colocar este GL pra render no game 1
         Log.d(TAG, "OK!");
         
-	     
+        activity = this;//////////
     }
 
     //ondestroy e onstop sobrecarregados apenas para fins de log...

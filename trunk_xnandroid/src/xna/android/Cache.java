@@ -71,7 +71,7 @@ public final class Cache
 		/* Tenta carregar o bitmap */
 		try
 		{
-			bitmap = BitmapFactory.decodeResource(Main.activity.getResources(), id);
+			bitmap = BitmapFactory.decodeResource(Program.activity.getResources(), id);//Main
 		}
 		catch (Exception var)
 		{
