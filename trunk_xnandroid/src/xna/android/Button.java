@@ -7,7 +7,7 @@ import android.R.string;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Button extends MySprite
+public class Button extends Sprite
 {
 	public static List<Button> buttonList = new ArrayList<Button>();
 	public static int selectedButton = 0; 

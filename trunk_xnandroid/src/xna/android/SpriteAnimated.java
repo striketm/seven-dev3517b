@@ -10,7 +10,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class SpriteAnimated extends MySprite 
+public class SpriteAnimated extends Sprite 
 {
 	
 	private static final String TAG = SpriteAnimated.class.getSimpleName();

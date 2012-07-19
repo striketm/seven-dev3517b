@@ -26,11 +26,11 @@ public class Game1 extends GLSurfaceView implements
 	
 	private MainThread thread;
 	
-	private MySprite sprite;
+	private Sprite sprite;
 //	
 //	private Sprite sprite2;
 //	
-	private MySprite aviao;
+	private Sprite aviao;
 //	
 //	private SpriteAnimated sprite3;
 //	
@@ -57,7 +57,7 @@ public class Game1 extends GLSurfaceView implements
 //		mSoundManager = new SoundManager(Content);
 		
 		// a imagem:
-		sprite = new MySprite(BitmapFactory.decodeResource(getResources(),R.drawable.android), 50, 50);
+		sprite = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.android), 50, 50);
 		
 		//sprite2 = new Sprite(BitmapFactory.decodeResource(getResources(),
 			//	R.drawable.android), 150, 150, mSoundManager);
@@ -68,7 +68,7 @@ public class Game1 extends GLSurfaceView implements
 //				, 50, 50 //largura e altura
 	//			, 8, 8); //FPS e numero de quadros
 		
-		aviao = new MySprite(BitmapFactory.decodeResource(getResources(), R.drawable.aviao_01), 150, 150);
+		aviao = new Sprite(BitmapFactory.decodeResource(getResources(), R.drawable.aviao_01), 150, 150);
 		
 		//sprite3.setX(200);
 		//sprite3.setY(200);

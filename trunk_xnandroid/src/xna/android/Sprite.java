@@ -1,10 +1,8 @@
-/**
- * @file Sprite.java
- * @brief Implementação da classe que desenha as texturas.
- */
-
-/* Pacote */
 package xna.android;
+
+import br.com.R;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 /* Importa as libraries */
 import java.nio.ByteBuffer;
@@ -15,14 +13,18 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.graphics.Rect;
 
-/**
- * @brief Classe usada para desenhar uma imagem.
- */
-public final class Sprite
+public class Sprite
 {
-	/* Variaveis publicas */
-	public int		x;			/**< Posição X. */
-	public int 		y;			/**< Posição Y. */
+	
+	private static final String TAG = Sprite.class.getSimpleName();
+
+	private Bitmap bitmap;		// imagem
+	private int x;				// coord X
+	private int y;				// Y
+	private boolean touched;	// para o toque
+	private Speed speed;
+	private boolean visible;
+	
 	public int 		z;			/**< Posição Z. */
 	public int 		ox;			/**< Origem X.	*/
 	public int 		oy;			/**< Origem Y. 	*/
@@ -33,7 +35,9 @@ public final class Sprite
 	
 	/* Variaveis privadas */
 	private Texture texture;
-	private Rect 	src_rect;      
+	private Rect 	src_rect;     
+	
+	private SoundManager mSoundManager;
 	
 	/* Bloco de inicialização */
 	{
@@ -89,6 +93,7 @@ public final class Sprite
 		src_rect.set(x, y, x + w, y + h);
 	}
 	
+
 	/**
 	 * @brief Desenha o sprite.
 	 * @param [in] gl - Parametro para um objeto GL10
@@ -171,5 +176,159 @@ public final class Sprite
 		outBuffer.put(data).position(0);
 		return outBuffer;
 	}
+
 	
+	public Sprite(Bitmap bitmap, int x, int y, SoundManager sm)
+	{
+		this.bitmap = bitmap;
+		this.x = x;
+		this.y = y;
+		speed = new Speed(2.0f, 2.0f);
+		visible = true;
+		this.mSoundManager = sm;
+
+	     mSoundManager.addSound("plim", R.raw.sound);	     
+	}
+	
+	public Sprite(Bitmap bitmap, int x, int y)
+	{
+		this.bitmap = bitmap;
+		this.x = x;
+		this.y = y;
+		speed = new Speed(2.0f, 2.0f);
+		visible = true;
+		     
+	}
+
+	public Bitmap getBitmap()
+	{
+		return bitmap;
+	}
+	
+	public void setBitmap(Bitmap bitmap)
+	{
+		this.bitmap = bitmap;
+	}
+	
+	public int getX()
+	{
+		return x;
+	}
+	
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+	
+	public int getY()
+	{
+		return y;
+	}
+	
+	public void setY(int y)
+	{
+		this.y = y;
+	}
+	
+	//para o toque
+	
+	public boolean isTouched()
+	{
+		return touched;
+	}
+
+	public void setTouched(boolean touched)
+	{
+		this.touched = touched;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	public Speed getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(Speed speed) {
+		this.speed = speed;
+	}
+	
+	public void handleActionDown(int eventX, int eventY)
+	{
+		if ((eventX >= (x - bitmap.getWidth() / 2))
+				&& (eventX <= (x + bitmap.getWidth() / 2))
+				&& (eventY >= (y - bitmap.getHeight() / 2))
+				&& (eventY <= (y + bitmap.getHeight() / 2)))
+		{
+			// tocado
+			setTouched(true);
+			mSoundManager.playSound("plim");
+		} 
+		else 
+		{
+			setTouched(false);
+		}
+	}
+	
+	//para o desenho
+		public void draw(Canvas canvas)
+		{
+			if(visible)
+			canvas.drawBitmap(bitmap, x - (bitmap.getWidth() / 2), y - (bitmap.getHeight() / 2), null);
+		}
+		
+		public boolean intersects(int x, int y, int width, int height)
+		{
+			if(
+					(this.x+this.bitmap.getWidth()<x)//fora pela esquerda
+					||
+					(this.x>x+width)//fora pela direita
+					||
+					(this.y+this.bitmap.getHeight()<y)//fora por cima
+					||
+					(this.y>y+height)//fora por baixo
+					)
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+		}
+		
+		public void update(int windowWidth, int windowHeight)
+		{
+			x+=speed.getXv()*speed.getxDirection();
+			y+=speed.getYv()*speed.getyDirection();
+			
+			if(x<0)
+			{
+				//Log.d(TAG, "bati no canto esquerdo");
+				speed.toggleXDirection();
+			}
+			
+			if(x>windowWidth)
+			{
+				//Log.d(TAG, "bati no canto direita");
+				speed.toggleXDirection();
+			}
+			
+			if(y<0)
+			{
+				//Log.d(TAG, "bati no canto esquerdo");
+				speed.toggleYDirection();
+			}
+			
+			if(y>windowHeight)
+			{
+				//Log.d(TAG, "bati no canto esquerdo");
+				speed.toggleYDirection();
+			}
+		}		
 }
