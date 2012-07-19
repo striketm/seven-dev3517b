@@ -174,11 +174,24 @@ namespace CapturarObjetos
 
             //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, DepthStencilState.Default, null);
 
+            // Reset all the states as appropriate for 3d drawing.
+            //GraphicsDevice.BlendState = BlendState.Opaque;
+            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+            //GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
             {
                 objetoJogo.Desenhar(camera);
             }
 
+            //GraphicsDevice.SetRenderTarget(null);
+            //GraphicsDevice.Clear(Color.Black);
+
+            spriteBatch.Begin();
+
+            //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, null, null, null);
+        
             //spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
             //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             //GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
@@ -190,6 +203,11 @@ namespace CapturarObjetos
           
             spriteBatch.End();
 
+            //// Again, reset the states.
+            //GraphicsDevice.BlendState = BlendState.Opaque;
+            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+            //GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
 
             //jogador.Desenhar2(camera);
 
