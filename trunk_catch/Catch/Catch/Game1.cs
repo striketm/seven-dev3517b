@@ -29,6 +29,8 @@ namespace CapturarObjetos
 
         Jogador jogador;
 
+        Texture2D teste;
+
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
         GamePadState gamepad_atual, gamepad_anterior;
@@ -37,14 +39,18 @@ namespace CapturarObjetos
         //TODO
         /*
          * Criar a câmera, o chão, um Jogador, uma lista de Energia, uma lista de Barreira (cilindro, cubo e piramide)
-         * 1- em posições fixas pelo cenario 
-         * 2- em posicoes aleatorias pelo cenario (cuidado com a quantidade e colisão entre eles)
-         * 3- mover o jogador e a camera junto atras dele
+         * 1- em posições fixas pelo cenario OK - pinhel
+         * 2- em posicoes aleatorias pelo cenario (cuidado com a quantidade e colisão entre eles) ~OK - pinhel
+         * 3- mover o jogador e a camera junto atras dele OK
          * 4- fazer este mover com botao na tela por toque/mouse
          * 5- implementar fluxo de telas
          * 6- implementar lógica de jogo
          * 0- acrescentar o método de colisão na classe ObjetoJogo OK
-         * 0- criar um repositório para sua versão e colocar o link no grupo 
+         * 0- criar um repositório para sua versão e colocar o link no grupo OK
+         * 
+         * CRIAR 4 SETAS, POSICIONADAS "PERTO" DA NAVE, E QUANDO CLICAR NESTAS
+         * MOVER A NAVE
+         * 
          */
                  
 
@@ -75,6 +81,8 @@ namespace CapturarObjetos
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            teste = Content.Load<Texture2D>("teste");
 
             camera = new Camera();
 
@@ -163,11 +171,25 @@ namespace CapturarObjetos
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
+
+            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, DepthStencilState.Default, null);
+
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
             {
                 objetoJogo.Desenhar(camera);
             }
+
+            //spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
+            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            //GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                //(SpriteBlendMode.AlphaBlend,SpriteSortMode.Immediate,SaveStateMode.SaveState)
+            //SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState
+            //SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None
+            spriteBatch.Draw(teste, Vector2.Zero, Color.White);
+
+          
+            spriteBatch.End();
+
 
             //jogador.Desenhar2(camera);
 

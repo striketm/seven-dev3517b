@@ -140,8 +140,6 @@ namespace CapturarObjetos.Nucleo
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
-                        effect.EnableDefaultLighting();
-                        effect.PreferPerPixelLighting = true;
                         effect.World = Matrix.CreateRotationX(RotacaoX) *
                                                     Matrix.CreateRotationY(RotacaoY) *
                                                     Matrix.CreateRotationZ(RotacaoZ) *
