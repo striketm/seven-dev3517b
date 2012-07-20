@@ -24,6 +24,7 @@ namespace CapturarObjetos
         Random random = new Random();
 
         Camera camera;
+        Camera cameraMapa;
 
         ObjetoJogo chao;
 
@@ -34,7 +35,12 @@ namespace CapturarObjetos
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
         GamePadState gamepad_atual, gamepad_anterior;
-
+                
+        Viewport viewportPadrao;
+        Viewport viewportMapa1;
+        Viewport viewportMapa2;
+        Matrix MatrizViewMapa;
+        Matrix MatrizProjecaoMapa;
         
         //TODO
         /*
@@ -82,10 +88,21 @@ namespace CapturarObjetos
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            //viewportPadrao = new Viewport();
+            viewportPadrao = GraphicsDevice.Viewport;
+            viewportMapa1 = new Viewport(0, 0, 80, 60);
+            viewportMapa2 = new Viewport(600, 0, 80, 60);
 
+            MatrizViewMapa = Matrix.CreateLookAt(new Vector3(0, 200, 0), Vector3.Zero, new Vector3(0, 0, 1));
+            //MatrizProjecaoMapa = Matrix.CreateOrthographic(80, 60, .1f, 300);
+            MatrizProjecaoMapa = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f), 4f / 3f, 1f, 200f);
             teste = Content.Load<Texture2D>("teste");
 
             camera = new Camera();
+            cameraMapa = new Camera();
+            cameraMapa.MatrizVisualizacao = MatrizViewMapa;
+            cameraMapa.MatrizProjecao = MatrizProjecaoMapa;
 
             chao = new ObjetoJogo();
             chao.Modelo = Content.Load<Model>("chao");
@@ -179,6 +196,8 @@ namespace CapturarObjetos
             //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             //http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx
             //TODO: research!
+
+            GraphicsDevice.Viewport = viewportPadrao;
             
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
             {
@@ -186,9 +205,22 @@ namespace CapturarObjetos
             }
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
-            spriteBatch.Draw(teste, Vector2.Zero, Color.White);
+            spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
             spriteBatch.End();
 
+            GraphicsDevice.Viewport = viewportMapa1;
+
+            foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+            {
+                objetoJogo.Desenhar(camera);
+            }
+
+            GraphicsDevice.Viewport = viewportMapa2;
+
+            foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+            {
+                objetoJogo.Desenhar(cameraMapa);
+            }
 
             base.Draw(gameTime);
         }
