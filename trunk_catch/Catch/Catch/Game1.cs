@@ -51,6 +51,7 @@ namespace CapturarObjetos
          * CRIAR 4 SETAS, POSICIONADAS "PERTO" DA NAVE, E QUANDO CLICAR NESTAS
          * MOVER A NAVE
          * 
+         * todo: transparencia (classe sprite) e outra camera (mapa)
          */
                  
 
@@ -172,44 +173,22 @@ namespace CapturarObjetos
         {
             GraphicsDevice.Clear(Color.Black);
 
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, DepthStencilState.Default, null);
-
-            // Reset all the states as appropriate for 3d drawing.
             //GraphicsDevice.BlendState = BlendState.Opaque;
             //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
-            //GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-
+            //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            //http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx
+            //TODO: research!
+            
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
             {
                 objetoJogo.Desenhar(camera);
             }
 
-            //GraphicsDevice.SetRenderTarget(null);
-            //GraphicsDevice.Clear(Color.Black);
-
-            spriteBatch.Begin();
-
-            //spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, null, null, null);
-        
-            //spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            //GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                //(SpriteBlendMode.AlphaBlend,SpriteSortMode.Immediate,SaveStateMode.SaveState)
-            //SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState
-            //SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
             spriteBatch.Draw(teste, Vector2.Zero, Color.White);
-
-          
             spriteBatch.End();
 
-            //// Again, reset the states.
-            //GraphicsDevice.BlendState = BlendState.Opaque;
-            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
-            //GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-
-            //jogador.Desenhar2(camera);
 
             base.Draw(gameTime);
         }
