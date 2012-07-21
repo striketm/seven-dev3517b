@@ -41,12 +41,21 @@ namespace CapturarObjetos
         Viewport viewportMapa2;
         Matrix MatrizViewMapa;
         Matrix MatrizProjecaoMapa;
+
+        Seta direita;
+        Seta esquerda;
+        Seta cima;
+        Seta baixo;
+        Texture2D seta_direita;
+        Texture2D seta_esquerda;
+        Texture2D seta_cima;
+        Texture2D seta_baixo;
         
         //TODO
         /*
          * Criar a câmera, o chão, um Jogador, uma lista de Energia, uma lista de Barreira (cilindro, cubo e piramide)
-         * 1- em posições fixas pelo cenario OK - pinhel
-         * 2- em posicoes aleatorias pelo cenario (cuidado com a quantidade e colisão entre eles) ~OK - pinhel
+         * 1- em posições fixas pelo cenario OK
+         * 2- em posicoes aleatorias pelo cenario (cuidado com a quantidade e colisão entre eles) OK
          * 3- mover o jogador e a camera junto atras dele OK
          * 4- fazer este mover com botao na tela por toque/mouse
          * 5- implementar fluxo de telas
@@ -54,12 +63,16 @@ namespace CapturarObjetos
          * 0- acrescentar o método de colisão na classe ObjetoJogo OK
          * 0- criar um repositório para sua versão e colocar o link no grupo OK
          * 
-         * CRIAR 4 SETAS, POSICIONADAS "PERTO" DA NAVE, E QUANDO CLICAR NESTAS
+         * 
+         * 
+         * 7 - Pesquisa sobre os States da placa de vídeo
+         * 8 - Criar luzes 
+         * 9 - CRIAR 4 SETAS, POSICIONADAS "PERTO" DA NAVE, E QUANDO CLICAR NESTAS
          * MOVER A NAVE
          * 
          * todo: transparencia (classe sprite) e outra camera (mapa)
          */
-                 
+
 
         public Game1()
         {
@@ -89,7 +102,16 @@ namespace CapturarObjetos
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            //viewportPadrao = new Viewport();
+            direita = new Seta(Content.Load<Texture2D>("setas_direita"));
+            esquerda = new Seta(Content.Load<Texture2D>("setas_esquerda"));
+            cima = new Seta(Content.Load<Texture2D>("setas_frente"));
+            baixo = new Seta(Content.Load<Texture2D>("setas_tras"));
+
+            seta_direita = Content.Load<Texture2D>("setas_direita");
+            seta_esquerda = Content.Load<Texture2D>("setas_esquerda");
+            seta_cima = Content.Load<Texture2D>("setas_frente");
+            seta_baixo = Content.Load<Texture2D>("setas_tras");
+
             viewportPadrao = GraphicsDevice.Viewport;
             viewportMapa1 = new Viewport(0, 0, 80, 60);
             viewportMapa2 = new Viewport(600, 0, 80, 60);
@@ -179,6 +201,8 @@ namespace CapturarObjetos
             
             camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
 
+           
+
             base.Update(gameTime);
         }
 
@@ -204,8 +228,22 @@ namespace CapturarObjetos
                 objetoJogo.Desenhar(camera);
             }
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
+            spriteBatch.Begin(
+                SpriteSortMode.BackToFront,
+                BlendState.AlphaBlend, 
+                SamplerState.LinearWrap,
+                DepthStencilState.Default,
+                RasterizerState.CullNone);
+
             spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+            
+            //direita.Draw(gameTime, spriteBatch);
+
+            spriteBatch.Draw(seta_direita, new Rectangle(450, 350, 60, 60), new Rectangle(60, 40, 285, 240), Color.White);
+            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+
             spriteBatch.End();
 
             GraphicsDevice.Viewport = viewportMapa1;
