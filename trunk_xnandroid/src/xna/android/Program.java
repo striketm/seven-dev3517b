@@ -1,19 +1,15 @@
 package xna.android;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Program extends Activity //final?
+public class Program extends Activity
 {
 	private static final String TAG = Program.class.getSimpleName();
 
-	private GLSurfaceView glSurfaceView;
-	
-	public static Activity activity;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,24 +19,14 @@ public class Program extends Activity //final?
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // tela cheia
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
-
-        
-        glSurfaceView = new GLSurfaceView(this);
-        
-        glSurfaceView.setRenderer(new GLRenderer());
+                
         //setContentView(glSurfaceView);
-        
-
-//        GLSurfaceView glSurfaceView = new GLSurfaceView(this);
-//        glSurfaceView.setRenderer(new Video());
-//        setContentView(glSurfaceView);
         
         // main panel na view
         setContentView(new Game1(this));//TO DO colocar este GL pra render no game 1
         Log.d(TAG, "OK!");
         
-        activity = this;//////////
+	     
     }
 
     //ondestroy e onstop sobrecarregados apenas para fins de log...
@@ -63,13 +49,11 @@ public class Program extends Activity //final?
 @Override
 protected void onResume() {
 	super.onResume();
-	glSurfaceView.onResume();
 }
 
 @Override
 protected void onPause() {
 	super.onPause();
-	glSurfaceView.onPause();
 }
 	
  
