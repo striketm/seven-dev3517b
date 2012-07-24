@@ -21,6 +21,9 @@ namespace CapturarObjetos
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        /// <summary>
+        /// Gerador de números aleatórios
+        /// </summary>
         Random random = new Random();
 
         Camera camera;
@@ -62,9 +65,7 @@ namespace CapturarObjetos
          * 6- implementar lógica de jogo
          * 0- acrescentar o método de colisão na classe ObjetoJogo OK
          * 0- criar um repositório para sua versão e colocar o link no grupo OK
-         * 
-         * 
-         * 
+         *  
          * 7 - Pesquisa sobre os States da placa de vídeo
          * 8 - Criar luzes 
          * 9 - CRIAR 4 SETAS, POSICIONADAS "PERTO" DA NAVE, E QUANDO CLICAR NESTAS
@@ -116,7 +117,7 @@ namespace CapturarObjetos
             viewportMapa1 = new Viewport(0, 0, 80, 60);
             viewportMapa2 = new Viewport(600, 0, 80, 60);
 
-            MatrizViewMapa = Matrix.CreateLookAt(new Vector3(0, 200, 0), Vector3.Zero, new Vector3(0, 0, 1));
+            MatrizViewMapa = Matrix.CreateLookAt(new Vector3(0, 200, 0), Vector3.Zero, new Vector3(0, 0, -1));
             //MatrizProjecaoMapa = Matrix.CreateOrthographic(80, 60, .1f, 300);
             MatrizProjecaoMapa = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f), 4f / 3f, 1f, 200f);
             teste = Content.Load<Texture2D>("teste");
@@ -164,7 +165,8 @@ namespace CapturarObjetos
                 b.PosicaoZ += random.Next(-90, 90);
             }
 
-            
+            IsMouseVisible = true;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -201,7 +203,20 @@ namespace CapturarObjetos
             
             camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
 
-           
+            foreach (ObjetoJogo o in ObjetoJogo.listaObjetos)
+            {
+                o.CaixaColisao = ObjetoJogo.UpdateBoundingBox(o.Modelo, o.World);
+            }
+
+            foreach (ObjetoJogo o in ObjetoJogo.listaObjetos)
+            {
+                if (jogador.CaixaColisao.Intersects(o.CaixaColisao))
+                {
+                    //o.Ativo = false;
+                }
+            }
+
+
 
             base.Update(gameTime);
         }

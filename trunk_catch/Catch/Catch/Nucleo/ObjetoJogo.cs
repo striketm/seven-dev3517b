@@ -169,7 +169,8 @@ namespace CapturarObjetos.Nucleo
         /// <param name="model">Recebe o modelo do objeto</param>
         /// <param name="worldTransform">Recebe a matriz de transformação de mundo do objeto</param>
         /// <returns>Uma caixa de colisão com o tamanho certo do objeto</returns>
-        protected BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
+        //protected BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
+            public static BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
         {
             //Inicia os cantos da caixa com valores maximo e minimo
             Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
@@ -201,6 +202,34 @@ namespace CapturarObjetos.Nucleo
             return new BoundingBox(min, max);
 
          }
+
+        protected BoundingSphere CalculateBoundingSphere()
+        {
+            BoundingSphere mergedSphere = new BoundingSphere();
+            BoundingSphere[] boundingSpheres;
+            int index = 0;
+            int meshCount = Modelo.Meshes.Count;
+
+            boundingSpheres = new BoundingSphere[meshCount];
+            foreach (ModelMesh mesh in Modelo.Meshes)
+            {
+                boundingSpheres[index++] = mesh.BoundingSphere;
+            }
+
+            mergedSphere = boundingSpheres[0];
+            if ((Modelo.Meshes.Count) > 1)
+            {
+                index = 1;
+                do
+                {
+                    mergedSphere = BoundingSphere.CreateMerged(mergedSphere,
+                        boundingSpheres[index]);
+                    index++;
+                } while (index < Modelo.Meshes.Count);
+            }
+            mergedSphere.Center.Y = 0;
+            return mergedSphere;
+        }
 
         #endregion
 

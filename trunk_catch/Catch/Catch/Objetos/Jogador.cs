@@ -41,20 +41,20 @@ namespace CapturarObjetos.Objetos
             float quantoVirar = 0;
             Vector3 movimento = Vector3.Zero;
 
-            if (teclado_atual.IsKeyDown(Keys.A))
+            if (teclado_atual.IsKeyDown(Keys.A) || teclado_atual.IsKeyDown(Keys.Left))
             {
                 quantoVirar = 1;
             }
-            else if (teclado_atual.IsKeyDown(Keys.D))
+            else if (teclado_atual.IsKeyDown(Keys.D) || teclado_atual.IsKeyDown(Keys.Right))
             {
                 quantoVirar = -1;
             }
-            if (teclado_atual.IsKeyDown(Keys.W))
+            if (teclado_atual.IsKeyDown(Keys.Up))
             {
                 //positivo, correto?
                 movimento.Z = -1;
             }
-            else if (teclado_atual.IsKeyDown(Keys.S))
+            else if (teclado_atual.IsKeyDown(Keys.S) || teclado_atual.IsKeyDown(Keys.Down))
             {
                 movimento.Z = 1;
             }
