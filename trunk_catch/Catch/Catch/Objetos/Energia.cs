@@ -27,6 +27,8 @@ namespace CapturarObjetos.Objetos
             Modelo = Content.Load<Model>(_modelo);
 
             Energia.listaEnergias.Add(this);
+
+            base.AtualizarMundoEColisoes();
             
         }
 

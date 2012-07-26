@@ -53,6 +53,8 @@ namespace CapturarObjetos
         Texture2D seta_esquerda;
         Texture2D seta_cima;
         Texture2D seta_baixo;
+
+        List<ObjetoJogo> objetosColidiveis = new List<ObjetoJogo>();
         
         //TODO
         /*
@@ -129,6 +131,7 @@ namespace CapturarObjetos
 
             chao = new ObjetoJogo();
             chao.Modelo = Content.Load<Model>("chao");
+            chao.AtualizarMundoEColisoes();
 
             jogador = new Jogador(Content, "jogador");
             jogador.Escala = 0.1f;
@@ -139,6 +142,8 @@ namespace CapturarObjetos
                 e.Escala = 0.05f;
                 e.PosicaoX += random.Next(-90, 90);
                 e.PosicaoZ += random.Next(-90, 90);
+                e.AtualizarMundoEColisoes();
+                objetosColidiveis.Add(e);
             }
 
             for (int i = 0; i < Barreira.QTDTotal; i++)
@@ -147,6 +152,8 @@ namespace CapturarObjetos
                 b.Escala = 0.1f;
                 b.PosicaoX += random.Next(-90, 90);
                 b.PosicaoZ += random.Next(-90, 90);
+                b.AtualizarMundoEColisoes();
+                objetosColidiveis.Add(b);
             }
 
             for (int i = 0; i < Barreira.QTDTotal; i++)
@@ -155,6 +162,8 @@ namespace CapturarObjetos
                 b.Escala = 0.1f;
                 b.PosicaoX += random.Next(-90, 90);
                 b.PosicaoZ += random.Next(-90, 90);
+                b.AtualizarMundoEColisoes();
+                objetosColidiveis.Add(b);
             }
 
             for (int i = 0; i < Barreira.QTDTotal; i++)
@@ -163,6 +172,8 @@ namespace CapturarObjetos
                 b.Escala = 0.1f;
                 b.PosicaoX += random.Next(-90, 90);
                 b.PosicaoZ += random.Next(-90, 90);
+                b.AtualizarMundoEColisoes();
+                objetosColidiveis.Add(b);
             }
 
             IsMouseVisible = true;
@@ -203,16 +214,11 @@ namespace CapturarObjetos
             
             camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
 
-            foreach (ObjetoJogo o in ObjetoJogo.listaObjetos)
+            foreach (ObjetoJogo o in objetosColidiveis)
             {
-                o.CaixaColisao = ObjetoJogo.UpdateBoundingBox(o.Modelo, o.World);
-            }
-
-            foreach (ObjetoJogo o in ObjetoJogo.listaObjetos)
-            {
-                if (jogador.CaixaColisao.Intersects(o.CaixaColisao))
+                if(jogador.EsferaColisao.Intersects(o.EsferaColisao))
                 {
-                    //o.Ativo = false;
+                    o.Ativo = false;
                 }
             }
 

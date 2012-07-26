@@ -27,6 +27,8 @@ namespace CapturarObjetos.Objetos
             Tipo = _modelo;
 
             Barreira.listaBarreiras.Add(this);
+
+            base.AtualizarMundoEColisoes();
         }
 
         

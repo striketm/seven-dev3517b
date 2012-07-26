@@ -127,6 +127,24 @@ namespace CapturarObjetos.Nucleo
             CaixaColisao = new BoundingBox();
             World = Matrix.Identity;
             ObjetoJogo.listaObjetos.Add(this);
+            AtualizarMundoEColisoes();
+        }
+
+        //todo chamar o update em todos os filhos pra atualizar a colisao das esferas e caixas e mundo
+
+        public void AtualizarMundoEColisoes()
+        {
+            this.World = Matrix.CreateRotationX(RotacaoX) *
+                                                    Matrix.CreateRotationY(RotacaoY) *
+                                                    Matrix.CreateRotationZ(RotacaoZ) *
+                                                    Matrix.CreateScale(EscalaX, EscalaY, EscalaZ) *
+                                                    Matrix.CreateTranslation(PosicaoX, PosicaoY, PosicaoZ);
+
+            //TODO colocar no get set!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Posicao = new Vector3(PosicaoX, PosicaoY, PosicaoZ);
+
+            this.CaixaColisao = AtualizarCaixaColisao();
+            this.EsferaColisao = AtualizarEsferaColisao();
         }
 
         public void Desenhar(Camera camera)
@@ -140,14 +158,8 @@ namespace CapturarObjetos.Nucleo
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
-                        effect.World = Matrix.CreateRotationX(RotacaoX) *
-                                                    Matrix.CreateRotationY(RotacaoY) *
-                                                    Matrix.CreateRotationZ(RotacaoZ) *
-                                                    Matrix.CreateScale(EscalaX, EscalaY, EscalaZ) * 
-                                                    Matrix.CreateTranslation(PosicaoX, PosicaoY, PosicaoZ) *
-                                                    transforms[mesh.ParentBone.Index];
- 
-                        effect.View = camera.MatrizVisualizacao;
+                        effect.World = this.World * transforms[mesh.ParentBone.Index];
+                         effect.View = camera.MatrizVisualizacao;
                         effect.Projection = camera.MatrizProjecao;
 
                         effect.EnableDefaultLighting();
@@ -157,12 +169,7 @@ namespace CapturarObjetos.Nucleo
                 }
             }
         }
-
-        public void AtualizarEsferaColisao()
-        {
-            //EsferaColisao = new BoundingSphere(
-        }
-               
+                       
         /// <summary>
         /// Atualiza a caixa de colisão do objeto
         /// </summary>
@@ -170,14 +177,16 @@ namespace CapturarObjetos.Nucleo
         /// <param name="worldTransform">Recebe a matriz de transformação de mundo do objeto</param>
         /// <returns>Uma caixa de colisão com o tamanho certo do objeto</returns>
         //protected BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
-            public static BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
+        public BoundingBox AtualizarCaixaColisao()
         {
             //Inicia os cantos da caixa com valores maximo e minimo
             Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
+            if (Modelo == null) return new BoundingBox();
+
             //para cada malha e submalha no modelo
-            foreach (ModelMesh mesh in model.Meshes)
+            foreach (ModelMesh mesh in Modelo.Meshes)
             {
                 foreach (ModelMeshPart meshPart in mesh.MeshParts)
                 {
@@ -189,7 +198,7 @@ namespace CapturarObjetos.Nucleo
                     for (int i = 0; i < vertexBufferSize / sizeof(float); i += vertexStride / sizeof(float))
                     {
                         //cria um vertor transformado com os tres pontos em relação ao mundo
-                        Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), worldTransform);
+                        Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), this.World);
 
                         //calcula os pontos, o mínimo e o máximo
                         min = Vector3.Min(min, transformedPosition);
@@ -203,8 +212,13 @@ namespace CapturarObjetos.Nucleo
 
          }
 
-        protected BoundingSphere CalculateBoundingSphere()
+        protected BoundingSphere AtualizarEsferaColisao()
         {
+            if (Modelo == null) return new BoundingSphere();
+
+            return new BoundingSphere(Posicao, 1f);
+
+            /*
             BoundingSphere mergedSphere = new BoundingSphere();
             BoundingSphere[] boundingSpheres;
             int index = 0;
@@ -229,6 +243,8 @@ namespace CapturarObjetos.Nucleo
             }
             mergedSphere.Center.Y = 0;
             return mergedSphere;
+             * */
+
         }
 
         #endregion

@@ -72,25 +72,35 @@ namespace CapturarObjetos.Objetos
             //agora sim esta será a nova posicao do objeto
             posicaoFutura = Posicao + velocidade;
 
-            if ((Math.Abs(posicaoFutura.X) > AlcanceMaximo))//ta dando a volta...
+            #region manter no tabuleiro
+
+            if (posicaoFutura.X > AlcanceMaximo)
             {
-                posicaoFutura.X = AlcanceMaximo;            
+                posicaoFutura.X = AlcanceMaximo;
             }
-            if ((Math.Abs(posicaoFutura.Z) > AlcanceMaximo))
+
+            if (posicaoFutura.Z > AlcanceMaximo)
             {
                 posicaoFutura.Z = AlcanceMaximo;
             }
 
+            if (posicaoFutura.X < -AlcanceMaximo)
+            {
+                posicaoFutura.X = -AlcanceMaximo;
+            }
+
+            if (posicaoFutura.Z < -AlcanceMaximo)
+            {
+                posicaoFutura.Z = -AlcanceMaximo;
+            }
+
+            #endregion
+
             Posicao = posicaoFutura;
+
+            base.AtualizarMundoEColisoes();
                         
         }
 
-        private bool ManterNoTabuleiro(Vector3 posicaoFutura)
-        {
-            if ((Math.Abs(posicaoFutura.X) > AlcanceMaximo) ||
-                (Math.Abs(posicaoFutura.Z) > AlcanceMaximo))
-                return false;
-            return true;
-        }
     }
 }
