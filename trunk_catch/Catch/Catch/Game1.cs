@@ -55,6 +55,8 @@ namespace CapturarObjetos
         Texture2D seta_baixo;
 
         List<ObjetoJogo> objetosColidiveis = new List<ObjetoJogo>();
+
+        SpriteFont arial14;
         
         //TODO
         /*
@@ -114,6 +116,8 @@ namespace CapturarObjetos
             seta_esquerda = Content.Load<Texture2D>("setas_esquerda");
             seta_cima = Content.Load<Texture2D>("setas_frente");
             seta_baixo = Content.Load<Texture2D>("setas_tras");
+
+            arial14 = Content.Load<SpriteFont>("arial14");
 
             viewportPadrao = GraphicsDevice.Viewport;
             viewportMapa1 = new Viewport(0, 0, 80, 60);
@@ -235,13 +239,21 @@ namespace CapturarObjetos
         {
             GraphicsDevice.Clear(Color.Black);
 
-            //GraphicsDevice.BlendState = BlendState.Opaque;
-            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.BlendState = BlendState.AlphaBlend;
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            
             //http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx
             //TODO: research!
 
+            RasterizerState wireframe = new RasterizerState();
+            wireframe.FillMode = FillMode.WireFrame;
+            RasterizerState solidframe = new RasterizerState();
+            solidframe.FillMode = FillMode.Solid;
+            //GraphicsDevice.RasterizerState = rs;  
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+            
             GraphicsDevice.Viewport = viewportPadrao;
             
             foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
@@ -249,18 +261,20 @@ namespace CapturarObjetos
                 objetoJogo.Desenhar(camera);
             }
 
-            spriteBatch.Begin(
-                SpriteSortMode.BackToFront,
-                BlendState.AlphaBlend, 
-                SamplerState.LinearWrap,
-                DepthStencilState.Default,
-                RasterizerState.CullNone);
+            spriteBatch.Begin();
+            //spriteBatch.Begin(
+            //    SpriteSortMode.Deferred,
+            //    BlendState.AlphaBlend,
+            //    SamplerState.LinearClamp,
+            //    DepthStencilState.Default,
+            //    RasterizerState.CullNone);
 
             spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
             
             //direita.Draw(gameTime, spriteBatch);
 
             spriteBatch.Draw(seta_direita, new Rectangle(450, 350, 60, 60), new Rectangle(60, 40, 285, 240), Color.White);
+            spriteBatch.DrawString(arial14, "Teste", new Vector2(450, 350), Color.Black);
             //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
             //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
             //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
