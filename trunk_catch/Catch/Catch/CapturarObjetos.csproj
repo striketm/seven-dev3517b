@@ -107,6 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estados\Intro.cs" />
+    <Compile Include="Estados\Jogo.cs" />
     <Compile Include="Nucleo\Camera.cs" />
     <Compile Include="Nucleo\Luz.cs" />
     <Compile Include="Nucleo\ObjetoJogo.cs" />

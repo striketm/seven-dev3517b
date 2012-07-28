@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using CapturarObjetos.Nucleo;
 using CapturarObjetos.Objetos;
+using CapturarObjetos.Estados;
 
 namespace CapturarObjetos
 {
@@ -38,7 +39,7 @@ namespace CapturarObjetos
         KeyboardState teclado_atual, teclado_anterior;
         MouseState mouse_atual, mouse_anterior;
         GamePadState gamepad_atual, gamepad_anterior;
-                
+
         Viewport viewportPadrao;
         Viewport viewportMapa1;
         Viewport viewportMapa2;
@@ -57,7 +58,13 @@ namespace CapturarObjetos
         List<ObjetoJogo> objetosColidiveis = new List<ObjetoJogo>();
 
         SpriteFont arial14;
-        
+
+        public enum Estado { INTRO, JOGO };
+        public static Estado estado_atual = Estado.INTRO;
+
+        Intro intro;
+        Jogo jogo;
+
         //TODO
         /*
          * Criar a câmera, o chão, um Jogador, uma lista de Energia, uma lista de Barreira (cilindro, cubo e piramide)
@@ -83,6 +90,12 @@ namespace CapturarObjetos
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 800;// 1920;
+            graphics.PreferredBackBufferHeight = 480;// 1080;
+            graphics.IsFullScreen = true;
+            IsMouseVisible = true;
+            Window.Title = "Catch!";
+
         }
 
         /// <summary>
@@ -106,7 +119,7 @@ namespace CapturarObjetos
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             direita = new Seta(Content.Load<Texture2D>("setas_direita"));
             esquerda = new Seta(Content.Load<Texture2D>("setas_esquerda"));
             cima = new Seta(Content.Load<Texture2D>("setas_frente"));
@@ -116,9 +129,7 @@ namespace CapturarObjetos
             seta_esquerda = Content.Load<Texture2D>("setas_esquerda");
             seta_cima = Content.Load<Texture2D>("setas_frente");
             seta_baixo = Content.Load<Texture2D>("setas_tras");
-
-            arial14 = Content.Load<SpriteFont>("arial14");
-
+            
             viewportPadrao = GraphicsDevice.Viewport;
             viewportMapa1 = new Viewport(0, 0, 80, 60);
             viewportMapa2 = new Viewport(600, 0, 80, 60);
@@ -139,7 +150,7 @@ namespace CapturarObjetos
 
             jogador = new Jogador(Content, "jogador");
             jogador.Escala = 0.1f;
-            
+
             for (int i = 0; i < Energia.QTDTotal; i++)
             {
                 Energia e = new Energia(Content, "energia");
@@ -180,7 +191,8 @@ namespace CapturarObjetos
                 objetosColidiveis.Add(b);
             }
 
-            IsMouseVisible = true;
+            intro = new Intro(Window, Content);
+            jogo = new Jogo(Window, Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -203,7 +215,7 @@ namespace CapturarObjetos
         {
             ///TODO
             ///fazer o botão de sair
-            
+
             #region atualização de inputs
             //feito assim com os do frame anterior na frente da atualização dos do frame atual...
             teclado_anterior = teclado_atual;
@@ -214,19 +226,36 @@ namespace CapturarObjetos
             gamepad_atual = GamePad.GetState(PlayerIndex.One);
             #endregion
 
-            jogador.Update(gameTime, teclado_atual, teclado_anterior);
-            
-            camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
-
-            foreach (ObjetoJogo o in objetosColidiveis)
+            switch (estado_atual)
             {
-                if(jogador.EsferaColisao.Intersects(o.EsferaColisao))
-                {
-                    o.Ativo = false;
-                }
+                case Estado.INTRO:
+                    
+                    intro.Update(gameTime, teclado_atual, teclado_anterior,
+                        mouse_atual, mouse_anterior,
+                        gamepad_atual, gamepad_anterior);
+
+                    break;
+
+                case Estado.JOGO:
+                    
+                    jogo.Update(gameTime, teclado_atual, teclado_anterior,
+                        mouse_atual, mouse_anterior,
+                        gamepad_atual, gamepad_anterior);
+                    jogador.Update(gameTime, teclado_atual, teclado_anterior);
+
+                    camera.Update(jogador.DirecaoFrontal, jogador.Posicao);
+
+                    foreach (ObjetoJogo o in objetosColidiveis)
+                    {
+                        if (jogador.EsferaColisao.Intersects(o.EsferaColisao))
+                        {
+                            o.Ativo = false;
+                        }
+                    }
+
+                    break;
+
             }
-
-
 
             base.Update(gameTime);
         }
@@ -239,60 +268,78 @@ namespace CapturarObjetos
         {
             GraphicsDevice.Clear(Color.Black);
 
-            GraphicsDevice.BlendState = BlendState.AlphaBlend;
-            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
-            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            
-            //http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx
-            //TODO: research!
 
-            RasterizerState wireframe = new RasterizerState();
-            wireframe.FillMode = FillMode.WireFrame;
-            RasterizerState solidframe = new RasterizerState();
-            solidframe.FillMode = FillMode.Solid;
-            //GraphicsDevice.RasterizerState = rs;  
-            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            
-            GraphicsDevice.Viewport = viewportPadrao;
-            
-            foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+            switch (estado_atual)
             {
-                objetoJogo.Desenhar(camera);
-            }
+                case Estado.INTRO:
 
-            spriteBatch.Begin();
-            //spriteBatch.Begin(
-            //    SpriteSortMode.Deferred,
-            //    BlendState.AlphaBlend,
-            //    SamplerState.LinearClamp,
-            //    DepthStencilState.Default,
-            //    RasterizerState.CullNone);
+                    intro.Draw(gameTime, spriteBatch);
+                    
+                    break;
 
-            spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
-            
-            //direita.Draw(gameTime, spriteBatch);
+                case Estado.JOGO:
 
-            spriteBatch.Draw(seta_direita, new Rectangle(450, 350, 60, 60), new Rectangle(60, 40, 285, 240), Color.White);
-            spriteBatch.DrawString(arial14, "Teste", new Vector2(450, 350), Color.Black);
-            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
-            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
-            //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+                    jogo.Draw(gameTime, spriteBatch);
 
-            spriteBatch.End();
+                    GraphicsDevice.BlendState = BlendState.AlphaBlend;
+                    GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+                    GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+                    //GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
-            GraphicsDevice.Viewport = viewportMapa1;
+                    //http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/spritebatch-and-renderstates-in-xna-game-studio-4-0.aspx
+                    //TODO: research!
 
-            foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
-            {
-                objetoJogo.Desenhar(camera);
-            }
+                    RasterizerState wireframe = new RasterizerState();
+                    wireframe.FillMode = FillMode.WireFrame;
+                    RasterizerState solidframe = new RasterizerState();
+                    solidframe.FillMode = FillMode.Solid;
+                    //GraphicsDevice.RasterizerState = wireframe;  
+                    GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
-            GraphicsDevice.Viewport = viewportMapa2;
+                    GraphicsDevice.Viewport = viewportPadrao;
 
-            foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
-            {
-                objetoJogo.Desenhar(cameraMapa);
+                    foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+                    {
+                        objetoJogo.Desenhar(camera);
+                    }
+
+                    spriteBatch.Begin();
+                    //spriteBatch.Begin(
+                    //    SpriteSortMode.Deferred,
+                    //    BlendState.AlphaBlend,
+                    //    SamplerState.LinearClamp,
+                    //    DepthStencilState.Default,
+                    //    RasterizerState.CullNone);
+
+                    spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+
+                    //direita.Draw(gameTime, spriteBatch);
+
+                    spriteBatch.Draw(seta_direita, new Rectangle(450, 350, 60, 60), new Rectangle(60, 40, 285, 240), Color.White);
+                    spriteBatch.DrawString(arial14, "Teste", new Vector2(450, 350), Color.Black);
+                    //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+                    //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+                    //spriteBatch.Draw(teste, new Vector2(400, 0), Color.White);
+
+                    spriteBatch.End();
+
+                    GraphicsDevice.Viewport = viewportMapa1;
+
+                    foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+                    {
+                        objetoJogo.Desenhar(camera);
+                    }
+
+                    GraphicsDevice.Viewport = viewportMapa2;
+
+                    foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
+                    {
+                        objetoJogo.Desenhar(cameraMapa);
+                    }
+
+
+                    break;
+
             }
 
             base.Draw(gameTime);
