@@ -1,5 +1,7 @@
 package xna.android;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,10 @@ public class Program extends Activity
 	private static final String TAG = Program.class.getSimpleName();
 
 	
+	GL10 gl10;
+	
+	public static Activity activity;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +26,19 @@ public class Program extends Activity
         // tela cheia
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 
+        glSurfaceView = new GLSurfaceView(this);
+        
+        glSurfaceView.setRenderer(new GLRenderer());
         //setContentView(glSurfaceView);
         
+        //gl10 = new GL10();
+
+//        GLSurfaceView glSurfaceView = new GLSurfaceView(this);
+//        glSurfaceView.setRenderer(new Video());
+//        setContentView(glSurfaceView);
+        
         // main panel na view
-        setContentView(new Game1(this));//TO DO colocar este GL pra render no game 1
+        setContentView(new Game1(this, glSurfaceView));//TO DO colocar este GL pra render no game 1
         Log.d(TAG, "OK!");
         
 	     

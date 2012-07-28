@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,9 +22,7 @@ public class Game1 extends GLSurfaceView implements SurfaceHolder.Callback
 	private Sprite bola;
 	
 	private Sprite barra;
-		
-	public Game1(Context Content)
-	{
+	public Game1(Context Content, GLSurfaceView glSurfaceView) {
 		super(Content);
 
 		getHolder().addCallback(this);
@@ -136,6 +135,13 @@ public class Game1 extends GLSurfaceView implements SurfaceHolder.Callback
 		
 		// preenchimento
 		spriteBatch.drawColor(Color.BLACK);
+		sprite.draw(spriteBatch);
+//		sprite2.draw(spriteBatch);
+//		sprite3.draw_rotate(spriteBatch, 0);
+		aviao.draw(spriteBatch);
+		//aviao.draw(gl)
+        //seta a cor e a fonte do texto		
+		Paint p = new Paint();
 		
 		bola.draw(spriteBatch);
 		barra.draw(spriteBatch);

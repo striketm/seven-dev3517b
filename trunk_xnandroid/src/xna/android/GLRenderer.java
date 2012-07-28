@@ -4,7 +4,6 @@ package xna.android;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 
 public class GLRenderer implements Renderer {
