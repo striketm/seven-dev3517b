@@ -120,6 +120,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Sky\CModel.cs" />
+    <Compile Include="Sky\Material.cs" />
+    <Compile Include="Sky\SkySphere.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

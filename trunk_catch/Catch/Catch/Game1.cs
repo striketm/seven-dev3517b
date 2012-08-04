@@ -31,7 +31,8 @@ namespace CapturarObjetos
         Camera cameraMapa;
 
         ObjetoJogo chao;
-        ObjetoJogo ceu;
+
+        SkySphere ceu;
         
         Jogador jogador;
 
@@ -149,8 +150,7 @@ namespace CapturarObjetos
             chao.Modelo = Content.Load<Model>("chao");
             chao.AtualizarMundoEColisoes();
 
-            ceu = new ObjetoJogo();
-            ceu.Modelo = Content.Load<Model>("ceu");
+            ceu = new SkySphere(Content, GraphicsDevice, Content.Load<TextureCube>("sky/Black_sky"));
 
             jogador = new Jogador(Content, "jogador");
             jogador.Escala = 0.1f;
@@ -287,11 +287,7 @@ namespace CapturarObjetos
 
                     jogo.Draw(gameTime, spriteBatch);//todo vazio ainda
 
-                    ceu.PosicaoX = camera.Posicao.X;
-                    ceu.PosicaoZ = camera.Posicao.Z;
-                    ceu.Escala = 30.0f;
-
-                    ceu.Desenhar(camera);
+                    
 
                     GraphicsDevice.BlendState = BlendState.AlphaBlend;
                     GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
@@ -309,6 +305,8 @@ namespace CapturarObjetos
                     GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
                     GraphicsDevice.Viewport = viewportPadrao;
+
+                    ceu.Draw(camera.MatrizVisualizacao, camera.MatrizProjecao, (camera.Posicao));
 
                     foreach (ObjetoJogo objetoJogo in ObjetoJogo.listaObjetos)
                     {
