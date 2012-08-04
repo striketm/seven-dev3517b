@@ -169,7 +169,42 @@ namespace CapturarObjetos.Nucleo
                 }
             }
         }
-                       
+
+        public void ModelDraw(GraphicsDevice device, Vector3 cameraPosition, Vector3 cameraTarget, float farPlaneDistance)
+        {
+            Matrix[] transforms = new Matrix[Modelo.Bones.Count];
+            Modelo.CopyAbsoluteBoneTransformsTo(transforms);
+
+            // Compute camera matrices.
+            Matrix view = Matrix.CreateLookAt(cameraPosition, cameraTarget, Vector3.Right);
+
+            //Calculate the aspect ratio
+            float aspectRatio = (float)device.Viewport.Width /
+                                        (float)device.Viewport.Height;
+
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), aspectRatio,
+                1.0f, farPlaneDistance);
+
+            // Draw the model. A model can have multiple meshes, so loop.
+            foreach (ModelMesh mesh in Modelo.Meshes)
+            {
+                // This is where the mesh orientation is set, as well as our camera and projection.
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.World = transforms[mesh.ParentBone.Index] *
+                        Matrix.CreateRotationX(RotacaoX) *
+                        Matrix.CreateRotationY(RotacaoY) *
+                        Matrix.CreateRotationZ(RotacaoZ) *
+                        Matrix.CreateScale(Escala) *
+                        Matrix.CreateWorld(Posicao, Vector3.Forward, Vector3.Up);
+
+                    effect.View = view;
+                    effect.Projection = projection;
+                }
+                mesh.Draw();
+            }
+        }
+
         /// <summary>
         /// Atualiza a caixa de colisão do objeto
         /// </summary>

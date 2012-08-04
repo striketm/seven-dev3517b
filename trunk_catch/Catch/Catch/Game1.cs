@@ -31,7 +31,8 @@ namespace CapturarObjetos
         Camera cameraMapa;
 
         ObjetoJogo chao;
-
+        ObjetoJogo ceu;
+        
         Jogador jogador;
 
         Texture2D teste;
@@ -92,7 +93,7 @@ namespace CapturarObjetos
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 800;// 1920;
             graphics.PreferredBackBufferHeight = 480;// 1080;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             IsMouseVisible = true;
             Window.Title = "Catch!";
 
@@ -148,6 +149,9 @@ namespace CapturarObjetos
             chao.Modelo = Content.Load<Model>("chao");
             chao.AtualizarMundoEColisoes();
 
+            ceu = new ObjetoJogo();
+            ceu.Modelo = Content.Load<Model>("ceu");
+
             jogador = new Jogador(Content, "jogador");
             jogador.Escala = 0.1f;
 
@@ -193,6 +197,8 @@ namespace CapturarObjetos
 
             intro = new Intro(Window, Content);
             jogo = new Jogo(Window, Content);
+
+            arial14 = Content.Load<SpriteFont>("arial14");
 
             // TODO: use this.Content to load your game content here
         }
@@ -279,7 +285,13 @@ namespace CapturarObjetos
 
                 case Estado.JOGO:
 
-                    jogo.Draw(gameTime, spriteBatch);
+                    jogo.Draw(gameTime, spriteBatch);//todo vazio ainda
+
+                    ceu.PosicaoX = camera.Posicao.X;
+                    ceu.PosicaoZ = camera.Posicao.Z;
+                    ceu.Escala = 30.0f;
+
+                    ceu.Desenhar(camera);
 
                     GraphicsDevice.BlendState = BlendState.AlphaBlend;
                     GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
