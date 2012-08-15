@@ -31,6 +31,9 @@ namespace sXNAke
         Level_01 level_01;
 
         KeyboardState keyboardState,oldKeyboardState;
+
+         //if(joystick_atual.Buttons.A), B, X, Y, Left/Right Stick, Left/Right Shoulder, Start, 
+            //if(joystick_atual.DPad.Down, Right, Left, Up
          
         public Game1()
         {
