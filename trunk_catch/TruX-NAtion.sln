@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruX-NAtion", "TruX-NAtion\TruX-NAtion\TruX-NAtion.csproj", "{DCB8214D-C0A3-4920-85F5-27F97E17C4EB}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TruX-NAtionContent", "TruX-NAtion\TruX-NAtionContent\TruX-NAtionContent.contentproj", "{31DA3099-16CD-497F-AE87-268C2049D5A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB8214D-C0A3-4920-85F5-27F97E17C4EB}.Debug|x86.ActiveCfg = Debug|x86
+		{DCB8214D-C0A3-4920-85F5-27F97E17C4EB}.Debug|x86.Build.0 = Debug|x86
+		{DCB8214D-C0A3-4920-85F5-27F97E17C4EB}.Release|x86.ActiveCfg = Release|x86
+		{DCB8214D-C0A3-4920-85F5-27F97E17C4EB}.Release|x86.Build.0 = Release|x86
+		{31DA3099-16CD-497F-AE87-268C2049D5A3}.Debug|x86.ActiveCfg = Debug|x86
+		{31DA3099-16CD-497F-AE87-268C2049D5A3}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
