@@ -23,7 +23,7 @@ namespace sXNAke.GameStates
         Song bg_Music;
 
         Pill pill;
-
+        
         #endregion
         public Level_01(ContentManager Content, GameWindow Window)
         {

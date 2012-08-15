@@ -31,7 +31,6 @@ namespace sXNAke
         Level_01 level_01;
 
         KeyboardState keyboardState,oldKeyboardState;
-
          
         public Game1()
         {
