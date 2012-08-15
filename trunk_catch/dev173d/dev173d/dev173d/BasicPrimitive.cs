@@ -115,3 +115,39 @@ namespace dev173d
         }
     }
 }
+
+/*
+ * So lets get back to CullingMode
+
+CullMode specifies how back-facing triangles are culled, if at all.The default value is CullMode.CounterClockwise
+When drawing sprites, SpriteBatch.Begin does not save your current render state, and will change certain render state properties that may make 3D objects render incorrectly. This includes setting CullMode to CullMode.CullCounterClockwiseFace. You can choose to either reset the render state yourself after the call to SpriteBatch.End, or call SpriteBatch.Begin and pass in SaveStateMode.SaveState, which will restore the render state after sprites are drawn. (MSDN Remark on RenderState.CullMode Property)
+CullMode takes 3 values.As we talked about earlier.Lets see what they are:
+
+    CullClockwiseFace
+
+    CullCounterClockwiseFace
+
+    None
+
+
+What they do?
+
+CullClockwiseFace:
+
+Cull back faces with clockwise vertices.
+
+CullCounterClockwiseFace:
+
+Cull back faces with counterclockwise vertices.
+
+None:
+
+Do not cull back faces.
+
+Sample Usage:
+
+RasterizerState stat = newRasterizerState();
+stat.CullMode = CullMode.CullClockwiseFace;
+
+
+ */
