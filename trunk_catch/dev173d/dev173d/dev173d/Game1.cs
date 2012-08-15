@@ -19,8 +19,8 @@ namespace dev173d
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BasicPrimitive triangle;
-
+        BasicPrimitive strangeObject;
+        
         BasicCamera camera;
 
         public Game1()
@@ -51,8 +51,10 @@ namespace dev173d
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            triangle = new BasicPrimitive(GraphicsDevice);
+            strangeObject = new BasicPrimitive(GraphicsDevice, Content);
 
+            //strangeObject.World = Matrix.CreateTranslation(0.5f, 0, 0);
+            
             camera = new BasicCamera(GraphicsDevice);
         }
 
@@ -72,7 +74,7 @@ namespace dev173d
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            triangle.Update(gameTime);
+            strangeObject.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -85,8 +87,8 @@ namespace dev173d
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            triangle.Draw(gameTime, camera);
-
+            strangeObject.Draw(gameTime, camera);
+            
             base.Draw(gameTime);
         }
     }
