@@ -27,20 +27,13 @@ namespace sXNAke.GameStates
         #endregion
         public Level_01(ContentManager Content, GameWindow Window)
         {
-            ivan = new Snake(Content.Load<Texture2D>("snake"),
-              Window);
+            ivan = new Snake(Content.Load<Texture2D>("snake"), Window);
 
-            victor = new Snake(Content.Load<Texture2D>("snake"),
-                Window);
+            victor = new Snake(Content.Load<Texture2D>("snake"), Window);
 
-
-            pill = new Pill(
-                Content.Load<Texture2D>("snake"),
-                Content.Load<SoundEffect>("pillSound"),
-                Window);
+            pill = new Pill(Content.Load<Texture2D>("snake"), Window);
 
             bg_Music = Content.Load<Song>("BG_01");
-
 
             MediaPlayer.Play(bg_Music);
             MediaPlayer.Volume = 0.2f;

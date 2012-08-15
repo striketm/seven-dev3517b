@@ -23,7 +23,7 @@ namespace sXNAke
         int lifes;
 
         public Snake(Texture2D texture, GameWindow Window)
-
+            :base()
         {
             this.texture = texture;
             this.Window = Window;
