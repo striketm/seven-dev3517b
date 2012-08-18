@@ -19,9 +19,16 @@ namespace dev173d
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BasicPrimitive strangeObject;
+        BasicPrimitive strangeObject1;
+        BasicPrimitive strangeObject2;
+        BasicPrimitive strangeObject3;
+        BasicPrimitive strangeObject4;
+        BasicPrimitive strangeObject5;
+        BasicPrimitive strangeObject6;
         
         BasicCamera camera;
+
+        KeyboardState ks, old_ks;
 
         public Game1()
         {
@@ -51,9 +58,22 @@ namespace dev173d
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            strangeObject = new BasicPrimitive(GraphicsDevice, Content);
+            strangeObject1 = new BasicPrimitive(GraphicsDevice, Content, Color.White);
+            strangeObject2 = new BasicPrimitive(GraphicsDevice, Content, Color.Green);
+            strangeObject3 = new BasicPrimitive(GraphicsDevice, Content, Color.White);
+            strangeObject4 = new BasicPrimitive(GraphicsDevice, Content, Color.White);
+            strangeObject5 = new BasicPrimitive(GraphicsDevice, Content, Color.White);
+            strangeObject6 = new BasicPrimitive(GraphicsDevice, Content, Color.White);
 
-            //strangeObject.World = Matrix.CreateTranslation(0.5f, 0, 0);
+            strangeObject2.World = Matrix.CreateRotationY(MathHelper.ToRadians(-90.0f)) *
+                Matrix.CreateTranslation(3.0f, 0, 0);
+
+            strangeObject1.World = Matrix.CreateTranslation(0, 0, -3.0f);
+            //strangeObject2.World = Matrix.CreateTranslation(3.0f, 0, 0);
+            strangeObject3.World = Matrix.CreateTranslation(-3.0f, 0, 0);
+            strangeObject4.World = Matrix.CreateTranslation(0, 3.0f, 0);
+            strangeObject5.World = Matrix.CreateTranslation(0, -3.0f, 0);
+            strangeObject6.World = Matrix.CreateTranslation(0, 0, 3.0f);
             
             camera = new BasicCamera(GraphicsDevice);
         }
@@ -74,7 +94,25 @@ namespace dev173d
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            strangeObject.Update(gameTime);
+            strangeObject2.color = Color.Green;
+
+            old_ks = ks;
+            ks = Keyboard.GetState();
+
+            if(ks.IsKeyDown(Keys.W))
+                camera.Target = new Vector3(0,0,-1.0f);
+
+            if (ks.IsKeyDown(Keys.D))
+                camera.Target = new Vector3(1.0f, 0, 0);
+
+            camera.Update(gameTime);
+
+            strangeObject1.Update(gameTime);
+            strangeObject2.Update(gameTime);
+            strangeObject3.Update(gameTime);
+            strangeObject4.Update(gameTime);
+            strangeObject5.Update(gameTime);
+            strangeObject6.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -87,9 +125,30 @@ namespace dev173d
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            strangeObject.Draw(gameTime, camera);
+            RasterizerState myRasterizerStateNormal = new RasterizerState();
+            RasterizerState myRasterizerStateWired = new RasterizerState();
+            RasterizerState myRasterizerStateUnCulled = new RasterizerState();
+
+            myRasterizerStateNormal.FillMode = FillMode.Solid;//padrão
+            myRasterizerStateNormal.CullMode = CullMode.CullCounterClockwiseFace;//padrão
+            
+            myRasterizerStateWired.FillMode = FillMode.WireFrame;
+            
+            myRasterizerStateUnCulled.CullMode = CullMode.None;
+
+            //GraphicsDevice.RasterizerState = myRasterizerStateNormal;
+
+            //? slow?
+            strangeObject1.Draw(gameTime, camera);
+            strangeObject2.Draw(gameTime, camera);
+            strangeObject3.Draw(gameTime, camera);
+            strangeObject4.Draw(gameTime, camera);
+            strangeObject5.Draw(gameTime, camera);
+            strangeObject6.Draw(gameTime, camera);
             
             base.Draw(gameTime);
         }
     }
 }
+
+

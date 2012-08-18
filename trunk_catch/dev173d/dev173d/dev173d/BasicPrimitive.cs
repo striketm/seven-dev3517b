@@ -36,41 +36,59 @@ namespace dev173d
         /// </summary>
         public Matrix World = Matrix.Identity;
 
-        Vector2 posicaoTextura;
-        Texture2D textura;
-        
+        public Color color;
+                
         /// <summary>
         /// Construtor de um triângulo com cores de vértice fixas
         /// </summary>
         /// <param name="graphicsDevice">A refência da placa de vídeo</param>
-        public BasicPrimitive(GraphicsDevice graphicsDevice, ContentManager Content)
+        public BasicPrimitive(GraphicsDevice graphicsDevice, ContentManager Content, Color color)
         {
             this.graphicsDevice = graphicsDevice;
 
             //Criar os vértices do triangulo:
-            primitives = new VertexPositionColorTexture[4];
+            primitives = new VertexPositionColorTexture[6];
 
             primitives[0] = new VertexPositionColorTexture();
-            primitives[0].Position = new Vector3(0, 1.0f, 0);
+            primitives[0].Position = new Vector3(-0.5f, 0.5f, 0);
             primitives[0].Color = Color.Red;
 
             primitives[1] = new VertexPositionColorTexture();
-            primitives[1].Position = new Vector3(1, -0.5f, 0);
+            primitives[1].Position = new Vector3(0.5f, 0.5f, 0);
             primitives[1].Color = Color.Green;
 
             primitives[2] = new VertexPositionColorTexture();
-            primitives[2].Position = new Vector3(-1, -0.5f, 0);
+            primitives[2].Position = new Vector3(0.5f, -0.5f, 0);
             primitives[2].Color = Color.Blue;
 
             primitives[3] = new VertexPositionColorTexture();
-            primitives[3].Position = new Vector3(0, -1.0f, 0);
+            primitives[3].Position = new Vector3(-0.5f, 0.5f, 0);
             primitives[3].Color = Color.Yellow;
-            
+
+            primitives[4] = new VertexPositionColorTexture();
+            primitives[4].Position = new Vector3(0.5f, -0.5f, 0);
+            primitives[4].Color = Color.Black;
+
+            primitives[5] = new VertexPositionColorTexture();
+            primitives[5].Position = new Vector3(-0.5f, -0.5f, 0);
+            primitives[5].Color = Color.White;
+
+            if (color != Color.White)
+            {
+                primitives[0].Color = color;
+                primitives[1].Color = color;
+                primitives[2].Color = color;
+                primitives[3].Color = color;
+                primitives[4].Color = color;
+                primitives[5].Color = color;
+            }
+
+                        
             //Criar novo efeito básico e propriedades:
             basicEffect = new BasicEffect(graphicsDevice);
 
             //ativando as cores
-            //basicEffect.VertexColorEnabled = true;
+            basicEffect.VertexColorEnabled = true;
 
             basicEffect.TextureEnabled = true;
             basicEffect.Texture = Content.Load<Texture2D>("GameThumbnail");
@@ -78,7 +96,9 @@ namespace dev173d
             primitives[0].TextureCoordinate = new Vector2(0, 0);
             primitives[1].TextureCoordinate = new Vector2(1, 0);
             primitives[2].TextureCoordinate = new Vector2(1, 1);
-            primitives[3].TextureCoordinate = new Vector2(0, 1);
+            primitives[3].TextureCoordinate = new Vector2(0, 0);
+            primitives[4].TextureCoordinate = new Vector2(1, 1);
+            primitives[5].TextureCoordinate = new Vector2(0, 1);
 
         }
 
@@ -107,7 +127,7 @@ namespace dev173d
 
             //desenhando as primitivas
             graphicsDevice.DrawUserPrimitives<VertexPositionColorTexture>(
-                PrimitiveType.TriangleStrip,//tipo da primitiva (linha ou triangulo)
+                PrimitiveType.TriangleList,//tipo da primitiva (linha ou triangulo)
                 primitives,//o conjunto de vértices 
                 0,//offset
                 2);//contador de primitivas
@@ -115,39 +135,3 @@ namespace dev173d
         }
     }
 }
-
-/*
- * So lets get back to CullingMode
-
-CullMode specifies how back-facing triangles are culled, if at all.The default value is CullMode.CounterClockwise
-When drawing sprites, SpriteBatch.Begin does not save your current render state, and will change certain render state properties that may make 3D objects render incorrectly. This includes setting CullMode to CullMode.CullCounterClockwiseFace. You can choose to either reset the render state yourself after the call to SpriteBatch.End, or call SpriteBatch.Begin and pass in SaveStateMode.SaveState, which will restore the render state after sprites are drawn. (MSDN Remark on RenderState.CullMode Property)
-CullMode takes 3 values.As we talked about earlier.Lets see what they are:
-
-    CullClockwiseFace
-
-    CullCounterClockwiseFace
-
-    None
-
-
-What they do?
-
-CullClockwiseFace:
-
-Cull back faces with clockwise vertices.
-
-CullCounterClockwiseFace:
-
-Cull back faces with counterclockwise vertices.
-
-None:
-
-Do not cull back faces.
-
-Sample Usage:
-
-RasterizerState stat = newRasterizerState();
-stat.CullMode = CullMode.CullClockwiseFace;
-
-
- */
