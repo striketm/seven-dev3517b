@@ -42,7 +42,7 @@ namespace dev173d
         /// Construtor de um triângulo com cores de vértice fixas
         /// </summary>
         /// <param name="graphicsDevice">A refência da placa de vídeo</param>
-        public BasicPrimitive(GraphicsDevice graphicsDevice, ContentManager Content, Color color)
+        public BasicPrimitive(GraphicsDevice graphicsDevice,  Texture2D textura, Color color)
         {
             this.graphicsDevice = graphicsDevice;
 
@@ -51,39 +51,28 @@ namespace dev173d
 
             primitives[0] = new VertexPositionColorTexture();
             primitives[0].Position = new Vector3(-0.5f, 0.5f, 0);
-            primitives[0].Color = Color.Red;
+            primitives[0].Color = color;
 
             primitives[1] = new VertexPositionColorTexture();
             primitives[1].Position = new Vector3(0.5f, 0.5f, 0);
-            primitives[1].Color = Color.Green;
+            primitives[1].Color = color;
 
             primitives[2] = new VertexPositionColorTexture();
             primitives[2].Position = new Vector3(0.5f, -0.5f, 0);
-            primitives[2].Color = Color.Blue;
+            primitives[2].Color = color;
 
             primitives[3] = new VertexPositionColorTexture();
             primitives[3].Position = new Vector3(-0.5f, 0.5f, 0);
-            primitives[3].Color = Color.Yellow;
+            primitives[3].Color = color;
 
             primitives[4] = new VertexPositionColorTexture();
             primitives[4].Position = new Vector3(0.5f, -0.5f, 0);
-            primitives[4].Color = Color.Black;
+            primitives[4].Color = color;
 
             primitives[5] = new VertexPositionColorTexture();
             primitives[5].Position = new Vector3(-0.5f, -0.5f, 0);
-            primitives[5].Color = Color.White;
-
-            if (color != Color.White)
-            {
-                primitives[0].Color = color;
-                primitives[1].Color = color;
-                primitives[2].Color = color;
-                primitives[3].Color = color;
-                primitives[4].Color = color;
-                primitives[5].Color = color;
-            }
-
-                        
+            primitives[5].Color = color;
+                                    
             //Criar novo efeito básico e propriedades:
             basicEffect = new BasicEffect(graphicsDevice);
 
@@ -91,7 +80,7 @@ namespace dev173d
             basicEffect.VertexColorEnabled = true;
 
             basicEffect.TextureEnabled = true;
-            basicEffect.Texture = Content.Load<Texture2D>("GameThumbnail");
+            basicEffect.Texture = textura;
 
             primitives[0].TextureCoordinate = new Vector2(0, 0);
             primitives[1].TextureCoordinate = new Vector2(1, 0);
