@@ -42,13 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameThumbnail.png">
-      <Name>GameThumbnail</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="texturachao.jpg">
       <Name>texturachao</Name>
       <Importer>TextureImporter</Importer>
@@ -61,6 +54,30 @@
     </Compile>
     <Compile Include="texturateto.jpg">
       <Name>texturateto</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WoodenBoxOpen02.fbx">
+      <Name>WoodenBoxOpen02</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WoodPlanks_Color.jpg">
+      <Name>WoodPlanks_Color</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="WoodPlanks_Greyscale.jpg">
+      <Name>WoodPlanks_Greyscale</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="WoodPlanks_Normal.jpg">
+      <Name>WoodPlanks_Normal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

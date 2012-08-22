@@ -80,7 +80,7 @@ namespace dev173d
         /// </summary>
         public BasicCamera(GraphicsDevice graphicsDevice)
         {
-            Position = new Vector3(0.0f, 0.0f, 0.0f);
+            Position = new Vector3(0.0f, 0.0f, 5.0f);
             Target = new Vector3(0,0,-1.0f);
             Orientation = Vector3.Up;
 

@@ -25,7 +25,9 @@ namespace dev173d
         BasicPrimitive parede_direita;
         BasicPrimitive parede_esquerda;
         BasicPrimitive parede_tras;
-        
+
+        Model caixa_01;
+                
         BasicCamera camera;
 
         KeyboardState ks, old_ks;
@@ -75,20 +77,22 @@ namespace dev173d
                 Matrix.CreateTranslation(0, 1.5f, 0);
 
             parede_frente.World = /*Matrix.CreateRotationX(MathHelper.ToRadians(90.0f)) * */
-                Matrix.CreateScale(10, 3.5f, 1) *//o meio é pra esconder um defeito na imagem
+                Matrix.CreateScale(10, 3.5f, 1) * //o meio é pra esconder um defeito na imagem
                 Matrix.CreateTranslation(0, 0, -5f);
 
-            parede_direita.World = Matrix.CreateRotationY(MathHelper.ToRadians(-90.0f))
-                * Matrix.CreateScale(1, 3.5f, 10) *//reparem como os eixos de escala tiveram que mudar
+            parede_direita.World = Matrix.CreateRotationY(MathHelper.ToRadians(270.0f))//=-90
+                * Matrix.CreateScale(1, 3.5f, 10) * //reparem como os eixos de escala tiveram que mudar
                 Matrix.CreateTranslation(5f, 0, 0);
             
-            parede_esquerda.World = Matrix.CreateRotationY(MathHelper.ToRadians(90.0f))
-                * Matrix.CreateScale(1, 3.5f, 10) *//reparem como os eixos de escala tiveram que mudar
+            parede_esquerda.World = Matrix.CreateRotationY(MathHelper.ToRadians(-270.0f))//=90
+                * Matrix.CreateScale(1, 3.5f, 10) * //reparem como os eixos de escala tiveram que mudar
                 Matrix.CreateTranslation(-5f, 0, 0);
 
-            parede_tras.World = Matrix.CreateRotationX(MathHelper.ToRadians(90.0f))
-               * Matrix.CreateScale(10) *
-               Matrix.CreateTranslation(0, 1.5f, 0);
+            parede_tras.World = Matrix.CreateRotationY(MathHelper.ToRadians(180.0f))//rotação total
+               * Matrix.CreateScale(10, 3.5f, 1) * //não seria melhor deixar a rotação para todos, mesmo que seja 0, para padronizar?
+               Matrix.CreateTranslation(0, 0, 5f);
+
+            caixa_01 = Content.Load<Model>("WoodenBoxOpen02");
             
             camera = new BasicCamera(GraphicsDevice);
 
@@ -183,6 +187,9 @@ namespace dev173d
             parede_direita.Draw(gameTime, camera);
             parede_esquerda.Draw(gameTime, camera);
             parede_tras.Draw(gameTime, camera);
+            Matrix temp = Matrix.Identity;
+            temp *= Matrix.CreateScale(0.008f) * Matrix.CreateTranslation(Vector3.Zero);
+            caixa_01.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
             
             base.Draw(gameTime);
         }
