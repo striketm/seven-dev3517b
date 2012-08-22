@@ -34,6 +34,7 @@ namespace dev173d
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace dev173d
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             chao = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturachao"), Color.White);
-            teto = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturateto"), Color.Green);
+            teto = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturateto"), Color.White);
             parede_frente = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturaparede"), Color.White);
             parede_direita = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturaparede"), Color.White);
             parede_esquerda = new BasicPrimitive(GraphicsDevice, Content.Load<Texture2D>("texturaparede"), Color.White);
@@ -73,12 +74,24 @@ namespace dev173d
                 * Matrix.CreateScale(10) *
                 Matrix.CreateTranslation(0, 1.5f, 0);
 
-            parede_frente.World = Matrix.CreateTranslation(-3.0f, 0, 0);
-            parede_direita.World = Matrix.CreateTranslation(0, 3.0f, 0);
-            parede_esquerda.World = Matrix.CreateTranslation(0, -3.0f, 0);
-            parede_tras.World = Matrix.CreateTranslation(0, 0, 3.0f);
+            parede_frente.World = /*Matrix.CreateRotationX(MathHelper.ToRadians(90.0f)) * */
+                Matrix.CreateScale(10, 3.5f, 1) *//o meio é pra esconder um defeito na imagem
+                Matrix.CreateTranslation(0, 0, -5f);
+
+            parede_direita.World = Matrix.CreateRotationY(MathHelper.ToRadians(-90.0f))
+                * Matrix.CreateScale(1, 3.5f, 10) *//reparem como os eixos de escala tiveram que mudar
+                Matrix.CreateTranslation(5f, 0, 0);
+            
+            parede_esquerda.World = Matrix.CreateRotationY(MathHelper.ToRadians(90.0f))
+                * Matrix.CreateScale(1, 3.5f, 10) *//reparem como os eixos de escala tiveram que mudar
+                Matrix.CreateTranslation(-5f, 0, 0);
+
+            parede_tras.World = Matrix.CreateRotationX(MathHelper.ToRadians(90.0f))
+               * Matrix.CreateScale(10) *
+               Matrix.CreateTranslation(0, 1.5f, 0);
             
             camera = new BasicCamera(GraphicsDevice);
+
         }
 
         /// <summary>
@@ -102,11 +115,33 @@ namespace dev173d
             old_ks = ks;
             ks = Keyboard.GetState();
 
-            if(ks.IsKeyDown(Keys.W))
+            #region atualização do target da camera
+
+            //frente
+            if (ks.IsKeyDown(Keys.Home))
                 camera.Target = new Vector3(0,0,-1.0f);
 
-            if (ks.IsKeyDown(Keys.D))
+            //trás
+            if (ks.IsKeyDown(Keys.End))
+                camera.Target = new Vector3(0, 0, 1.0f);
+
+            //esquerda
+            if (ks.IsKeyDown(Keys.Delete))
+                camera.Target = new Vector3(-1.0f, 0, 0);
+
+            //direita
+            if (ks.IsKeyDown(Keys.PageDown))
                 camera.Target = new Vector3(1.0f, 0, 0);
+
+            //cima
+            if (ks.IsKeyDown(Keys.Insert))
+                camera.Target = new Vector3(0, 1.0f, 0);
+
+            //baixo
+            if (ks.IsKeyDown(Keys.PageUp))
+                camera.Target = new Vector3(0, -1.0f, 0);
+
+            #endregion
 
             camera.Update(gameTime);
 
