@@ -139,29 +139,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\crate.fbx">
-      <Name>crate</Name>
+    <Compile Include="caixas\caixa_06.fbx">
+      <Name>caixa_06</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\crate_tex.jpg">
+    <Compile Include="caixas\crate_tex.jpg">
       <Name>crate_tex</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\crate_tex2.jpg">
+    <Compile Include="caixas\crate_tex2.jpg">
       <Name>crate_tex2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\crate_tex3.jpg">
+    <Compile Include="caixas\crate_tex3.jpg">
       <Name>crate_tex3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\crate_tex4.jpg">
+    <Compile Include="caixas\crate_tex4.jpg">
       <Name>crate_tex4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -169,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Materials\" />
-    <Folder Include="Textures\512x512\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

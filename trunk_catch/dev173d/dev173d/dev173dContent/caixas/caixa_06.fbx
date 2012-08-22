@@ -1397,7 +1397,7 @@ Objects:  {
         }
         UseMipMap: 0
         Filename: "crate_tex.jpg"
-        RelativeFilename: "../Textures/crate_tex.jpg"
+        RelativeFilename: "crate_tex.jpg"
     }
     Texture: "Texture::crate_mat_tex", "TextureVideoClip" {
         Type: "TextureVideoClip"
@@ -1422,7 +1422,7 @@ Objects:  {
         }
         Media: "Video::crate_mat_tex"
         FileName: "crate_tex.jpg"
-        RelativeFilename: "../Textures/crate_tex.jpg"
+        RelativeFilename: "crate_tex.jpg"
         ModelUVTranslation: 0,0
         ModelUVScaling: 1,1
         Texture_Alpha_Source: "None"
