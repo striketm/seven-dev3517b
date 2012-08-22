@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="BasicCamera.cs" />
     <Compile Include="BasicPrimitive.cs" />
+    <Compile Include="GameObject3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
