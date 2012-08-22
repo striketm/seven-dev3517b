@@ -59,24 +59,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WoodenBoxOpen02.fbx">
-      <Name>WoodenBoxOpen02</Name>
+    <Compile Include="caixa_01\caixa_01.fbx">
+      <Name>caixa_01</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WoodPlanks_Color.jpg">
+    <Compile Include="caixa_01\WoodPlanks_Color.jpg">
       <Name>WoodPlanks_Color</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="WoodPlanks_Greyscale.jpg">
+    <Compile Include="caixa_01\WoodPlanks_Greyscale.jpg">
       <Name>WoodPlanks_Greyscale</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="WoodPlanks_Normal.jpg">
+    <Compile Include="caixa_01\WoodPlanks_Normal.jpg">
       <Name>WoodPlanks_Normal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

@@ -92,7 +92,7 @@ namespace dev173d
                * Matrix.CreateScale(10, 3.5f, 1) * //não seria melhor deixar a rotação para todos, mesmo que seja 0, para padronizar?
                Matrix.CreateTranslation(0, 0, 5f);
 
-            caixa_01 = Content.Load<Model>("WoodenBoxOpen02");
+            caixa_01 = Content.Load<Model>("caixa_01/caixa_01");
             
             camera = new BasicCamera(GraphicsDevice);
 
