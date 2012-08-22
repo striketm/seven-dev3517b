@@ -92,8 +92,10 @@ namespace dev173d
                * Matrix.CreateScale(10, 3.5f, 1) * //não seria melhor deixar a rotação para todos, mesmo que seja 0, para padronizar?
                Matrix.CreateTranslation(0, 0, 5f);
 
-            caixa_01 = Content.Load<Model>("caixa_01/caixa_01");
+            //caixa_01 = Content.Load<Model>("caixas/caixa_vazada");
+            caixa_01 = Content.Load<Model>("Models/crate");
             
+        
             camera = new BasicCamera(GraphicsDevice);
 
         }
@@ -181,15 +183,18 @@ namespace dev173d
             //GraphicsDevice.RasterizerState = myRasterizerStateNormal;
 
             //? slow?
-            chao.Draw(gameTime, camera);
-            teto.Draw(gameTime, camera);
-            parede_frente.Draw(gameTime, camera);
-            parede_direita.Draw(gameTime, camera);
-            parede_esquerda.Draw(gameTime, camera);
-            parede_tras.Draw(gameTime, camera);
+            //chao.Draw(gameTime, camera);
+            //teto.Draw(gameTime, camera);
+            //parede_frente.Draw(gameTime, camera);
+            //parede_direita.Draw(gameTime, camera);
+            //parede_esquerda.Draw(gameTime, camera);
+            //parede_tras.Draw(gameTime, camera);
             Matrix temp = Matrix.Identity;
-            temp *= Matrix.CreateScale(0.008f) * Matrix.CreateTranslation(Vector3.Zero);
+            temp *= Matrix.CreateScale(0.01f) * Matrix.CreateTranslation(Vector3.Zero);
             caixa_01.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
+            
+            //temp *= Matrix.CreateScale(0.008f) * Matrix.CreateTranslation(new Vector3(0.9f, 0, 0));
+            //caixa_02.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
             
             base.Draw(gameTime);
         }

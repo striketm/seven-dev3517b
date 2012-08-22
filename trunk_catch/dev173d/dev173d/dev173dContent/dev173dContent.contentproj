@@ -59,28 +59,117 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="caixa_01\caixa_01.fbx">
-      <Name>caixa_01</Name>
+    <Compile Include="caixas\caixa_00.fbx">
+      <Name>caixa_00</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="caixa_01\WoodPlanks_Color.jpg">
+    <Compile Include="caixas\WoodPlanks_Color.jpg">
       <Name>WoodPlanks_Color</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="caixa_01\WoodPlanks_Greyscale.jpg">
+    <Compile Include="caixas\WoodPlanks_Greyscale.jpg">
       <Name>WoodPlanks_Greyscale</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="caixa_01\WoodPlanks_Normal.jpg">
+    <Compile Include="caixas\WoodPlanks_Normal.jpg">
       <Name>WoodPlanks_Normal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="caixas\caixa_01.x">
+      <Name>caixa_01</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\caixa_02.x">
+      <Name>caixa_02</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\caixa_03.x">
+      <Name>caixa_03</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\caixa_04.x">
+      <Name>caixa_04</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\caixa_05.x">
+      <Name>caixa_05</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="caixas\caixa_vazada.FBX">
+      <Name>caixa_vazada</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="caixas\WdCrt_b.jpg">
+      <Name>WdCrt_b</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\WdCrt_c.jpg">
+      <Name>WdCrt_c</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\WdCrt_df.jpg">
+      <Name>WdCrt_df</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="caixas\WdCrt_sp.jpg">
+      <Name>WdCrt_sp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\crate.fbx">
+      <Name>crate</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\crate_tex.jpg">
+      <Name>crate_tex</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\crate_tex2.jpg">
+      <Name>crate_tex2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\crate_tex3.jpg">
+      <Name>crate_tex3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\crate_tex4.jpg">
+      <Name>crate_tex4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Materials\" />
+    <Folder Include="Textures\512x512\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
