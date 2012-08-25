@@ -19,7 +19,7 @@ namespace dev173d
 
         BasicEffect basicEffect;
 
-        Matrix World;
+        Matrix world;
 
         float rotationX;
         float rotationY;
@@ -31,11 +31,13 @@ namespace dev173d
         float positionY;
         float positionZ;
 
+        Matrix orientation;
+
         public GameObject3D(GraphicsDevice graphicsDevice)
         {
             this.basicEffect = new BasicEffect(graphicsDevice);
 
-            this.World = Matrix.Identity;
+            this.world = Matrix.Identity;
 
             UpdateWorld();
         }
@@ -47,7 +49,7 @@ namespace dev173d
 
         void UpdateWorld()
         {
-            this.World =
+            this.world =
                 Matrix.CreateRotationX(MathHelper.ToRadians(rotationX)) *
                 Matrix.CreateRotationY(MathHelper.ToRadians(rotationY)) *
                 Matrix.CreateRotationZ(MathHelper.ToRadians(rotationZ)) *
@@ -57,7 +59,7 @@ namespace dev173d
 
         public void Draw(GameTime gameTime, BasicCamera camera)
         {
-            model.Draw(this.World, camera.ViewMatrix, camera.ProjectionMatrix);
+            model.Draw(this.world, camera.ViewMatrix, camera.ProjectionMatrix);
         }
 
     }
