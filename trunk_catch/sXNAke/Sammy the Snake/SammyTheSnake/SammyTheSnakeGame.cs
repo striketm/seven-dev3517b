@@ -19,7 +19,7 @@ namespace SammyTheSnake
 		Title,
 		InGame,
 		GameOver
-	}
+	}//ok
 
 	/// <summary>
 	/// The game class for Sammy the Snake.
@@ -32,7 +32,7 @@ namespace SammyTheSnake
 		private const string scoreFormat = "Oranges Eaten: {0}";
 		private const string quitInsructions = "Press Back to Quit";
 		private const string gameOver = "Game Over!";
-		private const string gameOverInstructions = "Press Play to Continue";
+		private const string gameOverInstructions = "Press Play to Continue";//ok
 
 		// the GraphicsDeviceManager for our game
 		private GraphicsDeviceManager graphics;

@@ -12,14 +12,19 @@ using Microsoft.Xna.Framework.Media;
 
 namespace sXNAke
 {
-    class Snake:GameObject
+    class Snake : GameObject
     {
         class ChangeDirection
         {
             public Direction direction;
             public Rectangle rect;
             public bool active;
+            /// <summary>
+            /// Acerto por causa da distancia entre a cabeça e o corpo
+            /// </summary>
+            public bool canRemove = false;
         }
+
         private List<ChangeDirection> changeDirections;
 
         private List<Body> bodies;
@@ -46,6 +51,7 @@ namespace sXNAke
         {
             this.texture = textureHead;
             this.Window = Window;
+            this.Position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
             this.Velocity = new Vector2(4, 4);
             this.points = 0;
             this.lifes = 2;
@@ -70,8 +76,8 @@ namespace sXNAke
             if (player == "2")
             {
                 actual_direction = Direction.LEFT;
-                this.position = new Vector2(800,0);
-                
+                this.position = new Vector2(800, 0);
+
             }
         }
 
@@ -111,13 +117,13 @@ namespace sXNAke
 
             this.bodies.Add(body);
         }
-        
+
         public override void Update()
         {
 
         }
 
-        public void Update(GameTime gameTime,KeyboardState keyboardState)
+        public void Update(GameTime gameTime, KeyboardState keyboardState)
         {
             //for (int k = 0; k < bodies.Count; k++)
             //{
@@ -130,28 +136,63 @@ namespace sXNAke
             foreach (Body body in bodies)
             {
                 body.Update(gameTime);
-                
+
+                #region corpo fora da tela, teste
+
+                bool bodyCollidedWithBorders = false;
+
+                if (body.Position.X > Window.ClientBounds.Width)
+                {
+                    bodyCollidedWithBorders = true;
+                }
+                if (body.Position.X < 0)
+                {
+                    bodyCollidedWithBorders = true;
+                }
+                if (body.Position.Y < 0)
+                {
+                    bodyCollidedWithBorders = true;
+                }
+                if (body.Position.Y > Window.ClientBounds.Height)
+                {
+                    bodyCollidedWithBorders = true;
+                }
+
+                if (bodyCollidedWithBorders)
+                    body.Visible = false;
+
+                #endregion
+
                 foreach (ChangeDirection changeDirection in changeDirections)
                 {
-                    bool removeThisChangeDirection = true;
+                    bool removeThisChangeDirection = false;
 
                     if (body.CollisionRect.Contains(changeDirection.rect))
                     {
                         body.actual_direction = changeDirection.direction;
-                        removeThisChangeDirection = false;
+                        changeDirection.canRemove = true;
+                        removeThisChangeDirection = true;
                     }
                     else
                     {
-                        removeThisChangeDirection = true;
+                        //removeThisChangeDirection = true;
                     }
                     if (removeThisChangeDirection) changeDirection.active = false;
                 }
             }
-            Window.Title = ""+changeDirections.Count;
+
+            Window.Title = "" + bodies.Count;
+
             for (int k = 0; k < changeDirections.Count; k++)
             {
-                if (changeDirections[k].active == false)
-                   changeDirections.RemoveAt(k);
+                if ((changeDirections[k].active == false) && (changeDirections[k].canRemove == true))
+                changeDirections.RemoveAt(k);
+            }
+
+            for (int k = 0; k < bodies.Count; k++)
+            {
+                if ((bodies[k].Visible == false))
+                    bodies.RemoveAt(k);
             }
 
             /* TODO: Criar um metodo para setar quais
@@ -164,26 +205,27 @@ namespace sXNAke
                 {
                     Grow();
                 }
-                if ((keyboardState.IsKeyDown(Keys.Right) && actual_direction != Direction.LEFT) ||
-                    (Game1.gamePadState.DPad.Right == ButtonState.Pressed &&
-                    Game1.oldGamePadState.DPad.Right != ButtonState.Pressed && 
-                    actual_direction != Direction.LEFT))
-                {
-                    actual_direction = Direction.RIGHT;
-                    ChangeDirection changeDirection = new ChangeDirection();
-                    changeDirection.direction = actual_direction;
-                    changeDirection.rect = new Rectangle((int)this.position.X, 
-                        (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
-                    changeDirection.active = true;
-                    this.changeDirections.Add(changeDirection);
-                    
 
+                if (Game1.keyboardState.IsKeyDown(Keys.Right) &&
+                     !Game1.oldKeyboardState.IsKeyDown(Keys.Right) &&
+                     actual_direction != Direction.LEFT)
+                {
+                    if (actual_direction != Direction.RIGHT)
+                    {
+                        actual_direction = Direction.RIGHT;
+                        ChangeDirection changeDirection = new ChangeDirection();
+                        changeDirection.direction = actual_direction;
+                        changeDirection.rect = new Rectangle((int)this.position.X,
+                            (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
+                        changeDirection.active = true;
+                        this.changeDirections.Add(changeDirection);
+                    }
                 }
-                else
-                    if ((keyboardState.IsKeyDown(Keys.Left) && actual_direction != Direction.RIGHT) ||
-                        (Game1.gamePadState.DPad.Left == ButtonState.Pressed &&
-                        Game1.oldGamePadState.DPad.Left != ButtonState.Pressed &&
-                        actual_direction != Direction.RIGHT))
+                else if (Game1.keyboardState.IsKeyDown(Keys.Left) &&
+                            !Game1.oldKeyboardState.IsKeyDown(Keys.Left) &&
+                            actual_direction != Direction.RIGHT)
+                {
+                    if (actual_direction != Direction.LEFT)
                     {
                         actual_direction = Direction.LEFT;
                         ChangeDirection changeDirection = new ChangeDirection();
@@ -192,45 +234,43 @@ namespace sXNAke
                             (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
                         changeDirection.active = true;
                         this.changeDirections.Add(changeDirection);
-                        
                     }
-                    else
-                        if (
-                            Game1.keyboardState.IsKeyDown(Keys.Down) &&
+                }
+                else if (Game1.keyboardState.IsKeyDown(Keys.Down) &&
                             !Game1.oldKeyboardState.IsKeyDown(Keys.Down) &&
-                            actual_direction != Direction.UP)// ||
-                            //(Game1.gamePadState.DPad.Down == ButtonState.Pressed &&
-                            //Game1.oldGamePadState.DPad.Down != ButtonState.Pressed &&
-                            //actual_direction != Direction.UP))
-                        {
-                            actual_direction = Direction.DOWN;
-                            ChangeDirection changeDirection = new ChangeDirection();
-                            changeDirection.direction = actual_direction;
-                            changeDirection.rect = new Rectangle((int)this.position.X,
-                                (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
-                            changeDirection.active = true;
-                            this.changeDirections.Add(changeDirection);
-                        }
-                        else
-                            if ((keyboardState.IsKeyDown(Keys.Up) && actual_direction != Direction.DOWN) ||
-                                (Game1.gamePadState.DPad.Right == ButtonState.Pressed &&
-                                Game1.oldGamePadState.DPad.Right != ButtonState.Pressed &&
-                                actual_direction != Direction.DOWN))
-                            {
-                                actual_direction = Direction.UP;
-                                ChangeDirection changeDirection = new ChangeDirection();
-                                changeDirection.direction = actual_direction;
-                                changeDirection.rect = new Rectangle((int)this.position.X,
-                                    (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
-                                changeDirection.active = true;
-                                this.changeDirections.Add(changeDirection);
-                            }
-
+                            actual_direction != Direction.UP)
+                {
+                    if (actual_direction != Direction.DOWN)
+                    {
+                        actual_direction = Direction.DOWN;
+                        ChangeDirection changeDirection = new ChangeDirection();
+                        changeDirection.direction = actual_direction;
+                        changeDirection.rect = new Rectangle((int)this.position.X,
+                            (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
+                        changeDirection.active = true;
+                        this.changeDirections.Add(changeDirection);
+                    }
+                }
+                else if (Game1.keyboardState.IsKeyDown(Keys.Up) &&
+                            !Game1.oldKeyboardState.IsKeyDown(Keys.Up) &&
+                            actual_direction != Direction.DOWN)
+                {
+                    if (actual_direction != Direction.UP)
+                    {
+                        actual_direction = Direction.UP;
+                        ChangeDirection changeDirection = new ChangeDirection();
+                        changeDirection.direction = actual_direction;
+                        changeDirection.rect = new Rectangle((int)this.position.X,
+                            (int)this.position.Y, this.CollisionRect.Width, this.CollisionRect.Height);
+                        changeDirection.active = true;
+                        this.changeDirections.Add(changeDirection);
+                    }
+                }
             }
 
             if (player == "2")
             {
-                if (keyboardState.IsKeyDown(Keys.D) &&actual_direction != Direction.LEFT)
+                if (keyboardState.IsKeyDown(Keys.D) && actual_direction != Direction.LEFT)
                 {
                     actual_direction = Direction.RIGHT;
                 }
@@ -329,8 +369,12 @@ namespace sXNAke
                 body.Draw(gameTime, spriteBatch);
             }
 
+            foreach (ChangeDirection cd in changeDirections)
+            {
+                spriteBatch.Draw(textureBody, cd.rect, Color.Black);
+            }
+
             base.Draw(gameTime, spriteBatch);
         }
-       
     }
 }

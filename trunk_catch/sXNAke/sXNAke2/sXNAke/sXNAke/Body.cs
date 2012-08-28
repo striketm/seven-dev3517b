@@ -10,19 +10,16 @@ namespace sXNAke
 {
     class Body : GameObject
     {
-
-       public Direction actual_direction = Direction.RIGHT;
-
-
+        public Direction actual_direction = Direction.RIGHT;
+                
         public Body(Texture2D texture, Direction lastDirection)
             : base()
         {
             this.texture = texture;
             this.actual_direction = lastDirection;
-            
+                        
             //WARNING: if you change this change it for all
-            this.Velocity = new Vector2(4, 4);
-            
+            this.Velocity = new Vector2(4, 4);    
         }
 
         public override void Update()
@@ -31,7 +28,7 @@ namespace sXNAke
         }
 
         public void Update(GameTime gameTime)
-        {
+        {            
             switch (actual_direction)
             {
                 case Direction.LEFT:
