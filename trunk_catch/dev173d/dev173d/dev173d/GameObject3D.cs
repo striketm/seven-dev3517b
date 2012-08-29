@@ -11,55 +11,55 @@ using Microsoft.Xna.Framework.Media;
 
 namespace dev173d
 {
-    class GameObject3D
+    abstract class ObjetoJogo3D
     {
-        GraphicsDevice graphicsDevice;
+        GraphicsDevice placaVideo;
 
-        Model model;
+        Model modelo;
 
-        BasicEffect basicEffect;
+        BasicEffect efeitoBasico;
 
-        Matrix world;
+        Matrix matrizMundo;
 
-        float rotationX;
-        float rotationY;
-        float rotationZ;
-        float scaleX;
-        float scaleY;
-        float scaleZ;
-        float positionX;
-        float positionY;
-        float positionZ;
+        float rotacaoX;
+        float rotacaoY;
+        float rotacaoZ;
+        float escalaX;
+        float escalaY;
+        float escalaZ;
+        float posicaoX;
+        float posicaoY;
+        float posicaoZ;
 
-        Matrix orientation;
+        Matrix orientacao;
 
-        public GameObject3D(GraphicsDevice graphicsDevice)
+        public ObjetoJogo3D(GraphicsDevice placaVideo)
         {
-            this.basicEffect = new BasicEffect(graphicsDevice);
+            this.efeitoBasico = new BasicEffect(placaVideo);
 
-            this.world = Matrix.Identity;
+            this.matrizMundo = Matrix.Identity;
 
-            UpdateWorld();
+            AtualizarMundo();
         }
 
-        public void Update(GameTime gameTime)
+        public void Atualizar(GameTime tempoJogo)
         {
-            UpdateWorld();
+            AtualizarMundo();
         }
 
-        void UpdateWorld()
+        void AtualizarMundo()
         {
-            this.world =
-                Matrix.CreateRotationX(MathHelper.ToRadians(rotationX)) *
-                Matrix.CreateRotationY(MathHelper.ToRadians(rotationY)) *
-                Matrix.CreateRotationZ(MathHelper.ToRadians(rotationZ)) *
-                Matrix.CreateScale(scaleX, scaleY, scaleZ) *
-                Matrix.CreateTranslation(positionX, positionY, positionZ);
+            this.matrizMundo =
+                Matrix.CreateRotationX(MathHelper.ToRadians(rotacaoX)) *
+                Matrix.CreateRotationY(MathHelper.ToRadians(rotacaoY)) *
+                Matrix.CreateRotationZ(MathHelper.ToRadians(rotacaoZ)) *
+                Matrix.CreateScale(escalaX, escalaY, escalaZ) *
+                Matrix.CreateTranslation(posicaoX, posicaoY, posicaoZ);
         }
 
-        public void Draw(GameTime gameTime, BasicCamera camera)
+        public void Draw(GameTime tempoJogo, BasicCamera camera)
         {
-            model.Draw(this.world, camera.ViewMatrix, camera.ProjectionMatrix);
+            modelo.Draw(this.matrizMundo, camera.ViewMatrix, camera.ProjectionMatrix);
         }
 
     }
