@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacXNA-Man", "PacXNA-Man\PacXNA-Man\PacXNA-Man.csproj", "{4A019A0E-711B-4855-8653-BAC4440B4FF1}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PacXNA-ManContent", "PacXNA-Man\PacXNA-ManContent\PacXNA-ManContent.contentproj", "{CA6224D9-5B91-436A-9305-0F7D17316F2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A019A0E-711B-4855-8653-BAC4440B4FF1}.Debug|x86.ActiveCfg = Debug|x86
+		{4A019A0E-711B-4855-8653-BAC4440B4FF1}.Debug|x86.Build.0 = Debug|x86
+		{4A019A0E-711B-4855-8653-BAC4440B4FF1}.Release|x86.ActiveCfg = Release|x86
+		{4A019A0E-711B-4855-8653-BAC4440B4FF1}.Release|x86.Build.0 = Release|x86
+		{CA6224D9-5B91-436A-9305-0F7D17316F2E}.Debug|x86.ActiveCfg = Debug|x86
+		{CA6224D9-5B91-436A-9305-0F7D17316F2E}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

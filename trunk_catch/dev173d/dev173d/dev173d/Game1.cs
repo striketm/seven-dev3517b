@@ -180,6 +180,11 @@ namespace dev173d
 
             //GraphicsDevice.RasterizerState = myRasterizerStateNormal;
 
+            RasterizerState myRasterizerStateClamp = new RasterizerState();
+            myRasterizerStateClamp.GraphicsDevice.SamplerStates = SamplerState.LinearClamp;
+
+            GraphicsDevice = myRasterizerStateClamp;
+
             //? slow?
             chao.Draw(gameTime, camera);
             teto.Draw(gameTime, camera);
