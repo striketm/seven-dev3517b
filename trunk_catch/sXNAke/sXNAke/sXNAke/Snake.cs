@@ -135,6 +135,7 @@ namespace sXNAke
 
                 #region bodies collide borders
 
+                
                 bool bodyCollidedWithBorders = false;
 
                 if (body.Position.X > Window.ClientBounds.Width)
@@ -155,33 +156,38 @@ namespace sXNAke
                 }
 
                 if (bodyCollidedWithBorders) body.Visible = false;
-
+                
 
                 #endregion
 
+                if (body.CollisionRect.Contains(this.CollisionRect))
+                    Die();
+
                 foreach (ChangeDirection changeDirection in changeDirections)
                 {
-                    bool removeThisChangeDirection = true;
+                    //bool removeThisChangeDirection = true;
 
                     if (body.CollisionRect.Contains(changeDirection.rect))
                     {
                         body.actual_direction = changeDirection.direction;
-                        removeThisChangeDirection = false;
+                        //removeThisChangeDirection = false;
+                        if (bodies.Last().CollisionRect.Contains(changeDirection.rect))
+                            changeDirection.active = false;
                     }
-                    else
-                    {
-                        removeThisChangeDirection = true;
-                    }
-                    if (removeThisChangeDirection) changeDirection.active = false;
+                    //else
+                    //{
+                    //    //removeThisChangeDirection = true;
+                    //}
+                   //if (removeThisChangeDirection) changeDirection.active = false;
                 }
             }
 
-            //Window.Title = ""+bodies.Count;
+            Window.Title = ""+bodies.Count;
 
             for (int k = 0; k < changeDirections.Count; k++)
             {
-                //if (changeDirections[k].active == false)
-                //changeDirections.RemoveAt(k);
+                if (changeDirections[k].active == false)
+                    changeDirections.RemoveAt(k);
             }
 
             for (int k = 0; k < bodies.Count; k++)
@@ -189,6 +195,10 @@ namespace sXNAke
                 if (bodies[k].Visible == false)
                     bodies.RemoveAt(k);
             }
+
+            //da mesma forma, criar um metodo pra remover todos os CD q nao estiverem colidindo com nenhuma
+            //parte do corpo? isso seria apenas uma correção para um bug que NAO VAI existir qd o corpo 
+            //colidir com algo...
 
             /* TODO: Criar um metodo para setar quais
              * teclas cada jogador responde.
@@ -281,7 +291,7 @@ namespace sXNAke
 
             }
 
-            Window.Title = "" + changeDirections.Count;
+            //Window.Title = "" + changeDirections.Count;
 
             if (player == "2")
             {
@@ -385,10 +395,10 @@ namespace sXNAke
                 body.Draw(gameTime, spriteBatch);
             }
 
-            //foreach (ChangeDirection CD in changeDirections)
-            //{
-            //    spriteBatch.Draw(texture, CD.rect, Color.Black);
-            //}
+            foreach (ChangeDirection CD in changeDirections)
+            {
+                spriteBatch.Draw(texture, CD.rect, Color.LightBlue);
+            }
 
             base.Draw(gameTime, spriteBatch);
         }
