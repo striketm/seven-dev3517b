@@ -179,13 +179,7 @@ namespace dev173d
             myRasterizerStateUnCulled.CullMode = CullMode.None;
 
             //GraphicsDevice.RasterizerState = myRasterizerStateNormal;
-
-            RasterizerState myRasterizerStateClamp = new RasterizerState();
-            myRasterizerStateClamp.GraphicsDevice.SamplerStates = SamplerState.LinearClamp;
-
-            GraphicsDevice = myRasterizerStateClamp;
-
-            //? slow?
+                       
             chao.Draw(gameTime, camera);
             teto.Draw(gameTime, camera);
             parede_frente.Draw(gameTime, camera);
