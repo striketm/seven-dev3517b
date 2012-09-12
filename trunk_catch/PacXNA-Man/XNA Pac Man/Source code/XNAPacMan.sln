@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAPacMan", "XNAPacMan.csproj", "{50B41810-4062-4FBF-AEB3-28C23453675E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source codeContent", "Content\Source codeContent.contentproj", "{38EA2B21-F5C9-4451-B1A8-A77D5AA01290}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

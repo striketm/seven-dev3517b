@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacman", "Pacman\Pacman.csproj", "{F66A8F31-12F8-4723-A8F4-812FBBAEAAB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanContent", "Pacman\Content\PacmanContent.contentproj", "{67223201-6743-4345-AD27-AD9EECE75666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
