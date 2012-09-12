@@ -38,7 +38,6 @@ namespace Pacman
 
         public Game1()
         {
-
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1120;
             graphics.PreferredBackBufferHeight = 704;
