@@ -14,7 +14,7 @@ namespace dev173d
     /// <summary>
     /// Classe para criar câmeras básicas
     /// </summary>
-    class BasicCamera
+    public class BasicCamera
     {
         Vector3 position;
         /// <summary>

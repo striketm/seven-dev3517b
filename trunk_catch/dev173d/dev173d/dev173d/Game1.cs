@@ -27,10 +27,14 @@ namespace dev173d
         BasicPrimitive parede_tras;
 
         Model caixa_01;
+
+        ObjetoJogo3D caixa;
                 
         BasicCamera camera;
 
         KeyboardState ks, old_ks;
+
+        Light luz;
 
         public Game1()
         {
@@ -92,9 +96,13 @@ namespace dev173d
                * Matrix.CreateScale(10, 3.5f, 1) * //não seria melhor deixar a rotação para todos, mesmo que seja 0, para padronizar?
                Matrix.CreateTranslation(0, 0, 5f);
 
-            caixa_01 = Content.Load<Model>("caixas/caixa_06");            
+            caixa_01 = Content.Load<Model>("caixas/caixa_06");
+
+            caixa = new ObjetoJogo3D(GraphicsDevice, caixa_01);
         
             camera = new BasicCamera(GraphicsDevice);
+
+            luz = new Light(GraphicsDevice);
 
         }
 
@@ -189,13 +197,17 @@ namespace dev173d
             parede_direita.Draw(gameTime, camera);
             parede_esquerda.Draw(gameTime, camera);
             parede_tras.Draw(gameTime, camera);
-            Matrix temp = Matrix.Identity;
-            temp *= Matrix.CreateScale(0.01f) * Matrix.CreateTranslation(Vector3.Zero);
 
-            caixa_01.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
+            //Matrix temp = Matrix.Identity;
+            //temp *= Matrix.CreateScale(0.01f) * Matrix.CreateTranslation(Vector3.Zero);
+
+            //caixa_01.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
             
             //temp *= Matrix.CreateScale(0.008f) * Matrix.CreateTranslation(new Vector3(0.9f, 0, 0));
             //caixa_02.Draw(temp, camera.ViewMatrix, camera.ProjectionMatrix);
+
+            caixa.Draw(gameTime, camera, luz);
+            
             
             base.Draw(gameTime);
         }
