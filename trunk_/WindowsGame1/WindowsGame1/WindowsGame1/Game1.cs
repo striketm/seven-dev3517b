@@ -8,8 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using WindowsGame1._6_Ship3D;
 
-namespace Objeto3D_2
+namespace WindowsGame1
 {
     /// <summary>
     /// This is the main type for your game
@@ -19,17 +20,9 @@ namespace Objeto3D_2
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Model carro;
+        Ship3D ship3d;
 
-        Matrix visao, projecao, mundo;
-
-        Vector3 posicaoCamera, posicaoCarro;
-
-        float rotacao;
-
-        float velocidade;
-
-        KeyboardState teclado;
+        BasicCamera camera;
 
         public Game1()
         {
@@ -46,9 +39,7 @@ namespace Objeto3D_2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            posicaoCarro = new Vector3(0, 0, 0);
-            posicaoCamera = new Vector3(10, 10, 0);
-            rotacao = 0;
+
             base.Initialize();
         }
 
@@ -60,13 +51,15 @@ namespace Objeto3D_2
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            carro = Content.Load<Model>("modelos/carro");
 
-            projecao = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
-                graphics.GraphicsDevice.Viewport.AspectRatio, 0.1f, 100.0f);
+            //modelos básicos vindos da unity:
 
-            visao = Matrix.CreateLookAt(posicaoCamera, posicaoCarro, Vector3.Up);
-            // TODO: use this.Content to load your game content here
+            //ship3d = new Ship3D(Content.Load<Model>("6_Ship3D/Space Shooter/Space_Shooter"));
+
+            ship3d = new Ship3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
+
+            camera = new BasicCamera(new Vector3(0, 5, 15), Vector3.Zero, Vector3.Up);
+            
         }
 
         /// <summary>
@@ -85,48 +78,11 @@ namespace Objeto3D_2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-           teclado = Keyboard.GetState();
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
 
-           if (teclado.IsKeyDown(Keys.Up))
-           {
-               if (velocidade < 1) 
-               velocidade += 0.03f;
-             
-           }
-           else if (teclado.IsKeyDown(Keys.Down))
-           {
-               if (velocidade > -1) 
-               velocidade -= 0.03f;
-            
-           }
-           else
-           {
-               velocidade = 0;
-           }
-
-           if (teclado.IsKeyDown(Keys.Left))
-               rotacao += 0.1f;
-           else if (teclado.IsKeyDown(Keys.Right))
-               rotacao -= 0.1f;
-          
-
-           // O CÓDIGO ABAIXO, UM POUCO DIFERENTE DOS OUTROS, ATUALIZA OS EIXOS X E Z, DE ACORDO COM A ROTAÇÃO DO CARRO (NO EIXO Y)
-            
-           //VEJAM O CÓDIGO E AGUARDEM. 
-
-           //OBS : UTILIZE ESSE CÓDIGO CASO QUEIRA CRIAR UM JOGO DE CORRIDA
-
-           Vector3 novaPosicaoCarro = new Vector3(0, 0, velocidade);
-         
-           posicaoCarro.Z += Vector3.Transform(novaPosicaoCarro, Matrix.CreateRotationY(rotacao)).Z;
-           posicaoCarro.X += Vector3.Transform(novaPosicaoCarro, Matrix.CreateRotationY(rotacao)).X;
-
-
-          
-           //A MATRIZ DE VISÃO É SEMPRE ATUALIZADA DE FORMA QUE A CAMERA SEMPRE "OLHE" PARA O CARRO
-           visao = Matrix.CreateLookAt(posicaoCamera, posicaoCarro, Vector3.Up);
-
-           mundo = Matrix.CreateRotationY(rotacao) * Matrix.CreateTranslation(posicaoCarro);
+            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -139,10 +95,8 @@ namespace Objeto3D_2
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            
-            //QUE TAL COLOCAR AQUI O CÓDIGO DE ILUMINAÇÃO BÁSICA HEIN ? É O MESMO DO CUBO DO PROJETO "Objeto3D"
+            ship3d.Draw(camera);
 
-            carro.Draw(mundo , visao, projecao);
             base.Draw(gameTime);
         }
     }
