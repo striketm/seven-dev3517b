@@ -83,6 +83,7 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="_READ.ME.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WindowsGame1Content\WindowsGame1Content.contentproj">

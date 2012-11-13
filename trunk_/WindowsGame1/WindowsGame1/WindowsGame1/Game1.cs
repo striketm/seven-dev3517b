@@ -10,6 +10,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using WindowsGame1._6_Ship3D;
 
+//http://xnagpa.net/xnatutorials.php
+//http://xbox.create.msdn.com/en-US/education/catalog/sample/game_state_management
+//http://www.xnadevelopment.com/tutorials/thestateofthings/thestateofthings.shtml
+//http://www.dreamincode.net/forums/topic/277946-xna-game-state-management-question/
+//
+
 namespace WindowsGame1
 {
     /// <summary>
