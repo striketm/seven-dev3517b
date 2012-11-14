@@ -42,7 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="box.jpg">
+    <Compile Include="teste\box.jpg">
       <Name>box</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

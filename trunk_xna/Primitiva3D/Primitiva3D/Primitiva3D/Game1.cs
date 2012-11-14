@@ -30,10 +30,20 @@ namespace Primitiva3D
 
         Matrix worldTest;
 
+        Camera camera;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.ApplyChanges();
+
+            IsMouseVisible = true;
+
+            Window.Title = "Car3D! o/";
         }
 
         /// <summary>
@@ -80,7 +90,7 @@ namespace Primitiva3D
             primitivas[1].Position = new Vector3(0.5f, 0.5f, 0);
             primitivas[1].Color = Color.Green;
             
-            primitivas[1].TextureCoordinate = new Vector2(1.0f, 0.0f);
+           primitivas[1].TextureCoordinate = new Vector2(1.0f, 0.0f);
 
             primitivas[2] = new VertexPositionColorTexture();
             primitivas[2].Position = new Vector3(0.5f, -0.5f, 0);
@@ -114,7 +124,10 @@ namespace Primitiva3D
             efeitoBasico = new BasicEffect(GraphicsDevice);
             
             //Cria a Matriz de visão (aqui definimos a posicao da camera (primeiro argumento), a posição alvo na qual na qual ela vai estar vendo (segundo argumento) e o Vector.Up (argumento padrão))
-            efeitoBasico.View = Matrix.CreateLookAt(new Vector3(0, 0, 3), new Vector3(0, 0, 0), Vector3.Up);
+            //efeitoBasico.View = Matrix.CreateLookAt(
+            //    new Vector3(0, 0, 3),//posição, z positivo para fora da tela
+            //    new Vector3(0, 0, 0),//apontamento da camera
+            //    Vector3.Up);//orientação, "em pé"
 
             //Cria a Matriz de projeção (define como o objeto será visualizado na tela)
 
@@ -123,22 +136,28 @@ namespace Primitiva3D
             //O terceiro argumento definimos a distância mínima na qual um objeto pode ser visualizado (0.1f)
             //O quarto argumento definimos a distância máxima na qual um objeto pode ser visualizado (100.0f)
             
-            efeitoBasico.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
-            graphics.GraphicsDevice.Viewport.AspectRatio, 0.1f, 100.0f);
+            //efeitoBasico.Projection = Matrix.CreatePerspectiveFieldOfView(
+            //    MathHelper.PiOver4,//ângulo de abertura
+            //graphics.GraphicsDevice.Viewport.AspectRatio,//proporção de tela
+            //0.1f, //plano de perto
+            //100.0f);//plano de longe
+
+            camera = new Camera(new Vector3(0, 0, 3), Vector3.Zero, Vector3.Up, graphics);
             
             //Cria a Matriz de Mundo do objeto 3D (aqui definimos seu comportamento (translação/rotação/escala)) (atribuindo uma matrix identidade)
-            efeitoBasico.World = Matrix.Identity;
+            //efeitoBasico.World = Matrix.Identity;
 
             //Habilita o efeito de cores nos vértices:
-            //efeitoBasico.VertexColorEnabled = true;
+            efeitoBasico.VertexColorEnabled = true;
 
             //Habilita as texturas nos vértices:
             efeitoBasico.TextureEnabled = true;
 
             //Tem que carregar a textura:
-            efeitoBasico.Texture = Content.Load<Texture2D>("box");
+            efeitoBasico.Texture = Content.Load<Texture2D>("teste/box");
 
-            //Exercício 01: Criar uma classe que crie uma primitiva com textura, como mostrado...
+            //Exercício 01: Criar uma classe que crie uma primitiva com textura,
+            //como mostrado...
 
             //Exercício 02: Criar uma classe Camera
 
@@ -193,11 +212,14 @@ namespace Primitiva3D
 
             efeitoBasico.CurrentTechnique.Passes[0].Apply();
 
-            efeitoBasico.World = worldTest;
+            //efeitoBasico.World = worldTest;
 
             //não esquecer de mudar para list e a quantidade de primitivas desenhadas...
-            GraphicsDevice.DrawUserPrimitives<VertexPositionColorTexture>(PrimitiveType.TriangleList,
-                primitivas, 0, 2);
+            GraphicsDevice.DrawUserPrimitives<VertexPositionColorTexture>(
+                PrimitiveType.TriangleList,
+                primitivas, 
+                0,//offset
+                2);//quantas primitivas
 
             // TODO: Add your drawing code here
 
