@@ -18,7 +18,7 @@ namespace WindowsGame1._6_Ship3D
     /// Esta classe representará uma nave (jogador ou inimigo) no jogo
     /// TO DO : herdar de uma classe objeto 3d mais básica?
     /// </summary>
-    class Ship3D
+    class SpaceShip3D
     {
         /// <summary>
         /// Este model representa o .fbx carregado, com as texturas
@@ -30,14 +30,14 @@ namespace WindowsGame1._6_Ship3D
         /// A matrix de mundo do objeto, aqui pode ser colocadas as transformações
         /// de posição, escala e rotação
         /// </summary>
-        Matrix world;
+        public Matrix world;
 
         /// <summary>
         /// Construtor básico de uma nave
         /// TO DO : overloads
         /// </summary>
         /// <param name="model">O modelo 3d da nave</param>
-        public Ship3D(Model model)
+        public SpaceShip3D(Model model)
         {
             //atribuições:
             this.model = model;

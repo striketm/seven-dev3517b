@@ -8,100 +8,149 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using WindowsGame1._6_Ship3D;
 
-//http://xnagpa.net/xnatutorials.php
-//http://xbox.create.msdn.com/en-US/education/catalog/sample/game_state_management
-//http://www.xnadevelopment.com/tutorials/thestateofthings/thestateofthings.shtml
-//http://www.dreamincode.net/forums/topic/277946-xna-game-state-management-question/
-//
+using WindowsGame1._1_Pong;
+using WindowsGame1._2_BreakOut;
+using WindowsGame1._3_SpaceInvaders;
+using WindowsGame1._4_RType;
+using WindowsGame1._5_Quiz;
+using WindowsGame1._6_Ship3D;
 
 namespace WindowsGame1
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+
         SpriteBatch spriteBatch;
 
-        Ship3D ship3d;
+        enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D }
 
-        BasicCamera camera;
+        GameState presentState = GameState.SPACEINVADERS;
 
+        Pong pong;
+        BreakOut breakOut;
+        SpaceInvaders spaceInvaders;
+        RType rType;
+        Quiz quiz;
+        Ship3D ship3D;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //modelos básicos vindos da unity:
+            //to do refactor
 
-            //ship3d = new Ship3D(Content.Load<Model>("6_Ship3D/Space Shooter/Space_Shooter"));
+            pong = new Pong(Content);
+            breakOut = new BreakOut(Content);
+            spaceInvaders = new SpaceInvaders(Content);
+            rType = new RType(Content);
+            quiz = new Quiz(Content);        
+            ship3D = new Ship3D(Content);
 
-            ship3d = new Ship3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
-
-            camera = new BasicCamera(new Vector3(0, 5, 15), Vector3.Zero, Vector3.Up);
-            
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+           
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            switch (presentState)
+            {
+                case GameState.PONG:
 
-            // TODO: Add your update logic here
+                    pong.Update();
 
+                    break;
+
+                case GameState.BREAKOUT:
+
+                    breakOut.Update();
+
+                    break;
+
+                case GameState.SPACEINVADERS:
+
+                    spaceInvaders.Update();
+
+                    break;
+
+                case GameState.RTYPE:
+
+                    rType.Update();
+
+                    break;
+
+                case GameState.QUIZ:
+
+                    quiz.Update();
+
+                    break;
+
+                case GameState.SHIP3D:
+
+                    ship3D.Update();
+
+                    break;
+            }
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            ship3d.Draw(camera);
+            switch (presentState)
+            {
+                case GameState.PONG:
+
+                    pong.Draw();
+
+                    break;
+
+                case GameState.BREAKOUT:
+
+                    breakOut.Draw();
+
+                    break;
+
+                case GameState.SPACEINVADERS:
+
+                    spaceInvaders.Draw();
+
+                    break;
+
+                case GameState.RTYPE:
+
+                    rType.Draw();
+
+                    break;
+
+                case GameState.QUIZ:
+
+                    quiz.Draw();
+
+                    break;
+
+                case GameState.SHIP3D:
+                    
+                        ship3D.Draw();
+
+                    break;
+            }
 
             base.Draw(gameTime);
         }
