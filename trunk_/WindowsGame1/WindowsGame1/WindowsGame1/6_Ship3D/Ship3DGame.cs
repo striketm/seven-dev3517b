@@ -21,10 +21,13 @@ namespace WindowsGame1._6_Ship3D
         {
             //modelos básicos vindos da unity:
 
-            //ship3d = new Ship3D(Content.Load<Model>("6_Ship3D/Space Shooter/Space_Shooter"));
+            //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Space Shooter/Space_Shooter"));
 
-            ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/F1 cars/rbr"));
-            ship3d.world = Matrix.CreateScale(0.25f);
+            ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
+
+            //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/montanhas"));
+
+            //ship3d.world = Matrix.CreateScale(0.25f);
 
             camera = new BasicCamera(new Vector3(0, 5, 15), Vector3.Zero, Vector3.Up);
         }

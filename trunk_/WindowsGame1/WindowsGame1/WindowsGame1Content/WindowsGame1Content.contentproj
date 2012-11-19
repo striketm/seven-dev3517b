@@ -173,6 +173,23 @@
     <Folder Include="4_RType\" />
     <Folder Include="5_Quiz\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="6_Ship3D\montanhas.fbx">
+      <Name>montanhas</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="6_Ship3D\nave.fbx">
+      <Name>nave</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="6_Ship3D\starfox.fbx">
+      <Name>starfox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
