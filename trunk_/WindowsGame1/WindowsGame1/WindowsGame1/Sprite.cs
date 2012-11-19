@@ -11,6 +11,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace WindowsGame1
 {
+    /// <summary>
+    /// 
+    /// </summary>
     abstract class Sprite
     {
         /// <summary>
@@ -157,7 +160,8 @@ namespace WindowsGame1
         {
             get
             {
-                return collision;
+                return collision;//PIVOT!!!
+                //return new Rectangle((int)Posicao.X, (int)Posicao.Y, animacao_atual.quadro_X, animacao_atual.quadro_Y);
             }
             set
             {
@@ -326,19 +330,24 @@ namespace WindowsGame1
             public int quadro_Y;
             public int qtd_quadros;
             public int quadros_seg;
-            public int Y;
+            public int Y_inicial;
+            public int X_inicial;
             public string nome;
             public bool ativa;
             public int quadro_atual;
         }
 
-        animation current;
+        /// <summary>
+        /// 
+        /// </summary>
+        animation current_animation;
         
         /// <summary>
         /// 
         /// </summary>
         public Sprite()
         {
+            
             //this.textura = textura;
             //this.posicao = new Vector2(0, 0);
             //this.velocidade = new Vector2(1, 1);

@@ -16,87 +16,103 @@ namespace WindowsGame1._6_Ship3D
     /// </summary>
     class BasicCamera
     {
-        /// <summary>
-        /// A matrix de visualização (frustum)
-        /// </summary>
-        public Matrix view;
-
-        /// <summary>
-        /// A matrix de projeção (da câmera na tela)
-        /// </summary>
-        public Matrix projection;
-
-        /// <summary>
-        /// Onde a câmera está
-        /// </summary>
         Vector3 position;
-
         /// <summary>
-        /// Para onde a câmera está olhando
+        /// Representa a posição da câmera, onde ela está.
         /// </summary>
-        Vector3 look_at;
+        public Vector3 Position { get { return position; } set { position = value; } }
 
+        Vector3 target;
         /// <summary>
-        /// Para onde fica o "cima" da câmera
+        /// Representa o alvo da câmera, para onde ela aponta.
         /// </summary>
+        public Vector3 Target { get { return target; } set { target = value; } }
+
         Vector3 orientation;
+        /// <summary>
+        /// Representa a orientação da câmera, qual o seu "cima".
+        /// </summary>
+        public Vector3 Orientation { get { return orientation; } set { orientation = value; } }
+
+        float apertureAngle;
+        /// <summary>
+        /// Representa o ângulo de abertura da "lente" da câmera.
+        /// </summary>
+        public float ApertureAngle { get { return apertureAngle; } set { apertureAngle = value; } }
+
+        float screenRatio;
+        /// <summary>
+        /// Representa a razão / proporção da tela / monitor (4/3, 16/9...).
+        /// </summary>
+        public float ScreenRatio { get { return screenRatio; } set { screenRatio = value; } }
+
+        float nearPlane;
+        /// <summary>
+        /// Representa o plano de corte de proximidade, mais perto que isso a câmera não mostra
+        /// </summary>
+        public float NearPlane { get { return nearPlane; } set { nearPlane = value; } }
+
+        float farPlane;
+        /// <summary>
+        /// Representa o plano de corte de distância, mais longe que isso a câmera não mostra
+        /// </summary>
+        public float FarPlane { get { return farPlane; } set { farPlane = value; } }
+
+        Matrix viewMatrix;
+        /// <summary>
+        /// Representa a matriz de visualização da câmera
+        /// </summary>
+        public Matrix ViewMatrix { get { return viewMatrix; } set { viewMatrix = value; } }
+
+        Matrix projectionMatrix;
+        /// <summary>
+        /// Representa a matriz de projeção da câmera
+        /// </summary>
+        public Matrix ProjectionMatrix { get { return projectionMatrix; } set { projectionMatrix = value; } }
 
         /// <summary>
-        /// O ângulo de abertura da câmera, em graus
+        /// Lista de câmeras
         /// </summary>
-        float aperture;
+        public static List<BasicCamera> list = new List<BasicCamera>();
 
         /// <summary>
-        /// A razão de projeção da tela
+        /// Construtor padrão com valores padrões
         /// </summary>
-        float ratio;
-
-        /// <summary>
-        /// O plano de distância mínima que a câmera renderiza
-        /// </summary>
-        float near;
-
-        /// <summary>
-        /// O plano de distância máxima que a câmera renderiza
-        /// </summary>
-        float far;
-        
-        /// <summary>
-        /// Cosntrutor de uma câmera básica
-        /// </summary>
-        /// <param name="position">Onde está a câmera</param>
-        /// <param name="look_at">Para onde ela está apontando</param>
-        /// <param name="orientation">Para onde é o "cima"</param>
-        public BasicCamera(Vector3 position, Vector3 look_at, Vector3 orientation)
+        public BasicCamera()
         {
-            //atribuições
-            this.position = position;
-            this.look_at = look_at;
-            this.orientation = orientation;
+            Position = new Vector3(0.0f, 5.0f, 15.0f);
+            Target = new Vector3(0.0f,0.0f,0.0f);
+            Orientation = Vector3.Up;
 
-            this.aperture = 90.0f;
-            this.ratio = 16.0f / 9.0f;
-            this.near = 1.0f;
-            this.far = 100.0f;
+            ApertureAngle = 90.0f;
+            ScreenRatio = 16.0f / 9.0f;
+            NearPlane = 1.0f;
+            FarPlane = 100.0f;
 
-            //não esquecer de chamar logo o update senão pode tentar o view sem new...
+            list.Add(this);
+
             Update();
         }
 
-        /// <summary>
-        /// A câmera apenas atualiza, é utilizada em draws, mas não tem um...
-        /// </summary>
         public void Update()
         {
-            //TO DO : mudar apenas se houver mudança...
 
-            view = Matrix.CreateLookAt(position, look_at, orientation);
+            #region a câmera tem que ser sempre atualizada se houver mudança
 
-            projection = Matrix.CreatePerspectiveFieldOfView(
-                MathHelper.ToRadians(aperture),
-                ratio,
-                near,
-                far);
+            ViewMatrix = Matrix.CreateLookAt(
+                Position,
+                Target,
+                Orientation);
+
+            ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
+                MathHelper.ToRadians(ApertureAngle),
+                ScreenRatio,
+                NearPlane,
+                FarPlane);
+
+            #endregion
+
         }
+
     }
 }

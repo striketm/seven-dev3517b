@@ -14,6 +14,7 @@ namespace CapturarObjetos.Nucleo
     class ObjetoJogo
     {
         #region Atributos
+        
         Model modelo;
         /// <summary>
         /// Representa a malha do objeto
