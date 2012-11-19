@@ -26,7 +26,7 @@ namespace WindowsGame1
 
         enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D }
 
-        GameState presentState = GameState.SPACEINVADERS;
+        GameState presentState = GameState.SHIP3D;
 
         Pong pong;
         BreakOut breakOut;
@@ -34,6 +34,10 @@ namespace WindowsGame1
         RType rType;
         Quiz quiz;
         Ship3D ship3D;
+
+        string[] menuItems = { "Start Game", "High Scores", "End Game" };
+
+        Menu menu;
         
         public Game1()
         {
@@ -58,6 +62,10 @@ namespace WindowsGame1
             rType = new RType(Content);
             quiz = new Quiz(Content);        
             ship3D = new Ship3D(Content);
+
+            menu = new Menu(this,spriteBatch,Content.Load<SpriteFont>("Arial24"),menuItems);
+            
+            //Components.Add(menu);
 
         }
 
@@ -113,6 +121,8 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+
             switch (presentState)
             {
                 case GameState.PONG:
@@ -151,8 +161,12 @@ namespace WindowsGame1
 
                     break;
             }
+            
+            //Leave the base.Draw inside the spriteBatch Begin End for the calls to the components
 
             base.Draw(gameTime);
+
+            spriteBatch.End();
         }
     }
 }
