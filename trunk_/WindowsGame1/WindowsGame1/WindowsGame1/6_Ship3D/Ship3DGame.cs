@@ -23,13 +23,13 @@ namespace WindowsGame1._6_Ship3D
 
             //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Space Shooter/Space_Shooter"));
 
-            ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
+            ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/F1 cars/ferrari"));
 
             //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/montanhas"));
 
             //ship3d.world = Matrix.CreateScale(0.25f);
 
-            camera = new BasicCamera(new Vector3(0, 5, 15), Vector3.Zero, Vector3.Up);
+            camera = new BasicCamera(new Vector3(0, 3, 5), Vector3.Zero, Vector3.Up);
         }
 
         public void Update()
