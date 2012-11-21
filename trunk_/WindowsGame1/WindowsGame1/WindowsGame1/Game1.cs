@@ -152,6 +152,10 @@ Content.Load<Texture2D>("quitscreen"));
             return ks.IsKeyUp(key) && !oldks.IsKeyUp(key);
         }
 
+        private bool CheckButton(Buttons button)
+        {
+            return gps.IsButtonUp(button) && oldgps.IsButtonDown(button);
+        }
         private void HandleStartScreen()//put in the class!
         {
             if (keyboardWasPressed(Keys.Enter))// || CheckButton(Buttons.A))
