@@ -36,7 +36,7 @@ namespace WindowsGame1
         Quiz quiz;
         Ship3D ship3D;
 
-        string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship","", "Back to Intro", "Credits", "Configs", "Highscores", "F12 to full screen", "Escape to exit"};
+        string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship","", "Back to Intro", "Credits", "Configs", "Highscores", "F12 to full screen", "P to pause", "Escape to exit"};
 
         Menu menu;
 
