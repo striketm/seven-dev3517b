@@ -36,8 +36,7 @@ namespace WindowsGame1
         Quiz quiz;
         Ship3D ship3D;
 
-        string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship",
-                             "", "Back to Intro", "Credits", "Configs", "Highscores", "Exit"};
+        string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship","", "Back to Intro", "Credits", "Configs", "Highscores", "F12 to full screen", "Escape to exit"};
 
         Menu menu;
 
@@ -48,15 +47,17 @@ namespace WindowsGame1
         GamePadState gps;
         GamePadState oldgps;
 
-        public static Game1 game1 = new Game1();//? make it singleton
-
-        //http://gamedev.stackexchange.com/questions/32018/xna-content-load-dependancy
-        //http://xboxforums.create.msdn.com/forums/p/28953/164454.aspx
-        //http://xboxforums.create.msdn.com/forums/p/54423/432023.aspx
-        //http://xboxforums.create.msdn.com/forums/p/44719/266681.aspx
-        
-        public Game1()
+        static Game1 singleton;//singleton... or just a static Game1 Instance assigned to this...
+        public static Game1 Instance { get { return singleton; } }//public access        
+        static Game1()//private static constructor to ensure one single point of access
         {
+            singleton = new Game1();  
+        }  
+             
+        private Game1()
+        {
+            //Instance = this;
+
             graphics = new GraphicsDeviceManager(this);
 
             graphics.PreferredBackBufferWidth = 800;
@@ -69,7 +70,6 @@ namespace WindowsGame1
 
             Content.RootDirectory = "Content";
 
-            game1 = this;
         }
 
         protected override void Initialize()
@@ -92,7 +92,7 @@ namespace WindowsGame1
 
             menu = new Menu(this,spriteBatch,Content.Load<SpriteFont>("Arial24"),menuItems);
             
-            //Components.Add(menu);
+            Components.Add(menu);
 
         }
 
@@ -101,8 +101,40 @@ namespace WindowsGame1
            
         }
 
+        public bool keyboardIsPressing(Keys key)
+        {
+            return ks.IsKeyDown(key);
+        }
+
+        public bool keyboardWasPressed(Keys key)
+        {
+            return ks.IsKeyDown(key) && !oldks.IsKeyDown(key);
+        }
+
+        public bool keyboardWasReleased(Keys key)
+        {
+            return ks.IsKeyUp(key) && !oldks.IsKeyUp(key);
+        }
+
         protected override void Update(GameTime gameTime)
         {
+            oldks = ks;
+            oldms = ms;
+            oldgps = gps;
+            ks = Keyboard.GetState();
+            ms = Mouse.GetState();
+            gps = GamePad.GetState(PlayerIndex.One);
+
+            if (keyboardWasPressed(Keys.Escape))
+            {
+                Exit();
+            }
+
+            if (keyboardWasPressed(Keys.F12))
+            {
+                graphics.ToggleFullScreen();
+            }
+
             switch (presentState)
             {
                 case GameState.PONG:

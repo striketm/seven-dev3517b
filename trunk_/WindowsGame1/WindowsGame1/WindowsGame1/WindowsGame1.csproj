@@ -72,6 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Pong\Ball.cs" />
     <Compile Include="1_Pong\Pallete.cs" />
     <Compile Include="1_Pong\PongGame.cs" />
     <Compile Include="2_BreakOut\BreakOutGame.cs" />
@@ -131,7 +132,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="0_Docs\Games Independentes.pdf" />
     <None Include="0_Docs\collision1.pdf" />
+    <None Include="0_Docs\EditalGDDdoBancodoBrasil.pdf" />
+    <None Include="0_Docs\Pesquisaabragames.pdf" />
     <None Include="0_Docs\screenmanager1.pdf" />
     <None Include="0_Docs\screenmanager2.pdf" />
     <None Include="0_Docs\screenmanager3.pdf" />

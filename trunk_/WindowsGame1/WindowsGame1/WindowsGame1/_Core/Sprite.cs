@@ -14,7 +14,7 @@ namespace WindowsGame1
     /// <summary>
     /// 
     /// </summary>
-    abstract class Sprite
+    abstract class Sprite//GameObject2D
     {
         /// <summary>
         /// 
@@ -75,7 +75,17 @@ namespace WindowsGame1
             }
         }
 
-        // x y ?
+        public float PositionX
+        {
+            get { return position.X; }
+            set { position.X = value; }
+        }
+
+        public float PositionY
+        {
+            get { return position.Y; }
+            set { position.Y = value; }
+        }
 
         /// <summary>
         /// 
