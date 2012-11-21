@@ -45,11 +45,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="6_Ship3D\Space Shooter\Textures\1K_Body-NM.jpg">
-      <Name>1K_Body-NM</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="6_Ship3D\Space Shooter\Textures\1K_Body-TXTR.jpg">
       <Name>1K_Body-TXTR</Name>
       <Importer>TextureImporter</Importer>
@@ -167,11 +162,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="1_Pong\" />
     <Folder Include="2_Breakout\" />
     <Folder Include="3_SpaceInvaders\" />
     <Folder Include="4_RType\" />
     <Folder Include="5_Quiz\" />
+    <Folder Include="_Core\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="6_Ship3D\montanhas.fbx">
@@ -195,6 +190,18 @@
       <Name>kart</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="1_Pong\pallete1.png">
+      <Name>pallete1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="1_Pong\pallete2.png">
+      <Name>pallete2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

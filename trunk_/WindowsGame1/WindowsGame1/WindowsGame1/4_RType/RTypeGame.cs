@@ -19,12 +19,12 @@ namespace WindowsGame1._4_RType
            
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }

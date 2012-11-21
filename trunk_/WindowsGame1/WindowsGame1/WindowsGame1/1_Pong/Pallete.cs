@@ -9,22 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace WindowsGame1._2_BreakOut
+namespace WindowsGame1._1_Pong
 {
-    class BreakOut
+    class Pallete:Sprite
     {
-        
-        public BreakOut(ContentManager Content)
-        {
-          
-        }
-
-        public void Update(GameTime gameTime)
+        public Pallete(Texture2D texture):base(texture)
         {
 
         }
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Update(GameTime gameTime)
         {
             
         }

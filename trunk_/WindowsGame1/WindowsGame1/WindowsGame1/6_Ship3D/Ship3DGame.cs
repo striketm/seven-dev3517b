@@ -34,12 +34,12 @@ namespace WindowsGame1._6_Ship3D
             camera = new BasicCamera();
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             ship3d.Draw(camera);
             //ship3d.ModelDraw(camera);

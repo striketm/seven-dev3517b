@@ -26,12 +26,12 @@ namespace WindowsGame1._3_SpaceInvaders
             this.Content = Content;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }

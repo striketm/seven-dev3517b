@@ -24,9 +24,10 @@ namespace WindowsGame1
 
         SpriteBatch spriteBatch;
 
-        enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D }
+        enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D, 
+        INTRO, MENU, CREDIT, CONFIG, EXIT, HIGHSCORE, PAUSE, GAMEOVER, THEEND}
 
-        GameState presentState = GameState.SHIP3D;
+        GameState presentState = GameState.PONG;
 
         Pong pong;
         BreakOut breakOut;
@@ -35,13 +36,16 @@ namespace WindowsGame1
         Quiz quiz;
         Ship3D ship3D;
 
-        string[] menuItems = { "Start Game", "High Scores", "End Game" };
+        string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship",
+                             "", "Back to Intro", "Credits", "Configs", "Highscores", "Exit"};
 
         Menu menu;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            
             Content.RootDirectory = "Content";
         }
 
@@ -80,37 +84,37 @@ namespace WindowsGame1
             {
                 case GameState.PONG:
 
-                    pong.Update();
+                    pong.Update(gameTime);
 
                     break;
 
                 case GameState.BREAKOUT:
 
-                    breakOut.Update();
+                    breakOut.Update(gameTime);
 
                     break;
 
                 case GameState.SPACEINVADERS:
 
-                    spaceInvaders.Update();
+                    spaceInvaders.Update(gameTime);
 
                     break;
 
                 case GameState.RTYPE:
 
-                    rType.Update();
+                    rType.Update(gameTime);
 
                     break;
 
                 case GameState.QUIZ:
 
-                    quiz.Update();
+                    quiz.Update(gameTime);
 
                     break;
 
                 case GameState.SHIP3D:
 
-                    ship3D.Update();
+                    ship3D.Update(gameTime);
 
                     break;
             }
@@ -127,37 +131,37 @@ namespace WindowsGame1
             {
                 case GameState.PONG:
 
-                    pong.Draw();
+                    pong.Draw(gameTime, spriteBatch);
 
                     break;
 
                 case GameState.BREAKOUT:
 
-                    breakOut.Draw();
+                    breakOut.Draw(gameTime, spriteBatch);
 
                     break;
 
                 case GameState.SPACEINVADERS:
 
-                    spaceInvaders.Draw();
+                    spaceInvaders.Draw(gameTime, spriteBatch);
 
                     break;
 
                 case GameState.RTYPE:
 
-                    rType.Draw();
+                    rType.Draw(gameTime, spriteBatch);
 
                     break;
 
                 case GameState.QUIZ:
 
-                    quiz.Draw();
+                    quiz.Draw(gameTime, spriteBatch);
 
                     break;
 
                 case GameState.SHIP3D:
-                    
-                        ship3D.Draw();
+
+                    ship3D.Draw(gameTime, spriteBatch);
 
                     break;
             }

@@ -18,12 +18,12 @@ namespace WindowsGame1._5_Quiz
 
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }

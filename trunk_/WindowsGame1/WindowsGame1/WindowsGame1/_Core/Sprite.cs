@@ -23,7 +23,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected GameWindow Window
+        public GameWindow Window
         {
             get
             {
@@ -42,7 +42,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Texture2D Texture
+        public Texture2D Texture
         {
             get
             {
@@ -54,6 +54,8 @@ namespace WindowsGame1
             }
         }
 
+        //move to, move by, rotate...
+
         /// <summary>
         /// 
         /// </summary>
@@ -61,7 +63,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Vector2 Position
+        public Vector2 Position
         {
             get
             {
@@ -73,6 +75,8 @@ namespace WindowsGame1
             }
         }
 
+        // x y ?
+
         /// <summary>
         /// 
         /// </summary>
@@ -80,7 +84,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Vector2 Velocity
+        public Vector2 Velocity
         {
             get
             {
@@ -92,6 +96,8 @@ namespace WindowsGame1
             }
         }
 
+        // x y ?
+
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +105,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected bool Visible
+        public bool Visible
         {
             get
             {
@@ -114,11 +120,11 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        Rectangle frame;
+        Rectangle frame;//?
         /// <summary>
         /// 
         /// </summary>
-        protected Rectangle Frame
+        public Rectangle Frame
         {
             get
             {
@@ -133,15 +139,19 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        Rectangle destination;
+        Rectangle destination;//?
         /// <summary>
         /// 
         /// </summary>
-        protected Rectangle Destination
+        public Rectangle Destination
         {
             get
             {
-                return destination;
+                return new Rectangle(
+                   (int)Position.X,
+                   (int)Position.Y,
+                   current_animation.frame.Width,//* SCALE!
+                   current_animation.frame.Height);
             }
             set
             {
@@ -156,12 +166,16 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Rectangle Collision
+        public Rectangle Collision
         {
             get
             {
-                return collision;//PIVOT!!!
-                //return new Rectangle((int)Posicao.X, (int)Posicao.Y, animacao_atual.quadro_X, animacao_atual.quadro_Y);
+                //return collision;//PIVOT!!!
+                return new Rectangle(
+                    (int)Position.X,
+                    (int)Position.Y,
+                    current_animation.frame.Width,//*SCALE!!!
+                    current_animation.frame.Height);
             }
             set
             {
@@ -176,7 +190,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Color Color
+        public Color Color
         {
             get
             {
@@ -188,6 +202,8 @@ namespace WindowsGame1
             }
         }
 
+        //R G B? int, float?
+
         /// <summary>
         /// 
         /// </summary>
@@ -195,7 +211,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected float Alpha
+        public float Alpha
         {
             get
             {
@@ -214,7 +230,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected float Rotation
+        public float Rotation
         {
             get
             {
@@ -233,7 +249,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Vector2 Pivot
+        public Vector2 Pivot
         {
             get
             {
@@ -252,7 +268,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected Vector2 Scale
+        public Vector2 Scale
         {
             get
             {
@@ -264,6 +280,18 @@ namespace WindowsGame1
             }
         }
 
+        //protected int Scale
+        //{
+        //    //get
+        //    //{
+        //    //    return scale;
+        //    //}
+        //    set
+        //    {
+        //        scale = new Vector2(value, value);
+        //    }
+        //}
+
         /// <summary>
         /// 
         /// </summary>
@@ -271,7 +299,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected float Layer
+        public float Layer
         {
             get
             {
@@ -290,7 +318,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected bool Right
+        public bool Right
         {
             get
             {
@@ -309,7 +337,7 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        protected bool Up
+        public bool Up
         {
             get
             {
@@ -324,43 +352,79 @@ namespace WindowsGame1
         /// <summary>
         /// 
         /// </summary>
-        struct animation
+        public struct animation
         {
-            public int quadro_X;//get set origem destino
-            public int quadro_Y;
-            public int qtd_quadros;
-            public int quadros_seg;
-            public int Y_inicial;
-            public int X_inicial;
-            public string nome;
-            public bool ativa;
-            public int quadro_atual;
+            public int frameWidth;
+            public int frameHeight;
+            public int frameX;
+            public int frameY;
+
+            public Rectangle frame;
+
+            public int frames;
+            public int fps;
+            
+            public string name;
+            public bool active;
+            public int current_frame;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        animation current_animation;
-        
+        public animation current_animation;
+
+        //animation list?
+        //animation frame list?
+
+        //list
+        //static?
+
+        //window static?
+                
         /// <summary>
         /// 
         /// </summary>
-        public Sprite()
+        public Sprite(Texture2D texture)
         {
+            this.current_animation = new animation();
+            this.current_animation.active = true;
+            this.current_animation.current_frame = 0;
+            this.current_animation.fps = 1;
+            this.current_animation.frame = new Rectangle(0, 0, texture.Width, texture.Height);
+            this.current_animation.frames = 1;
+            this.current_animation.name = "";
             
-            //this.textura = textura;
-            //this.posicao = new Vector2(0, 0);
-            //this.velocidade = new Vector2(1, 1);
-            //this.origem = new Rectangle(0, 0, 60, 68);
-            //this.destino = new Rectangle(0, 0, origem.Width, origem.Height);
-            //this.rotacao = 0;// MathHelper.ToRadians(0);
-            //this.pivo = Vector2.Zero;// Vector2(destino.Width / 2, destino.Height / 2);//influencia tudo...
-            //this.direita = true;
-            //this.visivel = true;
-            //this.camada = 1.0f;
-            //this.alfa = 1f;
-            //this.cor = new Color(1.0f, 1.0f, 1.0f, alfa);//not totally ok yet, anda see alpha blend in blendstate...
-            //this.colisao = new Rectangle((int)origem.X, (int)origem.Y, origem.Width, origem.Height);
+            this.Alpha = 1.0f;
+            this.Color = new Color(1.0f, 1.0f, 1.0f, Alpha);
+            this.Position = new Vector2(1.0f, 1.0f);
+            
+            this.Destination = new Rectangle((int)Position.X, (int)Position.Y, current_animation.frame.Width, current_animation.frame.Height);
+
+            //this.Collision = new Rectangle
+
+            this.Frame = new Rectangle(0, 0, 0, 0);
+
+            this.Layer = 1.0f;
+
+            this.Pivot = new Vector2(0.0f, 0.0f);////
+
+            this.Right = true;
+
+            this.Up = true;
+
+            this.Rotation = 0.0f;
+
+            this.Scale = new Vector2(1.0f, 1.0f);
+
+            this.Texture = texture;
+
+            this.Velocity = new Vector2(5.0f, 5.0f);//x y ?
+
+            this.Visible = true;
+
+            //this.Window = //to do
+
         }
 
         /// <summary>
@@ -374,36 +438,34 @@ namespace WindowsGame1
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
-        protected void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (visible)
+            if (Visible)
             {
+
                 //int frame = (int)(gameTime.TotalGameTime.TotalSeconds * _animacao.quadros_seg) % _animacao.qtd_quadros;
 
-                //spriteBatch.Draw(
-                //        textura,
-                //        new Rectangle(
-                //            (int)posicao.X,
-                //            (int)posicao.Y,
-                //            _animacao.quadro_X,
-                //            _animacao.quadro_Y),
-                //        new Rectangle(
-                //            frame * _animacao.quadro_X,
-                //            _animacao.Y,
-                //            _animacao.quadro_X,
-                //            _animacao.quadro_Y),
-                //        new Color(
-                //            1.0f * alfa,
-                //            1.0f * alfa,
-                //            1.0f * alfa,
-                //            alfa),
-                //        rotacao,
-                //        pivo,
-                //        (direita) ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
-                //        camada);
+                spriteBatch.Draw(
+                    this.Texture,
+                    this.Destination,
+                    this.current_animation.frame,
+                    Color,
+                    Rotation,
+                    Pivot,
+                    (Right&&Up)?(SpriteEffects.None):
+                    ((!Right&&Up)?(SpriteEffects.FlipHorizontally):
+                    ((Right&&!Up)?(SpriteEffects.FlipVertically):
+                    (SpriteEffects.FlipHorizontally|SpriteEffects.FlipVertically))),
+                    Layer);
+                    
             }
         }
-
-
     }
 }
+/*
+ * (Right&&Up)?(SpriteEffects.None):
+                    ((!Right&&Up)?(SpriteEffects.FlipHorizontally):
+                    ((Right&&!Up)?(SpriteEffects.FlipVertically):
+                    ((!Right&&!Up)?(SpriteEffects.FlipHorizontally|SpriteEffects.FlipVertically):
+                    (SpriteEffects.None))))
+ */
