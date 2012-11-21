@@ -40,13 +40,36 @@ namespace WindowsGame1
                              "", "Back to Intro", "Credits", "Configs", "Highscores", "Exit"};
 
         Menu menu;
+
+        KeyboardState ks;
+        KeyboardState oldks;
+        MouseState ms;
+        MouseState oldms;
+        GamePadState gps;
+        GamePadState oldgps;
+
+        public static Game1 game1 = new Game1();//? make it singleton
+
+        //http://gamedev.stackexchange.com/questions/32018/xna-content-load-dependancy
+        //http://xboxforums.create.msdn.com/forums/p/28953/164454.aspx
+        //http://xboxforums.create.msdn.com/forums/p/54423/432023.aspx
+        //http://xboxforums.create.msdn.com/forums/p/44719/266681.aspx
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
 
-            
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.ApplyChanges();
+
+            IsMouseVisible = true;
+
+            Window.Title = "For the greater good of God...";
+
             Content.RootDirectory = "Content";
+
+            game1 = this;
         }
 
         protected override void Initialize()
@@ -174,3 +197,4 @@ namespace WindowsGame1
         }
     }
 }
+
