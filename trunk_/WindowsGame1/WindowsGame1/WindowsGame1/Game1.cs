@@ -27,7 +27,7 @@ namespace WindowsGame1
         enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D, 
         INTRO, MENU, CREDIT, CONFIG, EXIT, HIGHSCORE, PAUSE, GAMEOVER, THEEND}
 
-        GameState presentState = GameState.PONG;
+        GameState presentState = GameState.PONG;//not use = 1
 
         Pong pong;
         BreakOut breakOut;
@@ -38,8 +38,12 @@ namespace WindowsGame1
 
         string[] menuItems = { "Pong", "Breakout", "Space Invaders", "R-Type", "Quiz", "3D Ship","", "Back to Intro", "Credits", "Configs", "Highscores", "F12 to full screen", "P to pause", "Escape to exit"};
 
-        Menu menu;
+        Menu menu;//dont mess up the component menu with the state menu!²
 
+        Intro intro;
+        Credit credit;
+        GameScreen activeScreen;//ok?
+        
         KeyboardState ks;
         KeyboardState oldks;
         MouseState ms;
@@ -47,11 +51,19 @@ namespace WindowsGame1
         GamePadState gps;
         GamePadState oldgps;
 
+        public SpriteFont fontArial24;
+
+        //make a fps... not a game, a frame counter... to do 
+
+        //to do bool DEBUG and a trace method with two string parameters using the bool... 
+        //trace on the window title? on the console? change the project type?
+
         static Game1 singleton;//singleton... or just a static Game1 Instance assigned to this...
         public static Game1 Instance { get { return singleton; } }//public access        
         static Game1()//private static constructor to ensure one single point of access
         {
-            singleton = new Game1();  
+            singleton = new Game1();
+            Console.WriteLine("Hello World from console");
         }  
              
         private Game1()
@@ -91,8 +103,21 @@ namespace WindowsGame1
             ship3D = new Ship3D(Content);
 
             menu = new Menu(this,spriteBatch,Content.Load<SpriteFont>("Arial24"),menuItems);
+
+            fontArial24 = Content.Load<SpriteFont>("Arial24");
             
-            Components.Add(menu);
+            //Components.Add(menu);//dont mess up the component menu with the state menu!
+
+            intro = new Intro(this, spriteBatch);
+            //Components.Add(intro);//auto?
+            //intro.Hide();//auto?
+
+            credit = new Credit(this, spriteBatch);
+            //Components.Add(credit);//auto?
+            //credit.Hide();//auto?
+
+            activeScreen = intro;
+            activeScreen.Show();
 
         }
 
@@ -118,6 +143,8 @@ namespace WindowsGame1
 
         protected override void Update(GameTime gameTime)
         {
+            //Console.WriteLine("fuu!");
+
             oldks = ks;
             oldms = ms;
             oldgps = gps;
@@ -133,6 +160,24 @@ namespace WindowsGame1
             if (keyboardWasPressed(Keys.F12))
             {
                 graphics.ToggleFullScreen();
+            }
+
+            //i did not call the game screens updates and draws...
+            //did have to remember to add them to game components, since game 1 is singleton...
+
+            if (activeScreen == intro)//make this inside the class?
+                //to do so the screens should be available global, manager...
+            {
+                if (keyboardWasPressed(Keys.Enter))
+                {
+                    if (intro.SelectedIndex == 0)
+                    {
+                        activeScreen.Hide();
+                        activeScreen = credit;
+                        activeScreen.Show();
+                    }
+                    
+                }
             }
 
             switch (presentState)

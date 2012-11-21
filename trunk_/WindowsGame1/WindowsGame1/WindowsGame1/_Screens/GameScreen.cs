@@ -27,6 +27,9 @@ namespace WindowsGame1
         {
             this.game = game;
             this.spriteBatch = spriteBatch;
+            
+            this.Hide();
+            Game1.Instance.Components.Add(this);
         }
 
         public override void Initialize()

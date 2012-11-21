@@ -25,15 +25,21 @@ namespace WindowsGame1
         float width = 0f;
         float height = 0f;
 
+        public Vector2 offSet;
+        public bool active;
+
         public Menu(Game game,
                             SpriteBatch spriteBatch,
                             SpriteFont spriteFont,
                             string[] menuItems)
             : base(game)
         {
+            this.active = true;
+
             this.spriteBatch = spriteBatch;
             this.spriteFont = spriteFont;
             this.menuItems = menuItems;
+
             MeasureMenu();
         }
 
@@ -50,7 +56,7 @@ namespace WindowsGame1
             }
             position = new Vector2(
             (Game.Window.ClientBounds.Width - width) / 2,
-            (Game.Window.ClientBounds.Height - height) / 2);
+            (Game.Window.ClientBounds.Height - height) / 2);           
         }
 
         public int SelectedIndex
@@ -71,7 +77,7 @@ namespace WindowsGame1
             base.Initialize();
         }
 
-        private bool CheckKey(Keys theKey)
+        private bool CheckKey(Keys theKey)//use the one in game 1...
         {
             return keyboardState.IsKeyUp(theKey) &&
             oldKeyboardState.IsKeyDown(theKey);
@@ -79,34 +85,44 @@ namespace WindowsGame1
 
         public override void Update(GameTime gameTime)
         {
-            keyboardState = Keyboard.GetState();
+            if (!active) return;//
+
+            keyboardState = Keyboard.GetState();//use the one in game 1...
+
             if (CheckKey(Keys.Down))
             {
                 selectedIndex++;
                 if (selectedIndex == menuItems.Length)
                     selectedIndex = 0;
             }
+
             if (CheckKey(Keys.Up))
             {
                 selectedIndex--;
                 if (selectedIndex < 0)
                     selectedIndex = menuItems.Length - 1;
             }
-            base.Update(gameTime);
-            oldKeyboardState = keyboardState;
+
+            base.Update(gameTime);//makes difference the order?
+
+            oldKeyboardState = keyboardState;//use the one in game 1...
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-            Vector2 location = position;
+            base.Draw(gameTime);//makes difference the order???????????????????????
+
+            Vector2 location = position + offSet;//why here? move the menu?
+
             Color tint;
+
             for (int i = 0; i < menuItems.Length; i++)
             {
-                if (i == selectedIndex)
+                if ((i == selectedIndex)&&(active))
                     tint = hilite;
                 else
                     tint = normal;
+
                 spriteBatch.DrawString(
                 spriteFont,
                 menuItems[i],
