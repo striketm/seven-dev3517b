@@ -32,6 +32,15 @@ namespace WindowsGame1
             Game1.Instance.Components.Add(this);
         }
 
+        //make a method to change that does this automatically:
+        //activeScreen.Hide();
+        //        activeScreen = quitScreen;
+        //        activeScreen.Show();
+
+        //anyway, why this? in what this differ from states? whats the advantages?
+
+        //put this all together in one, and measure memory / performance!...
+
         public override void Initialize()
         {
             base.Initialize();

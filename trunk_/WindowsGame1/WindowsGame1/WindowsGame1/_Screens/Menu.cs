@@ -13,6 +13,9 @@ namespace WindowsGame1
 {
     class Menu : DrawableGameComponent
     {
+        //add something to read the keyboard here
+        //and write like an old rpg... vinicius like sdl...
+
         string[] menuItems;
         int selectedIndex;
         Color normal = Color.White;
@@ -27,6 +30,22 @@ namespace WindowsGame1
 
         public Vector2 offSet;
         public bool active;
+
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        public float Width
+        {
+            get { return width; }
+        }
+
+        public float Height
+        {
+            get { return height; }
+        }
 
         public Menu(Game game,
                             SpriteBatch spriteBatch,

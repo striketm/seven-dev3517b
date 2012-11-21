@@ -16,6 +16,8 @@ using WindowsGame1._4_RType;
 using WindowsGame1._5_Quiz;
 using WindowsGame1._6_Ship3D;
 
+using WindowsGame1._Screens;//?
+
 namespace WindowsGame1
 {
     public class Game1 : Microsoft.Xna.Framework.Game
@@ -43,7 +45,11 @@ namespace WindowsGame1
         Intro intro;
         Credit credit;
         GameScreen activeScreen;//ok?
-        
+
+        //using WindowsGame1._Screens;//?
+        PopUp quitScreen;//this should appears in front of the others,
+        //and be removed without memory leaks
+                
         KeyboardState ks;
         KeyboardState oldks;
         MouseState ms;
@@ -116,6 +122,11 @@ namespace WindowsGame1
             //Components.Add(credit);//auto?
             //credit.Hide();//auto?
 
+            quitScreen = new PopUp(this,spriteBatch,Content.Load<SpriteFont>("Arial24"),
+Content.Load<Texture2D>("quitscreen"));
+            //Components.Add(quitScreen);
+            //quitScreen.Hide();
+
             activeScreen = intro;
             activeScreen.Show();
 
@@ -141,6 +152,42 @@ namespace WindowsGame1
             return ks.IsKeyUp(key) && !oldks.IsKeyUp(key);
         }
 
+        private void HandleStartScreen()//put in the class!
+        {
+            if (keyboardWasPressed(Keys.Enter))// || CheckButton(Buttons.A))
+            {
+                if (intro.SelectedIndex == 0)
+                {
+                    activeScreen.Hide();
+                    activeScreen = credit;
+                    activeScreen.Show();
+                }
+                //if (intro.SelectedIndex == 1)
+                //{
+                //    this.Exit();
+                //}
+            }
+        }
+
+        private void HandleQuitScreen()//put in the class!
+        {
+            if (keyboardWasPressed(Keys.Enter))// || CheckButton(Buttons.A))
+            {
+                if (quitScreen.SelectedIndex == 0)
+                {
+                    activeScreen.Hide();
+                    activeScreen = intro;
+                    activeScreen.Show();
+                }
+                if (quitScreen.SelectedIndex == 1)
+                {
+                    activeScreen.Hide();
+                    activeScreen = credit;//?
+                    activeScreen.Show();
+                }
+            }
+        }
+
         protected override void Update(GameTime gameTime)
         {
             //Console.WriteLine("fuu!");
@@ -154,7 +201,10 @@ namespace WindowsGame1
 
             if (keyboardWasPressed(Keys.Escape))
             {
-                Exit();
+                //Exit();
+                activeScreen.Hide();
+                activeScreen = quitScreen;
+                activeScreen.Show();
             }
 
             if (keyboardWasPressed(Keys.F12))
@@ -165,19 +215,28 @@ namespace WindowsGame1
             //i did not call the game screens updates and draws...
             //did have to remember to add them to game components, since game 1 is singleton...
 
-            if (activeScreen == intro)//make this inside the class?
-                //to do so the screens should be available global, manager...
-            {
-                if (keyboardWasPressed(Keys.Enter))
-                {
-                    if (intro.SelectedIndex == 0)
-                    {
-                        activeScreen.Hide();
-                        activeScreen = credit;
-                        activeScreen.Show();
-                    }
+            //if (activeScreen == intro)//make this inside the class?
+            //    //to do so the screens should be available global, manager...
+            //{
+            //    if (keyboardWasPressed(Keys.Enter))
+            //    {
+            //        if (intro.SelectedIndex == 0)
+            //        {
+            //            activeScreen.Hide();
+            //            activeScreen = credit;
+            //            activeScreen.Show();
+            //        }
                     
-                }
+            //    }
+            //}
+
+            if (activeScreen == intro)
+            {
+                HandleStartScreen();
+            }
+            else if (activeScreen == quitScreen)
+            {
+                HandleQuitScreen();
             }
 
             switch (presentState)
