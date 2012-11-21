@@ -48,7 +48,7 @@ namespace WindowsGame1
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.Update(gameTime);//order?
             foreach (GameComponent component in components)
                 if (component.Enabled == true)
                     component.Update(gameTime);
@@ -56,7 +56,7 @@ namespace WindowsGame1
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.Draw(gameTime);//order?
             foreach (GameComponent component in components)
                 if (component is DrawableGameComponent &&
                 ((DrawableGameComponent)component).Visible)
