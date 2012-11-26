@@ -174,11 +174,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="6_Ship3D\nave.fbx">
-      <Name>nave</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="6_Ship3D\starfox.fbx">
       <Name>starfox</Name>
       <Importer>FbxImporter</Importer>
@@ -214,6 +209,13 @@
   <ItemGroup>
     <Compile Include="quitscreen.png">
       <Name>quitscreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameThumbnail.png">
+      <Name>GameThumbnail</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

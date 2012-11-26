@@ -29,7 +29,7 @@ namespace WindowsGame1
         enum GameState { PONG, BREAKOUT, SPACEINVADERS, RTYPE, QUIZ, SHIP3D, 
         INTRO, MENU, CREDIT, CONFIG, EXIT, HIGHSCORE, PAUSE, GAMEOVER, THEEND}
 
-        GameState presentState = GameState.PONG;//not use = 1
+        GameState presentState = GameState.SHIP3D;//not use = 1
 
         Pong pong;
         BreakOut breakOut;
@@ -128,7 +128,7 @@ Content.Load<Texture2D>("quitscreen"));
             //quitScreen.Hide();
 
             activeScreen = intro;
-            activeScreen.Show();
+            //activeScreen.Show();
 
         }
 
@@ -205,7 +205,7 @@ Content.Load<Texture2D>("quitscreen"));
 
             if (keyboardWasPressed(Keys.Escape))
             {
-                //Exit();
+                Exit();//
                 activeScreen.Hide();
                 activeScreen = quitScreen;
                 activeScreen.Show();

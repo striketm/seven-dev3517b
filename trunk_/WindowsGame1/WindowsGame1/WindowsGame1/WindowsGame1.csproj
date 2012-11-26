@@ -84,8 +84,10 @@
     <Compile Include="3_SpaceInvaders\SpaceInvadersGame.cs" />
     <Compile Include="4_RType\RTypeGame.cs" />
     <Compile Include="5_Quiz\QuizGame.cs" />
-    <Compile Include="6_Ship3D\BasicCamera.cs" />
     <Compile Include="6_Ship3D\SpaceShip3D.cs" />
+    <Compile Include="6_Ship3D\TPSCamera.cs" />
+    <Compile Include="_Core\BasicCamera.cs" />
+    <Compile Include="_Core\GameObject3D.cs" />
     <Compile Include="6_Ship3D\Ship3DGame.cs" />
     <Compile Include="_Screens\Config.cs" />
     <Compile Include="_Screens\Credit.cs" />

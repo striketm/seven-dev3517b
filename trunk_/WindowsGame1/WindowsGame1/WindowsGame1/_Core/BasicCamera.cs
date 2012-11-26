@@ -9,12 +9,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace WindowsGame1._6_Ship3D
+namespace WindowsGame1._Core
 {
     /// <summary>
     /// Classe que representa uma câmera básica, mínima, padrão, sem movimentos, no jogo
     /// </summary>
-    class BasicCamera
+    abstract class BasicCamera
     {
         Vector3 position;
         /// <summary>
@@ -93,6 +93,8 @@ namespace WindowsGame1._6_Ship3D
 
             Update();
         }
+
+        public abstract void Update(GameTime gameTime);
 
         public void Update()
         {

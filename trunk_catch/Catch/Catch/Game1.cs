@@ -286,9 +286,7 @@ namespace CapturarObjetos
                 case Estado.JOGO:
 
                     jogo.Draw(gameTime, spriteBatch);//todo vazio ainda
-
                     
-
                     GraphicsDevice.BlendState = BlendState.AlphaBlend;
                     GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
                     GraphicsDevice.DepthStencilState = DepthStencilState.Default;
