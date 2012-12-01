@@ -17,6 +17,8 @@ namespace SevenInvaders
 
         int player;
         int life;
+
+        animation animation1;
                 
         # endregion
 
@@ -32,16 +34,21 @@ namespace SevenInvaders
             this.player = player;
           
             this.Velocity = new Vector2(10, 0);
+
             this.Window = gameWindow;
+
+            animation1 = new animation();
+            animation1.frame.X = 0;
+            animation1.frame.Y = 0;
+            animation1.frame.Width = 94;
+            animation1.frame.Height = 123;
+
+            animation1.frames = 3;
+            animation1.fps = 1;
+
+            current_animation = animation1;
         }
-
-//REMOVER OS ATRIBUTOS EXCEDENTES DA CLASSE SHIP E CORRIGIR PARA USAR OS ATRIBUTOS HERDADOS DE SPRITE
-
-
-
-
-
-
+        
           public Player(
             Texture2D texture,
             Vector2 position,
@@ -63,7 +70,7 @@ namespace SevenInvaders
 
           }
 
-        public void Update(KeyboardState ks)
+        public void Update(GameTime gameTime, KeyboardState ks)
         {
             #region teclado 
 
@@ -121,30 +128,5 @@ namespace SevenInvaders
                PositionX = Window.ClientBounds.Width - Frame.Width;
             }
         }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-           
-            //spriteBatch.Draw(
-            //    texture,
-            //    new Rectangle((int)position.X, (int)position.Y, frame.Width, frame.Height),
-            //    frame, color);
-
-            spriteBatch.Draw(
-                Texture, 
-                new Rectangle((int)Position.X, (int)Position.Y, Frame.Width, Frame.Height),
-                Frame, 
-                Color,
-                Rotation,
-                new Vector2(0,0), 
-                SpriteEffects.None,
-                1.0f);
-
-            
-
-            
-
-        }
-
     }//fim da classe Ship
 }//fim do namespace SevenInvaders

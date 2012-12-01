@@ -31,15 +31,24 @@ namespace SevenInvaders
         /// </summary>
         KeyboardState teclado;
         
-        Player ship1;
-        Player ship2;
+        EnemyType1 enemyType1;
+
+        Player player;//refactor rename
         
-        Sprite sprite1;
+        //Sprite sprite1;//nao posso fazer isso
         
         //EXERCÍCIO 2:
         //criar um segundo objeto do tipo Ship
         //também controlado pelo teclado
         //mas com botões *diferentes* para cada jogador
+
+        /*
+         *EXERCÍCIO PARA A SEMANA QUE VEM
+* No nosso jogo, teremos a classe base Sprite, herdando dela teremos um jogador na tela (criar a classe Player), e três tipos de inimigos (EnemyType1, EnemyType2, EnemyType3) que herdam de uma classe geral abstrata Enemy, que herda de Sprite.
+* Preencher os Sumarios.
+         *  E a classe Shoot?
+* E a classe Item?
+*/
 
         /// <summary>
         /// Construtor, chamado sempre que um objeto da classe é criado
@@ -72,23 +81,27 @@ namespace SevenInvaders
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ship1 = new Player(Content.Load<Texture2D>("sevenmv"), new Vector2(100, 0), 1, Window);
-            ship2 = new Player(Content.Load<Texture2D>("seven"), new Vector2(200, 0), 2, Window);
-            
-            ship1.Color = Color.White;
-            ship2.Color = Color.White;
-            
-            ship2.Rotation = MathHelper.ToRadians(45.0f);
-
-            ship1.Frame = new Rectangle(0, 0, 95, 123);
-            ship2.Frame = new Rectangle(0, 0, 88, 123);
-
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             IsMouseVisible = true;
+
+            enemyType1 = new EnemyType1(Content.Load<Texture2D>("EnemyType1"));
+
+            Texture2D tmp = Content.Load<Texture2D>("sevenmv");//como vou ler a altura antes de criar?
+            player = new Player(tmp,
+                new Vector2(
+                    (Window.ClientBounds.Width-tmp.Width)/2,//x
+                    Window.ClientBounds.Height - tmp.Height),//y
+                1,
+                Window);
+                        
+            enemyType1.Frame = new Rectangle(0, 0, 95, 123);
+
+            player.Frame = new Rectangle(0, 0, 88, 123);
+
         }
 
         /// <summary>
@@ -118,8 +131,9 @@ namespace SevenInvaders
                 this.Exit();
             }
 
-            ship1.Update(teclado);
-            ship2.Update(teclado);
+            enemyType1.Update(gameTime);
+
+            player.Update(gameTime, teclado);
             
             //Exercício: 
             //fazer com que a nave se mova da esquerda e para a direita
@@ -138,8 +152,9 @@ namespace SevenInvaders
             
             spriteBatch.Begin();
 
-            ship1.Draw(spriteBatch);
-            ship2.Draw(spriteBatch);
+            enemyType1.Draw(gameTime, spriteBatch);
+
+            player.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 

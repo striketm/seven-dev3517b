@@ -390,6 +390,8 @@ namespace SevenInvaders
         //list
         //static?
 
+        public static List<Sprite> list = new List<Sprite>();
+
         //window static?
                 
         /// <summary>
@@ -398,11 +400,13 @@ namespace SevenInvaders
         public Sprite(Texture2D texture)
         {
             this.current_animation = new animation();
-            this.current_animation.active = true;
-            this.current_animation.current_frame = 0;
+            
             this.current_animation.fps = 1;
             this.current_animation.frame = new Rectangle(0, 0, texture.Width, texture.Height);
             this.current_animation.frames = 1;
+
+            this.current_animation.active = true;
+            this.current_animation.current_frame = 1;
             this.current_animation.name = "";
             
             this.Alpha = 1.0f;
@@ -435,6 +439,8 @@ namespace SevenInvaders
 
             //this.Window = //to do
 
+            list.Add(this);
+
         }
 
         /// <summary>
@@ -452,13 +458,14 @@ namespace SevenInvaders
         {
             if (Visible)
             {
+                current_animation.current_frame = (int)(gameTime.TotalGameTime.TotalSeconds * current_animation.fps) % current_animation.frames;
 
-                //int frame = (int)(gameTime.TotalGameTime.TotalSeconds * _animacao.quadros_seg) % _animacao.qtd_quadros;
+                Rectangle tmp =new Rectangle(current_animation.frame.Width * current_animation.current_frame, current_animation.frame.Y, current_animation.frame.Width, current_animation.frame.Height);
 
                 spriteBatch.Draw(
                     this.Texture,
                     this.Destination,
-                    this.current_animation.frame,
+                    tmp,
                     Color,
                     Rotation,
                     Pivot,
