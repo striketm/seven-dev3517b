@@ -84,6 +84,7 @@ namespace WindowsGame1._Core
             Target = new Vector3(0.0f,0.0f,0.0f);
             Orientation = Vector3.Up;
 
+            
             ApertureAngle = 90.0f;
             ScreenRatio = 16.0f / 9.0f;
             NearPlane = 1.0f;

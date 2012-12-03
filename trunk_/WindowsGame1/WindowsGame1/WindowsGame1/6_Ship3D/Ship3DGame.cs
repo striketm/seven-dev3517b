@@ -19,11 +19,14 @@ namespace WindowsGame1._6_Ship3D
         SpaceShip3D starFox;
         SpaceShip3D ferrari;
 
+        SpaceShip3D player;
+        //SpaceShip3D floor;
+
         TPSCamera camera;
 
         Viewport viewportPadrao;
         Viewport viewportRetrovisor;
-        TPSCamera cameraRetrovisor;
+        //TPSCamera cameraRetrovisor;
 
         public Ship3D(ContentManager Content)
         {
@@ -33,6 +36,9 @@ namespace WindowsGame1._6_Ship3D
             probe = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
             starFox = new SpaceShip3D(Content.Load<Model>("6_Ship3D/starfox"));
             ferrari = new SpaceShip3D(Content.Load<Model>("6_Ship3D/F1 cars/ferrari"));
+
+            player = new SpaceShip3D(Content.Load<Model>("6_Ship3D/jogador"));
+            //floor = new SpaceShip3D(Content.Load<Model>("6_Ship3D/chao"));
 
             starFox.Scale = 0.5f;
 
@@ -45,6 +51,11 @@ namespace WindowsGame1._6_Ship3D
             starFox.Position = new Vector3(-20, 0, 0);//esquerda
             ferrari.Position = new Vector3(0, 0, -20);//frente
 
+            player.Position = new Vector3(0, 0, 0);//frente
+            player.Scale = 0.1f;
+
+            //floor.Position = new Vector3(0, -10, 0);//frente
+
             //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/Probe/probe"));
 
             //ship3d = new SpaceShip3D(Content.Load<Model>("6_Ship3D/F1 cars/ferrari"));
@@ -55,17 +66,17 @@ namespace WindowsGame1._6_Ship3D
 
             camera = new TPSCamera();
 
-            camera.Position = new Vector3(0, 0, 0);
-            camera.Target = new Vector3(0, 0, -1);
+            camera.Position = new Vector3(0, 15, 20);
+            camera.Target = player.Position;
 
             viewportPadrao = Game1.Instance.GraphicsDevice.Viewport;
             viewportRetrovisor = new Viewport(0, 0, 160, 120);
 
-            cameraRetrovisor = new TPSCamera();
-            cameraRetrovisor.Position = camera.Position;//?
-            cameraRetrovisor.ViewMatrix = camera.ViewMatrix;//?
-            cameraRetrovisor.ProjectionMatrix = camera.ProjectionMatrix;//?
-            cameraRetrovisor.Target = new Vector3(0, 0, 1);
+            //cameraRetrovisor = new TPSCamera();
+            //cameraRetrovisor.Position = camera.Position;//?
+            //cameraRetrovisor.ViewMatrix = camera.ViewMatrix;//?
+            //cameraRetrovisor.ProjectionMatrix = camera.ProjectionMatrix;//?
+            //cameraRetrovisor.Target = new Vector3(0, 0, 1);
 
         }
 
@@ -81,8 +92,11 @@ namespace WindowsGame1._6_Ship3D
                 gO3D.Update(gameTime);
             }
 
-            camera.Update(gameTime);
-            cameraRetrovisor.Update(gameTime, true);
+            //camera.Update(gameTime);
+            //cameraRetrovisor.Update(gameTime, true);
+
+            camera.Update(player.RotationY, player.Position);
+
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -128,7 +142,7 @@ namespace WindowsGame1._6_Ship3D
 
             foreach (GameObject3D gO3D in GameObject3D.list)
             {
-                gO3D.Draw(cameraRetrovisor);
+                //gO3D.Draw(cameraRetrovisor);
             }
 
             //ship3d.ModelDraw(camera);

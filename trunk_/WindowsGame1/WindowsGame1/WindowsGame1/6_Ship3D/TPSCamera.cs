@@ -18,9 +18,39 @@ namespace WindowsGame1._6_Ship3D
 
         //bool retro = false;//argh!
 
+        public Vector3 distanceToPlayer;
+        public Vector3 distanceToTarget;
+
         public TPSCamera():base()
         {
+            distanceToPlayer = new Vector3(0, 10, 15);
+            distanceToTarget = new Vector3(0, 5, 0);
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerRotationAngleDegrees"></param>
+        /// <param name="playerPosition"></param>
+        public void Update(float playerRotationAngleDegrees, Vector3 playerPosition)
+        {
+            Matrix rotationMatrix = Matrix.CreateRotationY(playerRotationAngleDegrees);
+
+            Vector3 correctDistance = Vector3.Transform(distanceToPlayer, rotationMatrix);
+            Vector3 correctTarget = Vector3.Transform(distanceToTarget, rotationMatrix);
+
+            Position = playerPosition + correctDistance;
+            Target = playerPosition + correctTarget;
+
+            ViewMatrix = Matrix.CreateLookAt(Position, Target, Orientation);
+
+            ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
+                MathHelper.ToRadians(ApertureAngle),
+                ScreenRatio,
+                NearPlane,
+                FarPlane);
+
+            //base.Update();
         }
 
         public override void Update(GameTime gameTime)
@@ -71,3 +101,4 @@ namespace WindowsGame1._6_Ship3D
         //}
     }
 }
+
