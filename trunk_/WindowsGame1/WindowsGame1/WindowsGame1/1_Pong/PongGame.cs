@@ -9,6 +9,56 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+/*
+ * int x = (blockRect.X + (blockRect.Width / 2)) - (ballRect.X + (ballRect.Width / 2));
+int y = (blockRect.Y + (blockRect.Height / 2)) - (ballRect.Y + (ballRect.Height / 2));
+if (Abs(x) > Abs(y))
+{
+    // reflect horizontally
+    ballSpeedVector.X = -ballSpeedVector.X;
+}
+else
+{
+    // reflect vertically
+    ballSpeedVector.Y = -ballSpeedVector.Y;
+}
+ */
+
+/*
+ * if (bottom1 < top2) return(1);
+2
+ if (top1 > bottom2) return(2);
+3
+ 
+4
+ if (right1 < left2) return(3);
+5
+ if (left1 > right2) return(4);
+6
+ 
+7
+ return(0);
+
+
+0 = no collision
+1= bottom collides with top
+2 = top collides with bottom
+3 = right collides with left
+4 =left collides with right..
+ */
+
+/*
+ * sphere-on-sphere collision:
+
+view sourceprint?
+1
+if(dist(object_a,object_b) <= min(object_a.radius,object_b.radius))
+2
+  return true;
+3
+return false;
+
+ */
 namespace WindowsGame1._1_Pong
 {
     class Pong

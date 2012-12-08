@@ -10,6 +10,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using WindowsGame1._Core;
 
+//http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.spritesortmode.aspx
+
+//http://xbox.create.msdn.com/en-US/education/catalog/sample/collision_3d_heightmap_normals
+
+
 namespace WindowsGame1._6_Ship3D
 {
     class SpaceShip3D:GameObject3D

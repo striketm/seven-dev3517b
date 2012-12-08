@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+//http://www.codeproject.com/Articles/15573/2D-Polygon-Collision-Detection
+
+//http://www.progware.org/Blog/post/XNA-2D-Basic-Collision-Detection.aspx
+
 namespace WindowsGame1
 {
     /// <summary>
