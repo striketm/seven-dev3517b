@@ -86,6 +86,8 @@
     <Compile Include="5_Quiz\QuizGame.cs" />
     <Compile Include="6_Ship3D\SpaceShip3D.cs" />
     <Compile Include="6_Ship3D\TPSCamera.cs" />
+    <Compile Include="Game1r.cs" />
+    <Compile Include="RotatedRectangle.cs" />
     <Compile Include="_Core\BasicCamera.cs" />
     <Compile Include="_Core\GameObject3D.cs" />
     <Compile Include="6_Ship3D\Ship3DGame.cs" />
