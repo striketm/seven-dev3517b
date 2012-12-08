@@ -9,21 +9,19 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-//http://xbox.create.msdn.com/en-US/education/catalog/tutorial/collision_2d_rectangle
-
 namespace SevenInvaders
 {
     /// <summary>
-    /// 
+    /// Classe abstrata, ou seja, não pode ser instanciada, não se pode criar objetos diretamente.
+    /// É preciso antes herdar uma classe concreta desta para receber seus atributos.
+    /// Feito assim para otimizar código/lógica.
     /// </summary>
     abstract class Sprite//GameObject2D
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        
         GameWindow window;
         /// <summary>
-        /// 
+        /// Atributo que recebe informações da janela (tamanho)
         /// </summary>
         public GameWindow Window
         {

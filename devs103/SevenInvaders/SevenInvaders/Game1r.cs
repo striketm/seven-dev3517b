@@ -9,6 +9,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+//
+//http://xbox.create.msdn.com/en-US/education/catalog/tutorial/collision_2d_rectangle
+//
+
+
 namespace SevenInvaders
 {
     /// <summary>
