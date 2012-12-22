@@ -37,10 +37,9 @@ public class GridManager : MonoBehaviour
 
                 layerMask = 1 << 8;
                 TempRayPos = new Vector3(TempNodePosition.x, transform.position.y + transform.localScale.y * 0.5f, TempNodePosition.z);
-                //if (Physics.Raycast(TempRayPos, -Vector3.up, HitData, transform.localScale.y, layerMask))
-                //if (Physics.Raycast(TempRayPos, Vector3.down, HitData, transform.localScale.y, layerMask))
+                if (Physics.Raycast(TempRayPos, Vector3.down,out HitData, transform.localScale.y, layerMask))
                 {
-                    TempNodePosition.y = 2;// HitData.point.y;
+                    TempNodePosition.y = HitData.point.y;
                 }
 
                 Transform TempNodeTransform = Instantiate(NodePrefab, TempNodePosition, Quaternion.identity) as Transform;
