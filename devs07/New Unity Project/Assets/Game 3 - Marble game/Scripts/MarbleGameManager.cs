@@ -11,7 +11,6 @@ public class MarbleGameManager : MonoBehaviour
     private int foundGems;
     private MarbleGameState gameState;
 
-
     void Awake()
     {
         SP = this; 
