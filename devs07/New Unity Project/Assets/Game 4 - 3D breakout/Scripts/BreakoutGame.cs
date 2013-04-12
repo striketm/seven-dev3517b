@@ -29,9 +29,11 @@ public class BreakoutGame : MonoBehaviour
         Instantiate(ballPrefab, new Vector3(1.81f, 1.0f , 9.75f), Quaternion.identity);
     }
 
-    void OnGUI(){
+    void OnGUI()
+	{
     
         GUILayout.Space(10);
+		
         GUILayout.Label("  Hit: " + blocksHit + "/" + totalBlocks);
 
         if (gameState == BreakoutGameState.lost)
@@ -56,9 +58,9 @@ public class BreakoutGame : MonoBehaviour
     {
         blocksHit++;
         
-        //For fun:
-        if (blocksHit%10 == 0) //Every 10th block will spawn a new ball
-        {
+		
+        if (blocksHit%10 == 0) 
+		{
             SpawnBall();
         }
 
@@ -71,22 +73,24 @@ public class BreakoutGame : MonoBehaviour
 
     public void WonGame()
     {
-        Time.timeScale = 0.0f; //Pause game
+        Time.timeScale = 0.0f; 
         gameState = BreakoutGameState.won;
     }
 
     public void LostBall()
     {
         int ballsLeft = GameObject.FindGameObjectsWithTag("Player").Length;
-        if(ballsLeft<=1){
-            //Was the last ball..
+        if(ballsLeft<=1)
+		{
+           
             SetGameOver();
         }
     }
 
     public void SetGameOver()
     {
-        Time.timeScale = 0.0f; //Pause game
+        Time.timeScale = 0.0f; 
+		
         gameState = BreakoutGameState.lost;
     }
 }

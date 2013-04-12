@@ -1,19 +1,24 @@
 using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour {
+public class Ball : MonoBehaviour
+{
 
     public float maxVelocity = 20;
     public float minVelocity = 15;
 
-	void Awake () {
+	void Awake ()
+	{
         rigidbody.velocity = new Vector3(0, 0, -18);
 	}
 
-	void Update () {
-        //Make sure we stay between the MAX and MIN speed.
+	void Update ()
+	{
+        
         float totalVelocity = Vector3.Magnitude(rigidbody.velocity);
-        if(totalVelocity>maxVelocity){
+		
+        if(totalVelocity>maxVelocity)
+		{
             float tooHard = totalVelocity / maxVelocity;
             rigidbody.velocity /= tooHard;
         }
@@ -23,8 +28,9 @@ public class Ball : MonoBehaviour {
             rigidbody.velocity /= tooSlowRate;
         }
 
-        //Is the ball below -3? Then we're game over.
-        if(transform.position.z <= -3){            
+        
+        if(transform.position.z <= -3)
+		{            
             BreakoutGame.SP.LostBall();
             Destroy(gameObject);
         }
